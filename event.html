@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Events</title>
+
+	<!-- CSS REFERENCES-->
+
+		<!-- Bootstrap -->
+		<link 
+			rel="stylesheet" 
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+			crossorigin="anonymous" />
+
+		<!-- Bootstrap optional theme -->
+		<link 
+			rel="stylesheet" 
+			href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" 
+			integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" 
+			crossorigin="anonymous" />
+
+		<!-- Full calendar -->
+		<link 
+			rel="stylesheet" 
+			href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css"
+			crossorigin="anonymous" />
+
+		<link 
+			rel="stylesheet" 
+			href="style/chatbox.css" />
+
+	<!-- END CSS REFERENCES -->
+
+	<!-- FONT REFERENCES -->
+
+		<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+	<!-- END FONT REFERENCES -->
+
+	<!-- JS REFERENCES -->
+
+		<!-- jQuery -->
+		<script
+			src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+			crossorigin="anonymous"></script>
+
+		<!-- jQuery UI -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+			crossorigin="anonymous"></script>
+
+		<!-- Bootstrap jQuery -->
+		<script 
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
+			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" 
+			crossorigin="anonymous"></script>
+
+		<!-- Moment -->
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"
+			crossorigin="anonymous"></script>
+
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/locale/fr.js"
+			crossorigin="anonymous"></script>
+
+		<!-- Full calendar -->
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"
+			crossorigin="anonymous"></script>
+
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/locale-all.js"
+			crossorigin="anonymous"></script>
+
+		<!-- Lingumania -->
+		<script src="scripts/translation.js"></script>
+
+		<script src="scripts/Lingumania/lingumania.js"></script>
+
+	<!-- END JS REFERENCES -->
+
+	<style>
+
+		/* CSS calendar */
+		body {
+			margin: 0;
+			padding: 0;
+			font-size: 14px;
+		}
+
+		#top,
+		#calendar.fc-unthemed {
+			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		}
+
+		#top {
+			background: #eee;
+			border-bottom: 1px solid #ddd;
+			padding: 0 10px;
+			line-height: 40px;
+			font-size: 12px;
+			color: #000;
+		}
+
+		#top .selector {
+			display: inline-block;
+			margin-right: 10px;
+		}
+
+		#top select {
+			font: inherit;
+		}
+
+		.left { float: left }
+		.right { float: right }
+		.clear { clear: both }
+
+		#calendar {
+			max-width: 900px;
+			margin: 40px auto;
+			padding: 0 10px;
+		}
+
+		#lingumania_langswitcher {
+			display: none;
+		}
+
+	</style>
+
+	<script type="text/javascript">
+		
+/*
+	$(document).ready(function() {
+	    var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+		
+		// className colors : default(transparent), important(red), chill(pink), success(green), info(blue)
+		
+		  
+		// initialize the external events
+		
+		$('#external-events div.external-event').each(function() {
+		
+			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+			// it doesn't need to have a start or end
+			var eventObject = {
+				title: $.trim($(this).text()) // use the element's text as the event title
+			};
+			
+			// store the Event Object in the DOM element so we can get to it later
+			$(this).data('eventObject', eventObject);
+			
+			// make the event draggable using jQuery UI
+			$(this).draggable({
+				zIndex: 999,
+				revert: true,      // will cause the event to go back to its
+				revertDuration: 0  //  original position after the drag
+			});
+			
+		});
+	
+	
+		// initialize the calendar
+		
+		var calendar =  $('#calendar').fullCalendar({
+			header: {
+				left: 'title',
+				center: 'agendaDay,agendaWeek,month',
+				right: 'prev,next today'
+			},
+			editable: true,
+			firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
+			selectable: true,
+			defaultView: 'month',
+			
+			axisFormat: 'h:mm',
+			columnFormat: {
+                month: 'ddd',    // Mon
+                week: 'ddd d', // Mon 7
+                day: 'dddd M/d',  // Monday 9/7
+                agendaDay: 'dddd d'
+            },
+            titleFormat: {
+                month: 'MMMM yyyy', // September 2009
+                week: "MMMM yyyy", // September 2009
+                day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
+            },
+			allDaySlot: false,
+			selectHelper: true,
+			select: function(start, end, allDay) {
+				var title = prompt('Nom de l\'event:');
+				if (title) {
+					calendar.fullCalendar('renderEvent',
+						{
+							title: title,
+							start: start,
+							end: end,
+							allDay: allDay
+						},
+						true // make the event "stick"
+					);
+				}
+				calendar.fullCalendar('unselect');
+			},
+			droppable: true, // this allows things to be dropped onto the calendar !!!
+			drop: function(date, allDay) { // this function is called when something is dropped
+			
+				// retrieve the dropped element's stored Event Object
+				var originalEventObject = $(this).data('eventObject');
+				
+				// we need to copy it, so that multiple events don't have a reference to the same object
+				var copiedEventObject = $.extend({}, originalEventObject);
+				
+				// assign it the date that was reported
+				copiedEventObject.start = date;
+				copiedEventObject.allDay = allDay;
+				
+				// render the event on the calendar
+				// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+				$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+				
+				// is the "remove after drop" checkbox checked?
+				if ($('#drop-remove').is(':checked')) {
+					// if so, remove the element from the "Draggable Events" list
+					$(this).remove();
+				}
+				
+			}
+		    });
+		});*/
+			
+		$(document).ready(function() {
+
+		    $('#calendar').fullCalendar({
+		      themeSystem: 'bootstrap3',
+		      header: {
+		        left: 'prev,next today',
+		        center: 'title',
+		        right: 'month,agendaWeek,agendaDay,listMonth'
+		      },
+		      defaultDate: '2019-01-12',
+		      weekNumbers: false,
+		      navLinks: true, // can click day/week names to navigate views
+		      editable: true,
+		      eventLimit: true, // allow "more" link when too many events
+		      locale: getCurrentLanguage(),
+		      events: [
+		        {
+		          title: 'Event toute la journée',
+		          start: '2019-01-01'
+		        },
+		        {
+		          title: 'Tounoir PVP 3j (20h30-23h00)',
+		          start: '2019-01-07',
+		          end: '2019-01-10'
+		        },
+		        {
+		          title: 'Réunion prépa event course',
+		          start: '2019-01-12T10:30:00',
+		          end: '2019-01-12T11:30:00'
+		        },
+		        {
+		          title: 'Course',
+		          start: '2019-01-12T15:30:00'
+		        },
+		        {
+		          title: 'Course des perdants',
+		          start: '2019-01-12T16:30:00'
+		        },
+		        {
+		          title: 'Course des vainqueurs',
+		          start: '2019-01-12T17:30:00'
+		        },
+		        {
+		          title: 'Live HOR',
+		          start: '2019-01-12T20:45:00'
+		        },
+		        {
+		          title: 'Cache-cache géant',
+		          start: '2019-01-13T21:00:00'
+		        },
+		        {
+		          title: 'Nos amis les mobs',
+		          start: '2019-01-16T21:30:00'
+		        },
+		        {
+		          title: 'Chopez le pingouin !',
+		          start: '2019-01-28T21:00:00'
+		        }
+		      ]
+		    });
+		});
+
+
+		function getCurrentLanguage() {
+			var defaultLanguage = 'fr';
+			var name = 'lang'.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+	        var regexS = "[\\?&]" + name + "=([^&#]*)";
+	        var regex = new RegExp(regexS);
+	        var results = regex.exec(location.href);
+	        if (results == null)
+	            return defaultLanguage;
+	        else
+	            return results[1];
+		}
+
+	</script>	
+</head>
+<body>
+                                                                                                                                
+                                        
+	<div class="container-fluid">
+		<!-- Test lingumania for translation (translated strings in scripts/translation) -->
+		<div class="btn-group pull-right">
+			<a href="?lang=en" class="btn btn-default">EN</a>
+			<a href="?lang=fr" class="btn btn-default">FR</a>
+		</div>
+
+		<header class="page-header text-center">
+			<h1>Events (by the players)</h1>
+		</header>
+
+		<!-- HEAD -->
+		<div class="row text-center">
+			<div class="col-lg-12">
+				<p>Cette page recense des events que prévoient de faire les joueurs. Nhésitez pas à participer et à enregistrer les prochains évènements dans votre agenda !</p>
+			</div>
+		</div>
+		<!-- END HEAD -->
+
+		<!-- CALENDAR + ASIDES -->
+		<div class="row text-center">
+
+			<!-- LEFT ASIDE -->
+			<div class="col-lg-2">
+				<div class="row">
+					<aside class="col-lg-12">
+						<div class="row">
+							<strong>Events voulus/appréciés</strong>
+						</div>
+						<div class="row">
+							<div class="progress">
+								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60"
+								aria-valuemin="0" aria-valuemax="100" style="width:60%">
+								Nos amis les mobs 60%
+								</div>
+							</div>
+
+							<div class="progress">
+								<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="30"
+								aria-valuemin="0" aria-valuemax="100" style="width:30%">
+								Cache-cache 30%
+								</div>
+							</div>
+
+							<div class="progress">
+								<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="10"
+								aria-valuemin="0" aria-valuemax="100" style="width:10%">
+								Pingouin 10%
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<img style="width: 100px" class="center-block" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIzMnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzE1N0VGQiIgaWQ9Imljb24tOTItaW5ib3gtZG93bmxvYWQiPjxwYXRoIGQ9Ik0xNiwxNiBMMTIuNzUsMTIuNzUgTDEyLDEzLjUgTDE2LjUsMTggTDIxLDEzLjUgTDIwLjI1LDEyLjc1IEwxNywxNiBMMTcsNSBMMTYsNSBMMTYsMTYgTDE2LDE2IEwxNiwxNiBaIE0yMSwxOCBMMjcuNzc1MDI0NCwxOCBMMjcuNzc1MDI0NCwxOCBMMjMuNDAwMDI0NCwxMSBMMTgsMTEgTDE4LDEwIEwyNCwxMCBMMjksMTggTDI5LDE5IEwyOSwyNyBMNCwyNyBMNCwxOCBMOSwxMCBMMTUsMTAgTDE1LDExIEw5LjU5OTk3NTU5LDExIEw1LjIyNDk3NTU5LDE4IEwxMiwxOCBMMTIsMjAgQzEyLDIxLjEwNDU2OTUgMTIuODk1ODU3OCwyMiAxMy45OTczOTE3LDIyIEwxOS4wMDI2MDgzLDIyIEMyMC4xMDU3MzczLDIyIDIxLDIxLjExMjI3MDQgMjEsMjAgTDIxLDE4IEwyMSwxOCBaIiBpZD0iaW5ib3gtZG93bmxvYWQiLz48L2c+PC9nPjwvc3ZnPg==" alt="télécharger ics" />
+						</div>
+						<p><strong>Enregistrer l'event dans mon calendrier !</strong></p>
+					</aside>
+				</div>
+				<div class="row"></div>
+			</div>
+			<!-- END LEFT ASIDE -->
+			
+			<!-- CALENDAR -->
+			<section class="col-lg-8">
+				
+				<div id='wrap'>
+					<div id='calendar'></div>
+
+					<div style='clear:both'></div>
+				</div>
+			</section>
+			<!-- END CALENDAR -->
+
+			<!-- RIGHT ASIDE -->
+			<div class="col-lg-2">
+				<div class="row">
+					<aside class="col-lg-12">
+						<strong>Personnes cherchant âme soeur pour créer un event</strong>
+						<blockquote>
+							<p>Poulet</p>
+							<p>Roger</p>
+							<p>Kikoulol93</p>
+						</blockquote>
+					</aside>
+				</div>
+				<div class="row">
+					<div class="row chat-window" id="chat_window_1" style="margin-left:10px;">
+				        <div class="col-xs-12 col-md-12">
+				        	<div class="panel panel-default">
+				                <div class="panel-heading top-bar">
+				                    <div class="col-md-8 col-xs-8">
+				                        <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Chats en boîte</h3>
+				                    </div>
+				                </div>
+				                <div class="panel-body msg_container_base">
+				                    <div class="row msg_container base_sent">
+				                        <div class="col-md-10 col-xs-10">
+				                            <div class="messages msg_sent">
+				                                <p>miaou, miaouu !!</p>
+				                                <time datetime="2009-11-13T20:00">chat noir • 51 min</time>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="row msg_container base_receive">
+				                        <div class="col-md-10 col-xs-10">
+				                            <div class="messages msg_receive">
+				                                <p>on pourrait pas faire un event avec des tank qui écrasent des poulets ? ou des types qui mitraillent des poulets ? </p>
+				                                <time datetime="2009-11-13T20:00">Poulet • 51 min</time>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="row msg_container base_receive">
+				                        <div class="col-xs-10 col-md-10">
+				                            <div class="messages msg_receive">
+				                                <p>Meeow ?</p>
+				                                <time datetime="2009-11-13T20:00">chat noir • 51 min</time>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="row msg_container base_sent">
+				                        <div class="col-xs-10 col-md-10">
+				                            <div class="messages msg_sent">
+				                                <p>stop causer comme ça sale bête ! *-* </p>
+				                                <time datetime="2009-11-13T20:00">Poulet • 51 min</time>
+				                            </div>
+				                        </div>
+				                    </div>
+				                </div>
+				                <div class="panel-footer">
+				                    <div class="input-group">
+				                        <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
+				                        <span class="input-group-btn">
+				                        <button class="btn btn-primary btn-sm" id="btn-chat">Send</button>
+				                        </span>
+				                    </div>
+				                </div>
+				    		</div>
+				        </div>
+				    </div>
+				    
+				</div>
+			</div>
+			<!-- END RIGHT ASIDE -->
+
+		</div>
+		<!-- end calendar + asides -->
+
+		<!-- description -->
+		<div class="row">
+			<div class="col-md-12">
+				<caption><h4>Description</h4></caption>
+				<p>Comme il est indiqué plus haut, le but de cette page est de promouvoir les event créés par les joueurs de Rappelz, de faciliter leur communication, et de mettre en relation des personnes voulant s'essayer à en faire.</p>
+				<p>Le principe est simple. Si vous savez ce que vous voulez faire, cliquez sur la date de votre event et remplissez le formulaire. Si vous avez besoin de monde, ou n'êtes pas assez confiant pour organiser un event, vous pouvez regarder la liste à droite et utiliser le chat pour communiquer avec d'autres joueurs intéressés.</p>
+				<p>Dans la liste de joueurs à droite, il est conseillé de mettre votre pseudo ig, ainsi la communication sera plus facile !</p>
+				<p>Bon courage pour la création de vos events !!!</p>
+			</div>
+		</div>
+		<!-- end description -->
+
+
+
+		<!-- sample -->
+		<div class="row">
+			<div class="col-md-12">
+				<caption><h4>Exemples d'event</h4></caption>
+				<table class="table table-bordered table-striped table-condensed">
+					<thead>
+						<tr>
+							<th>Nom</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Elle est folle !</td>
+							<td>Almianeldriem a pété une durite à force de voir des arcs-en-ciel de partout ! Trouvez-là et maîtrisez-la !</td>
+						</tr>
+						<tr>
+							<td>Gesture Mimic</td>
+							<td>La personne de l'event fait une action gestuelle, et les candidats doivent la reproduire (ou la nommer). A noter que cela peut changer selon la race, peut-être plusieurs animateurs/persos pour event</td>
+						</tr>
+						<tr>
+							<td>Cache-cache (inversé)</td>
+							<td>L'animateur doit trouver les candidats sur un terrain (par exemple île) ?</td>
+						</tr>
+						<tr>
+							<td>Chopez le pingouin !</td>
+							<td>Il s'est échappé du zoo ! Une personne en costume de pingouin (ou autre, chat, vache -> à rôtir *-* ...) cours d'un point A à un point B (zig/zag, sans stuff), il faut le choper (stun/sceller)  ou le tuer avant qu'il n'arrive au point d'arrivée -> version alternative où les participants on un arc (voir dans le chat dégât la première personne à toucher)</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+		</div>
+		<!-- end sample -->
+
+		<!-- advises -->
+		<div class="row">
+			<div class="col-md-12">
+				<caption><h4>Conseils</h4></caption>
+				<p>Lorsque vous préparez un event, n'hésitez pas à être à plusieurs ! ( la liste sur la droite de la page sert à ça). Il n'est pas toujours facile d'organiser un event car il y a plusieurs aspects à gérer tels que la communication sur la date, les règles, la gestion des participants (pas forcément facile, et on peut recevoir beaucoup de mp lors du jeu).</p>
+				<p>Pour les <strong>lots</strong>, si vous êtes nouveaux, vous n'aurez pas forcément de donnateurs. A voir avec <strong>HOR</strong> (<strong>TODO + joueurs "sponsors" ? système de "ticket" où le gagnant ira voir le joueur ?</strong>) qui peut faire office d'intermédaire, ou alors inviter une personne qui veut donner mais n'a pas forcément confiance à remettre le lot en mains propres (prévoir tout de même une autre possibilité si elle se désiste)</p>
+				<p>Si vous souhaitez <strong>créer un event</strong>, un nouveau jeu, préférrez des règles simples pour commencer. Quelque chose qui n'est pas complexe ou long (si il a du succès vous pourrez apporter des variantes). Pensez aussi à toutes les possibilités qui pourraient fausser l'event (ex: sur un cache-cache, une personne qui vous trouve peut très bien revenir avec un reroll...)</p>
+			</div>
+			
+		</div>
+		<!-- end advises -->
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+/* General + CSS calendar */
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+}
+
+.ml10 {
+	margin-left: 10px !important;
+}
+
+#top,
+#calendar.fc-unthemed {
+	font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+}
+
+#top {
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	padding: 0 10px;
+	line-height: 40px;
+	font-size: 12px;
+	color: #000;
+}
+
+#top .selector {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+#top select {
+	font: inherit;
+}
+
+.left { float: left }
+.right { float: right }
+.clear { clear: both }
+
+#calendar {
+	max-width: 900px;
+	margin: 40px auto;
+	padding: 0 10px;
+}
+
+/* Lingumania, hide default button */
+#lingumania_langswitcher {
+	display: none;
+}
+
+/* Lang/Server selection */
+a.lang-select {
+	    padding: 3px 10px;
+}

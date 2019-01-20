@@ -21,15 +21,32 @@
 			integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" 
 			crossorigin="anonymous" />
 
+		<!-- Daterange picker -->
+		<link 
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+		<!-- Select2 -->
+		<link 
+			href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" 
+			rel="stylesheet" />
+
 		<!-- Full calendar -->
 		<link 
 			rel="stylesheet" 
 			href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.css"
 			crossorigin="anonymous" />
 
+		<!-- Chatbox (temp sample TODO change) -->
 		<link 
 			rel="stylesheet" 
 			href="style/chatbox.css" />
+
+		<!-- Site css -->
+		<link 
+			rel="stylesheet" 
+			type="text/css" 
+			href="style/site.css" />
 
 	<!-- END CSS REFERENCES -->
 
@@ -52,6 +69,15 @@
 			src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
 			crossorigin="anonymous"></script>
 
+		<!-- jQuery validate -->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"
+			crossorigin="anonymous"></script>
+
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/localization/messages_fr.min.js"
+			crossorigin="anonymous"></script>
+
 		<!-- Bootstrap jQuery -->
 		<script 
 			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
@@ -67,6 +93,15 @@
 			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/locale/fr.js"
 			crossorigin="anonymous"></script>
 
+		<!-- Daterange picker -->
+		<script 
+			type="text/javascript" 
+			src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+		<!-- Select2 -->
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
 		<!-- Full calendar -->
 		<script 
 			src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.0/fullcalendar.min.js"
@@ -77,249 +112,203 @@
 			crossorigin="anonymous"></script>
 
 		<!-- Lingumania -->
-		<script src="scripts/translation.js"></script>
+		<script 
+			src="scripts/translation.js"></script>
 
-		<script src="scripts/Lingumania/lingumania.js"></script>
+		<script 
+			src="scripts/Lingumania/lingumania.js"></script>
+
+		<!-- Site JS -->
+		<script 
+			src="scripts/site.js"></script>
 
 	<!-- END JS REFERENCES -->
 
-	<style>
-
-		/* CSS calendar */
-		body {
-			margin: 0;
-			padding: 0;
-			font-size: 14px;
-		}
-
-		#top,
-		#calendar.fc-unthemed {
-			font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
-		}
-
-		#top {
-			background: #eee;
-			border-bottom: 1px solid #ddd;
-			padding: 0 10px;
-			line-height: 40px;
-			font-size: 12px;
-			color: #000;
-		}
-
-		#top .selector {
-			display: inline-block;
-			margin-right: 10px;
-		}
-
-		#top select {
-			font: inherit;
-		}
-
-		.left { float: left }
-		.right { float: right }
-		.clear { clear: both }
-
-		#calendar {
-			max-width: 900px;
-			margin: 40px auto;
-			padding: 0 10px;
-		}
-
-		#lingumania_langswitcher {
-			display: none;
-		}
-
-	</style>
-
 	<script type="text/javascript">
-		
-/*
-	$(document).ready(function() {
-	    var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-		
-		// className colors : default(transparent), important(red), chill(pink), success(green), info(blue)
-		
-		  
-		// initialize the external events
-		
-		$('#external-events div.external-event').each(function() {
-		
-			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-			// it doesn't need to have a start or end
-			var eventObject = {
-				title: $.trim($(this).text()) // use the element's text as the event title
-			};
-			
-			// store the Event Object in the DOM element so we can get to it later
-			$(this).data('eventObject', eventObject);
-			
-			// make the event draggable using jQuery UI
-			$(this).draggable({
-				zIndex: 999,
-				revert: true,      // will cause the event to go back to its
-				revertDuration: 0  //  original position after the drag
-			});
-			
-		});
 	
-	
-		// initialize the calendar
-		
-		var calendar =  $('#calendar').fullCalendar({
-			header: {
-				left: 'title',
-				center: 'agendaDay,agendaWeek,month',
-				right: 'prev,next today'
-			},
-			editable: true,
-			firstDay: 1, //  1(Monday) this can be changed to 0(Sunday) for the USA system
-			selectable: true,
-			defaultView: 'month',
-			
-			axisFormat: 'h:mm',
-			columnFormat: {
-                month: 'ddd',    // Mon
-                week: 'ddd d', // Mon 7
-                day: 'dddd M/d',  // Monday 9/7
-                agendaDay: 'dddd d'
-            },
-            titleFormat: {
-                month: 'MMMM yyyy', // September 2009
-                week: "MMMM yyyy", // September 2009
-                day: 'MMMM yyyy'                  // Tuesday, Sep 8, 2009
-            },
-			allDaySlot: false,
-			selectHelper: true,
-			select: function(start, end, allDay) {
-				var title = prompt('Nom de l\'event:');
-				if (title) {
-					calendar.fullCalendar('renderEvent',
-						{
-							title: title,
-							start: start,
-							end: end,
-							allDay: allDay
-						},
-						true // make the event "stick"
-					);
-				}
-				calendar.fullCalendar('unselect');
-			},
-			droppable: true, // this allows things to be dropped onto the calendar !!!
-			drop: function(date, allDay) { // this function is called when something is dropped
-			
-				// retrieve the dropped element's stored Event Object
-				var originalEventObject = $(this).data('eventObject');
-				
-				// we need to copy it, so that multiple events don't have a reference to the same object
-				var copiedEventObject = $.extend({}, originalEventObject);
-				
-				// assign it the date that was reported
-				copiedEventObject.start = date;
-				copiedEventObject.allDay = allDay;
-				
-				// render the event on the calendar
-				// the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
-				$('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
-				
-				// is the "remove after drop" checkbox checked?
-				if ($('#drop-remove').is(':checked')) {
-					// if so, remove the element from the "Draggable Events" list
-					$(this).remove();
-				}
-				
-			}
-		    });
-		});*/
-			
+
+		// TOSTORE see for id if we use lang/id or unique id ?
+		var serverDict = {
+			'en': [{id: 1, text: 'Reviac'}, {id: 2, text: 'Unicorn'}],
+			'fr': [{id: 1, text: 'Abhuva'}, {id: 2, text: 'Lamia'}]
+		};
+
+		var eventTypeDict = {
+			'en': [{id: 1, text: 'Nothing Here !'}],
+			'fr': [{id: 1, text: ''}, {id: 2, text: 'Elle est folle !'}, {id: 3, text: 'Gesture Mimic'}, {id: 4, text: 'Cache-cache inversé'}, {id: 5, text: 'Chopez le pingouin !'}]
+		};
+
+		/**
+		 * On document ready
+		 **/
 		$(document).ready(function() {
 
+			// Initialize region
+			var currentRegion = getCurrentLanguage();
+			moment.locale(currentRegion);
+
+			// Initialize Server list
+			$('.server-list').select2({
+				width: '200',	// TODO fixed ? 
+    			minimumResultsForSearch: -1,
+				data: serverDict[currentRegion]
+			});
+
+		    // Initialize calendar
 		    $('#calendar').fullCalendar({
-		      themeSystem: 'bootstrap3',
-		      header: {
-		        left: 'prev,next today',
-		        center: 'title',
-		        right: 'month,agendaWeek,agendaDay,listMonth'
-		      },
-		      defaultDate: '2019-01-12',
-		      weekNumbers: false,
-		      navLinks: true, // can click day/week names to navigate views
-		      editable: true,
-		      eventLimit: true, // allow "more" link when too many events
-		      locale: getCurrentLanguage(),
-		      events: [
-		        {
-		          title: 'Event toute la journée',
-		          start: '2019-01-01'
+		        themeSystem: 'bootstrap3',
+		        header: {
+		            left: 'prev,next today',
+		            center: 'title',
+		            right: 'month,agendaWeek,agendaDay,listMonth'
 		        },
-		        {
-		          title: 'Tounoir PVP 3j (20h30-23h00)',
-		          start: '2019-01-07',
-		          end: '2019-01-10'
+		        timeFormat: 'HH:mm',
+		        weekNumbers: false,
+		        navLinks: true, // can click day/week names to navigate views
+		        editable: true,
+		        eventLimit: true, // allow "more" link when too many events
+				defaultView: 'month',
+		        locale:currentRegion,
+
+		        // event handlers
+		        dayClick: function(date, jsEvent, view) {
+
+		        	var selectedDate = date;
+		        	selectedDate.hour(new Date().getHours());
+
+		        	// set data
+		        	$('input[name="eventDate"]').data('daterangepicker').setStartDate(selectedDate);
+		        	$('input[name="eventDate"]').data('daterangepicker').setEndDate(selectedDate.add(1, 'hour'));
+
+		        	// update value in field
+					$('input[name="eventDate"]').val(selectedDate.format(moment.localeData().longDateFormat('L') + ' HH:mm') + ' - ' + selectedDate.add(1, 'hour').format(moment.localeData().longDateFormat('L') + ' HH:mm'));
+
+					// load event type list
+					$('#eventType').select2({
+						width: '100%',
+		    			minimumResultsForSearch: -1,
+		    			allowClear: true,
+    					placeholder: '(Optionnel)',
+						data: eventTypeDict[currentRegion]
+					});
+
+
+		            $('#create-event-modal').modal();
+
 		        },
-		        {
-		          title: 'Réunion prépa event course',
-		          start: '2019-01-12T10:30:00',
-		          end: '2019-01-12T11:30:00'
+		        eventClick:  function(event, jsEvent, view) {
+		            $('#description-event-modal-title').html(event.title + ' (' + event.start.format(moment.localeData().longDateFormat('L') + ' HH:mm') + (!event.end ? '' : (' - ' + event.end.format(moment.localeData().longDateFormat('L') + ' HH:mm'))) + ')');
+		            $('#description-event-modal-body').html(event.description);
+		            $('#description-event-modal').modal();
 		        },
-		        {
-		          title: 'Course',
-		          start: '2019-01-12T15:30:00'
-		        },
-		        {
-		          title: 'Course des perdants',
-		          start: '2019-01-12T16:30:00'
-		        },
-		        {
-		          title: 'Course des vainqueurs',
-		          start: '2019-01-12T17:30:00'
-		        },
-		        {
-		          title: 'Live HOR',
-		          start: '2019-01-12T20:45:00'
-		        },
-		        {
-		          title: 'Cache-cache géant',
-		          start: '2019-01-13T21:00:00'
-		        },
-		        {
-		          title: 'Nos amis les mobs',
-		          start: '2019-01-16T21:30:00'
-		        },
-		        {
-		          title: 'Chopez le pingouin !',
-		          start: '2019-01-28T21:00:00'
-		        }
-		      ]
+
+		       	// event samples
+		        events: [{
+		                title: 'Event toute la journée',
+		                start: '2019-01-01',
+		                description: '<strong>Organisateur: </strong> Poulet<br/><strong>Type d\'event: </strong> Divers<br/><strong>Description: </strong> Des events à la pelle !'
+		            },
+		            {
+		                title: 'Tounoi PVP 3j (20h30-23h00)',
+		                description: '<strong>Organisateur: </strong> Machin<br/><strong>Type d\'event: </strong> PVP (par stuff/lv)<br/><strong>Description: </strong> On va voir qui a la plus grosse !',
+		                start: '2019-01-07',
+		                end: '2019-01-10'
+		            },
+		            {
+		                title: 'Réunion prépa event course',
+		                description: '<strong>Organisateur: </strong> Poulet<br/><strong>Type d\'event: </strong> N/A<br/><strong>Description: </strong> Réunion avec Roger, Poulet et Machin pour préparer le terrain et coordonner les animateurs',
+		                start: '2019-01-12T10:30:00',
+		                end: '2019-01-12T11:30:00'
+		            },
+		            {
+		                title: 'Course',
+		                description: '<strong>Organisateur: </strong> Moi<br/><strong>Type d\'event: </strong> Course<br/><strong>Description: </strong> Le parcours fait le tour d\'Horizon, en passant par l\'arène et les poulets. Carte détaillée sur le fofo',
+		                start: '2019-01-12T15:30:00'
+		            },
+		            {
+		                title: 'Course des perdants',
+		                description: '<strong>Organisateur: </strong> Moi<br/><strong>Type d\'event: </strong> Course<br/><strong>Description: </strong> Pour les plus nuls, des lots de consolation. J\'espère que vous avez encore des forces !',
+		                start: '2019-01-12T16:30:00'
+		            },
+		            {
+		                title: 'Course des vainqueurs',
+		                description: '<strong>Organisateur: </strong> Moi<br/><strong>Type d\'event: </strong> Course<br/><strong>Description: </strong> Parmis ceux qui dépassent la vitesse du son, il faut savoir qui vraiment le plus rapide de Rappelz, il ne peut y en avoir qu\'un !',
+		                start: '2019-01-12T17:30:00'
+		            },
+		            {
+		                title: 'Live HOR',
+		                description: '<strong>Organisateur: </strong> HOR<br/><strong>Type d\'event: </strong> Radio/Live<br/><strong>Description: </strong> Au menu: Crabe farci (miam), retours sur l\'event de noël et futur donjon du KTS !',
+		                start: '2019-01-12T20:45:00'
+		            },
+		            {
+		                title: 'Cache-cache géant',
+		                description: '<strong>Organisateur: </strong> Nessy<br/><strong>Type d\'event: </strong> Cache-cache<br/><strong>Description: </strong> Venez redécouvrir les terres de Gaïa !',
+		                start: '2019-01-13T21:00:00'
+		            },
+		            {
+		                title: 'Nos amis les mobs',
+		                description: '<strong>Organisateur: </strong> Demalianemril<br/><strong>Type d\'event: </strong> Quizz<br/><strong>Description: </strong> Devenez le type d\'une créature à partir d\'un nom de mob !',
+		                start: '2019-01-16T21:30:00'
+		            },
+		            {
+		                title: 'Chopez le pingouin !',
+		                description: '<strong>Organisateur: </strong> Demalianemril<br/><strong>Type d\'event: </strong> Action<br/><strong>Description: </strong> Il s\'est échappé du zoo ! Une personne en costume de pingouin cours d\'un point A à un point B (zig/zag, sans stuff), il faut le choper (stun/sceller)  ou le tuer avant qu\'il n\'arrive au point d\'arrivée',
+		                start: '2019-01-28T21:00:00'
+		            }
+		        ]
 		    });
+
+
+		    // Initialize datepicker (event creation)
+		    $('input[name="eventDate"]').daterangepicker({
+				autoUpdateInput: false,
+				timePicker: true,
+    			timePicker24Hour: true,
+    			timePickerIncrement: 5,
+    			minYear: new Date().getFullYear(),
+				startDate: moment().startOf('hour'),
+				endDate: moment().startOf('hour').add(1, 'hour'),
+				// TODO Test of translation on buttons, because Cancel and Apply don't seems to be translated correctly with local
+				locale: {
+					cancelLabel: (currentRegion == 'fr' ? 'Annuler' : 'Clear'),
+					applyLabel: (currentRegion == 'fr' ? 'Valider' : 'Apply')
+				}
+			});
+
+		    // Apply values on daterange selection
+			$('input[name="eventDate"]').on('apply.daterangepicker', function(ev, picker) {
+				$(this).val(picker.startDate.format(moment.localeData().longDateFormat('L') + ' HH:mm') + ' - ' + picker.endDate.format(moment.localeData().longDateFormat('L') + ' HH:mm'));
+			});
+
+			// Remove value on daterange clear
+			$('input[name="eventDate"]').on('cancel.daterangepicker', function(ev, picker) {
+				$(this).val('');
+			});
+
+			// fill form on event type selection
+			$('#eventType').on("select2:select", function(e) { 
+				$('#eventName').val($('#eventType').select2('data')[0].text);
+			   	$('#eventDescription').val($('#event_' + currentRegion + '_id_' + $('#eventType').select2('data')[0].id).text());
+			});
+
+			// Initialize form validation
+			validateEventCreationForm();
+			validateEventTypeCreationForm();
 		});
-
-
-		function getCurrentLanguage() {
-			var defaultLanguage = 'fr';
-			var name = 'lang'.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-	        var regexS = "[\\?&]" + name + "=([^&#]*)";
-	        var regex = new RegExp(regexS);
-	        var results = regex.exec(location.href);
-	        if (results == null)
-	            return defaultLanguage;
-	        else
-	            return results[1];
-		}
 
 	</script>	
 </head>
-<body>
-                                                                                                                                
-                                        
+<body>                              
 	<div class="container-fluid">
+
 		<!-- Test lingumania for translation (translated strings in scripts/translation) -->
 		<div class="btn-group pull-right">
-			<a href="?lang=en" class="btn btn-default">EN</a>
-			<a href="?lang=fr" class="btn btn-default">FR</a>
+			<a href="?lang=en" class="btn btn-default lang-select ml10">EN</a>
+			<a href="?lang=fr" class="btn btn-default lang-select">FR</a>
+		</div>
+
+		<div class="pull-right">
+			<select class="server-list"></select>
 		</div>
 
 		<header class="page-header text-center">
@@ -328,7 +317,7 @@
 
 		<!-- HEAD -->
 		<div class="row text-center">
-			<div class="col-lg-12">
+			<div class="col-md-12">
 				<p>Cette page recense des events que prévoient de faire les joueurs. Nhésitez pas à participer et à enregistrer les prochains évènements dans votre agenda !</p>
 			</div>
 		</div>
@@ -338,9 +327,9 @@
 		<div class="row text-center">
 
 			<!-- LEFT ASIDE -->
-			<div class="col-lg-2">
+			<div class="col-md-2">
 				<div class="row">
-					<aside class="col-lg-12">
+					<aside class="col-md-12 ml10">
 						<div class="row">
 							<strong>Events voulus/appréciés</strong>
 						</div>
@@ -377,7 +366,7 @@
 			<!-- END LEFT ASIDE -->
 			
 			<!-- CALENDAR -->
-			<section class="col-lg-8">
+			<section class="col-md-8">
 				
 				<div id='wrap'>
 					<div id='calendar'></div>
@@ -388,9 +377,9 @@
 			<!-- END CALENDAR -->
 
 			<!-- RIGHT ASIDE -->
-			<div class="col-lg-2">
+			<div class="col-md-2">
 				<div class="row">
-					<aside class="col-lg-12">
+					<aside class="col-md-12">
 						<strong>Personnes cherchant âme soeur pour créer un event</strong>
 						<blockquote>
 							<p>Poulet</p>
@@ -473,13 +462,11 @@
 		</div>
 		<!-- end description -->
 
-
-
 		<!-- sample -->
 		<div class="row">
 			<div class="col-md-12">
 				<caption><h4>Exemples d'event</h4></caption>
-				<table class="table table-bordered table-striped table-condensed">
+				<table id="eventSample" class="table table-bordered table-striped table-condensed">
 					<thead>
 						<tr>
 							<th>Nom</th>
@@ -487,24 +474,30 @@
 						</tr>
 					</thead>
 					<tbody>
+						<tr class="hidden">
+							<td></td>
+							<td id="event_fr_id_1"></td>
+						</tr>
 						<tr>
 							<td>Elle est folle !</td>
-							<td>Almianeldriem a pété une durite à force de voir des arcs-en-ciel de partout ! Trouvez-là et maîtrisez-la !</td>
+							<td id="event_fr_id_2">Almianeldriem a pété une durite à force de voir des arcs-en-ciel de partout ! Trouvez-là et maîtrisez-la !</td>
 						</tr>
 						<tr>
 							<td>Gesture Mimic</td>
-							<td>La personne de l'event fait une action gestuelle, et les candidats doivent la reproduire (ou la nommer). A noter que cela peut changer selon la race, peut-être plusieurs animateurs/persos pour event</td>
+							<td id="event_fr_id_3">La personne de l'event fait une action gestuelle, et les candidats doivent la reproduire (ou la nommer). A noter que cela peut changer selon la race, peut-être plusieurs animateurs/persos pour event</td>
 						</tr>
 						<tr>
-							<td>Cache-cache (inversé)</td>
-							<td>L'animateur doit trouver les candidats sur un terrain (par exemple île) ?</td>
+							<td>Cache-cache inversé</td>
+							<td id="event_fr_id_4">L'animateur doit trouver les candidats sur un terrain (par exemple île) ?</td>
 						</tr>
 						<tr>
 							<td>Chopez le pingouin !</td>
-							<td>Il s'est échappé du zoo ! Une personne en costume de pingouin (ou autre, chat, vache -> à rôtir *-* ...) cours d'un point A à un point B (zig/zag, sans stuff), il faut le choper (stun/sceller)  ou le tuer avant qu'il n'arrive au point d'arrivée -> version alternative où les participants on un arc (voir dans le chat dégât la première personne à toucher)</td>
+							<td id="event_fr_id_5">Il s'est échappé du zoo ! Une personne en costume de pingouin (ou autre, chat, vache -> à rôtir *-* ...) cours d'un point A à un point B (zig/zag, sans stuff), il faut le choper (stun/sceller)  ou le tuer avant qu'il n'arrive au point d'arrivée -> version alternative où les participants on un arc (voir dans le chat dégât la première personne à toucher)</td>
 						</tr>
 					</tbody>
 				</table>
+
+    			<button class="btn btn-info" onclick="initEventTypeForm()">Créer un type d'event !</button>
 			</div>
 			
 		</div>
@@ -521,6 +514,147 @@
 			
 		</div>
 		<!-- end advises -->
+	</div>
+
+	<!-- EVENT CREATION MODAL -->
+	<div class="modal fade" id="create-event-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Création d'un event</h4>
+				</div>
+
+				<!-- MODAL BODY -->
+				<div class="modal-body">
+					<div class="row">
+					    <div class="col-md-12 col-xs-12">
+
+					        <div class="panel-body">
+					          <form class="form-horizontal row-border" id="create-event-form">
+
+					            <div class="form-group">
+					              <label class="col-md-2 control-label">Type d'event</label>
+					              <div class="col-md-10">
+					              	<select name="eventType" id="eventType" class="form-control" required></select>
+					              </div>
+					            </div>
+
+					            <div class="form-group">
+					              <label class="col-md-2 control-label">Nom de l'event</label>
+					              <div class="col-md-10">
+					                <input type="text" name="eventName" id="eventName" class="form-control" placeholder="Choississez un nom court, ex: Cache-chache" required />
+					              </div>
+					            </div>
+					            
+					            <div class="form-group">
+					              <label class="col-md-2 control-label">Organisateur</label>
+					              <div class="col-md-10">
+					                <input type="text" name="eventCreator" id="eventCreator" class="form-control" placeholder="Votre pseudo ig" required />
+					              </div>
+					            </div>
+					            
+					            <div class="form-group">
+					              <label class="col-md-2 control-label" rows="3">Description</label>
+					              <div class="col-md-10">
+					                <textarea type="text" name="eventDescription" id="eventDescription" class="form-control" rows="3" placeholder="Décrivez votre event de manière claire concise" required></textarea>
+					              </div>
+					            </div>
+					            
+					            <div class="form-group">
+					              <label class="col-md-2 control-label">Dates</label>
+					              <div class="col-md-10">
+					                <input type="text" name="eventDate" name="eventDate" class="form-control" required />
+					              </div>
+					            </div>
+					            
+			            		<button type="submit" class="btn btn-info pull-right">Créer mon event !</button>
+					          </form>
+					        </div>
+
+					    </div>
+					  </div>
+				</div>
+				<!-- END MODAL BODY -->
+
+			</div>
+		</div>
+	</div>
+	<!-- END EVENT CREATION MODAL -->
+
+	<!-- EVENT TYPE CREATION MODAL -->
+	<div class="modal fade" id="create-event-type-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Création d'un type d'event</h4>
+				</div>
+
+				<!-- MODAL BODY -->
+				<div class="modal-body">
+					<div class="row">
+					    <div class="col-md-12 col-xs-12">
+
+					        <div class="panel-body">
+					          <form class="form-horizontal row-border" id="create-event-type-form">
+					            <div class="form-group">
+					              <label class="col-md-2 control-label">Nom de l'event</label>
+					              <div class="col-md-10">
+					                <input type="text" name="eventTypeName" id="eventTypeName" class="form-control" placeholder="Choississez un nom court, ex: Cache-chache" required />
+					              </div>
+					            </div>
+					            
+					            <div class="form-group">
+					              <label class="col-md-2 control-label">Votre nom</label>
+					              <div class="col-md-10">
+					                <input type="text" name="eventTypeCreator" id="eventTypeCreator" class="form-control" placeholder="Votre pseudo ig" />
+					              </div>
+					            </div>
+
+					            <div class="form-group">
+					              <label class="col-md-2 control-label" rows="3">Description</label>
+					              <div class="col-md-10">
+					                <textarea type="text" name="eventTypeDescription" id="eventTypeDescription" class="form-control" rows="3" placeholder="Décrivez votre event de manière claire concise" required></textarea>
+					              </div>
+					            </div>
+					            
+			            		<button type="submit" class="btn btn-info pull-right">Créer mon event !</button>
+					          </form>
+					        </div>
+
+					    </div>
+					  </div>
+				</div>
+				<!-- END MODAL BODY -->
+
+			</div>
+		</div>
+	</div>
+	<!-- END EVENT TYPE REATION MODAL -->
+
+	<!-- EVENT DECRIPTION MODAL -->
+	<div class="modal fade" id="description-event-modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+		<div class="modal-dialog modal-lg"">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 id="description-event-modal-title" class="modal-title"></h4>
+				</div>
+				<div id="description-event-modal-body" class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END EVENT DECRIPTION MODAL -->
 
 </body>
 </html>

@@ -26,7 +26,7 @@ function createEvent() {
             title: $('#eventName').val(),
             start: startDate.format('YYYY-MM-DD') + 'T' + startDate.format('HH:mm:ss'),
             end: endDate.format('YYYY-MM-DD') + 'T' + endDate.format('HH:mm:ss'),
-            description: '<strong>Organisateur:</strong> ' + $('#eventCreator').val() + '<br/>' + '<strong>Type d\'event: </strong>' + $('#eventType').val() + '<br/>' + '<strong>Description: </strong>' + $('#eventDescription').val()
+            description: '<strong>Organisateur:</strong> ' + $('#eventCreator').val() + '<br/>' + '<strong>Type d\'event: </strong>' + $('#eventType').select2('data')[0].text + '<br/>' + '<strong>Description: </strong>' + $('#eventDescription').val()
         },
         true // make the event "stick"
     );
@@ -176,4 +176,17 @@ function initEventTypeForm() {
 	$('#eventTypeDescription').val('');
 
 	$('#create-event-type-modal').modal()
+}
+
+/**
+ * Initilize event form
+ **/
+function initEventForm() {
+
+	// clear form
+	$('#eventName').val('');
+	$('#eventType').val('').trigger('change');
+	$('#eventDescription').val('');
+
+	$('#create-event-modal').modal()
 }

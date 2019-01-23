@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 22 jan. 2019 à 16:13
+-- Généré le :  mer. 23 jan. 2019 à 16:22
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -35,18 +35,12 @@ CREATE TABLE IF NOT EXISTS `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
+  `organisateur` varchar(255) NOT NULL,
   `color` varchar(7) DEFAULT NULL,
   `start` datetime NOT NULL,
   `end` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `events`
---
-
-INSERT INTO `events` (`id`, `title`, `description`, `color`, `start`, `end`) VALUES
-(22, 'Superbe Event Holybloodesque !', 'Cet Event est super cool et super long ! Voilà Voilà hahahahahahahaha', '#0071c5', '2019-01-22 14:00:00', '2019-01-22 20:00:00');
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

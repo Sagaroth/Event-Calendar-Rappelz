@@ -1,5 +1,5 @@
 <?php
-// Conexion a la base de datos
+// Conexion a la base
 require_once('bdd.php');
 if (isset($_POST['delete']) && isset($_POST['id'])){
 	
@@ -18,14 +18,15 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 	 die ('Erreur execute');
 	}
 	
-}elseif (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['color']) && isset($_POST['id'])){
+}elseif (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['color']) && isset($_POST['id'])){
 	
 	$id = $_POST['id'];
 	$title = $_POST['title'];
 	$description = $_POST['description'];
+    $organisateur = $_POST['organisateur'];
 	$color = $_POST['color'];
 	
-	$sql = "UPDATE events SET  title = '$title', description = '$description', color = '$color' WHERE id = $id ";
+	$sql = "UPDATE events SET  title = '$title', description = '$description', organisateur = '$organisateur', color = '$color' WHERE id = $id ";
 
 	
 	$query = $bdd->prepare( $sql );

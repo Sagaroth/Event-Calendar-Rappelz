@@ -3,15 +3,16 @@
 // Connexion a la base
 require_once('bdd.php');
 
-if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['start']) && isset($_POST['end']) && isset($_POST['color'])){
+if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['start']) && isset($_POST['end']) && isset($_POST['color'])){
 	
 	$title = $_POST['title'];
 	$description = $_POST['description'];
+	$organisateur = $_POST['organisateur'];
 	$start = $_POST['start'];
 	$end = $_POST['end'];
 	$color = $_POST['color'];
 
-	$sql = "INSERT INTO events(title, description, start, end, color) values ('$title', '$description', '$start', '$end', '$color')";
+	$sql = "INSERT INTO events(title, description, organisateur, start, end, color) values ('$title', '$description', '$organisateur', '$start', '$end', '$color')";
 	
 	echo $sql;
 	

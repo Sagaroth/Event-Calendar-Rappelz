@@ -2,7 +2,7 @@
 require_once('bdd.php');
 
 
-$sql = "SELECT id, title, description, start, end, color FROM events ";
+$sql = "SELECT id, title, description, organisateur, start, end, color FROM events ";
 
 $req = $bdd->prepare($sql);
 $req->execute();
@@ -98,14 +98,20 @@ $events = $req->fetchAll();
 					</div>
 				  </div>
 				  <div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Organisateur</label>
+					<div class="col-sm-10">
+					  <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+					</div>
+				  </div>
+				  <div class="form-group">
 					<label for="color" class="col-sm-2 control-label">Lieu de l'événement</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control" id="color">
 									  <option value="">Sélectionnez</option>
-						  <option style="color:#0071c5;" value="#0071c5">&#9724; Lamia</option>
-						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Abhuva</option>
-						  <option style="color:#008000;" value="#008000">&#9724; Les deux serveurs</option>						  
-						  <option style="color:#FFD700;" value="#FFD700">&#9724; Autre</option>
+						  <option style="color:#42a5f5;" value="#42a5f5">Lamia</option>
+						  <option style="color:#f44336;" value="#f44336">Abhuva</option>
+						  <option style="color:#66bb6a;" value="#66bb6a">Les deux serveurs</option>						  
+						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>
 						  <!--<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
 						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rouge</option>
 						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->
@@ -162,14 +168,20 @@ $events = $req->fetchAll();
 					</div>
 				  </div>
 				  <div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Organisateur</label>
+					<div class="col-sm-10">
+					  <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+					</div>
+				  </div>
+				  <div class="form-group">
 					<label for="color" class="col-sm-2 control-label">Lieu de l'événement</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control" id="color">
 									  <option value="">Sélectionnez</option>
-						  <option style="color:#0071c5;" value="#0071c5">&#9724; Lamia</option>
-						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Abhuva</option>
-						  <option style="color:#008000;" value="#008000">&#9724; Les deux serveurs</option>						  
-						  <option style="color:#FFD700;" value="#FFD700">&#9724; Autre</option>
+						  <option style="color:#42a5f5;" value="#42a5f5">Lamia</option>
+						  <option style="color:#f44336;" value="#f44336">Abhuva</option>
+						  <option style="color:#66bb6a;" value="#66bb6a">Les deux serveurs</option>						  
+						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>
 						  <!--<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
 						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rouge</option>
 						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->
@@ -257,6 +269,7 @@ $events = $req->fetchAll();
 					$('#ModalEdit #id').val(event.id);
 					$('#ModalEdit #title').val(event.title);
 					$('#ModalEdit #description').val(event.description);
+					$('#ModalEdit #organisateur').val(event.organisateur);
 					$('#ModalEdit #color').val(event.color);
 					$('#ModalEdit').modal('show');
 				});
@@ -295,6 +308,7 @@ $events = $req->fetchAll();
 					id: '<?php echo $event['id']; ?>',
 					title: '<?php echo $event['title']; ?>',
 					description: '<?php echo $event['description']; ?>',
+					organisateur: '<?php echo $event['organisateur']; ?>',
 					start: '<?php echo $start; ?>',
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event['color']; ?>',

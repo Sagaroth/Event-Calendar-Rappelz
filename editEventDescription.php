@@ -1,5 +1,5 @@
 <?php
-// Conexion a la base de datos
+// Conexion a la base
 require_once('bdd.php');
 if (isset($_POST['delete']) && isset($_POST['id'])){
 	

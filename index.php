@@ -36,11 +36,17 @@ $events = $req->fetchAll();
     <!-- Custom CSS -->
     <style>
     body {
-        padding-top: 70px;
-        
+		background-color: #eee;
     }
 	#calendar {
-		max-width: 800px;
+		#max-width: 800px;
+		padding: 15px 15px 10px 15px;
+		border-radius: 6px;
+		box-shadow: 0 2px 2px rgba(204, 197, 185, 0.5);
+		background-color: #FFFFFF;
+		color: #252422;
+		margin-bottom: 20px;
+		position: relative;
 	}
 	.col-centered{
 		float: none;
@@ -217,15 +223,19 @@ $events = $req->fetchAll();
        var yyyy = date.getFullYear().toString();
        var mm = (date.getMonth()+1).toString().length == 1 ? "0"+(date.getMonth()+1).toString() : (date.getMonth()+1).toString();
        var dd  = (date.getDate()).toString().length == 1 ? "0"+(date.getDate()).toString() : (date.getDate()).toString();
-		
+				
 		$('#calendar').fullCalendar({
 			header: {
-				 language: 'fr',
-				left: 'prev,next today',
-				center: 'title',
-				right: 'month,basicWeek,basicDay',
-
+				language: 'fr',
+				left: 'title',
+				center: 'month,basicWeek,basicDay',
+				right: 'prev,next today',
 			},
+			views: {
+        month: {columnFormat: 'dddd'}, 
+        week: {columnFormat: 'DD/MM'}, 
+        day: {columnFormat: 'dddd' }
+},
 			
 			defaultDate: yyyy+"-"+mm+"-"+dd,
 			editable: true,
@@ -238,6 +248,7 @@ $events = $req->fetchAll();
 				$('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
 				$('#ModalAdd').modal('show');
 			},
+			
 			
 			eventRender: function(event, element) {
 				element.bind('click', function() {

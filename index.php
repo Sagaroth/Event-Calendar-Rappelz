@@ -192,7 +192,7 @@ $events = $req->fetchAll();
 				    <div class="form-group"> 
 						<div class="col-sm-offset-2 col-sm-10">
 						  <div class="checkbox">
-							<label class="text-danger"><input type="checkbox"  name="delete"> Supprimer un événement</label>
+							<label class="text-danger"><input type="checkbox"  name="delete"> Supprimer cet événement</label>
 						  </div>
 						</div>
 					</div>

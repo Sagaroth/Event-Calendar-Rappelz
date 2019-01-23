@@ -24,8 +24,6 @@ $events = $req->fetchAll();
 
     <title>Accueil</title>
 	
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-	
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 	
@@ -36,7 +34,7 @@ $events = $req->fetchAll();
 	<link href='css/jquery.qtip.min.css' rel='stylesheet' />
 
     <!-- Custom CSS -->
-    <!--<style>
+    <style>
     body {
         padding-top: 70px;
         
@@ -48,65 +46,7 @@ $events = $req->fetchAll();
 		float: none;
 		margin: 0 auto;
 	}
-    </style>-->
-	<style>
-
-	body {
-		margin-top: 40px;
-		text-align: center;
-		font-size: 14px;
-		font-family: "Helvetica Nueue",Arial,Verdana,sans-serif;
-		background-color: #DDDDDD;
-		}
-		
-	#wrap {
-		width: 1100px;
-		margin: 0 auto;
-		}
-		
-	#external-events {
-		float: left;
-		width: 150px;
-		padding: 0 10px;
-		text-align: left;
-		}
-		
-	#external-events h4 {
-		font-size: 16px;
-		margin-top: 0;
-		padding-top: 1em;
-		}
-		
-	.external-event { /* try to mimick the look of a real event */
-		margin: 10px 0;
-		padding: 2px 4px;
-		background: #3366CC;
-		color: #fff;
-		font-size: .85em;
-		cursor: pointer;
-		}
-		
-	#external-events p {
-		margin: 1.5em 0;
-		font-size: 11px;
-		color: #666;
-		}
-		
-	#external-events p input {
-		margin: 0;
-		vertical-align: middle;
-		}
-
-	#calendar {
-/* 		float: right; */
-        margin: 0 auto;
-		width: 900px;
-		background-color: #FFFFFF;
-		  border-radius: 6px;
-        box-shadow: 0 1px 2px #C3C3C3;
-		}
-
-</style>
+    </style>
 
 
 
@@ -279,7 +219,6 @@ $events = $req->fetchAll();
        var dd  = (date.getDate()).toString().length == 1 ? "0"+(date.getDate()).toString() : (date.getDate()).toString();
 		
 		$('#calendar').fullCalendar({
-			    themeSystem: 'bootstrap4',
 			header: {
 				 language: 'fr',
 				left: 'prev,next today',

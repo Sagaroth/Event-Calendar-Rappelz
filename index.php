@@ -98,17 +98,17 @@ $events = $req->fetchAll();
 					</div>
 				  </div>
 				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Couleur</label>
+					<label for="color" class="col-sm-2 control-label">Lieu de l'événement</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control" id="color">
 									  <option value="">Sélectionnez</option>
-						  <option style="color:#0071c5;" value="#0071c5">&#9724; Bleu foncé</option>
-						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
-						  <option style="color:#008000;" value="#008000">&#9724; Vert</option>						  
-						  <option style="color:#FFD700;" value="#FFD700">&#9724; Jaune</option>
-						  <option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
+						  <option style="color:#0071c5;" value="#0071c5">&#9724; Lamia</option>
+						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Abhuva</option>
+						  <option style="color:#008000;" value="#008000">&#9724; Les deux serveurs</option>						  
+						  <option style="color:#FFD700;" value="#FFD700">&#9724; Autre</option>
+						  <!--<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
 						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rouge</option>
-						  <option style="color:#000;" value="#000">&#9724; Noir</option>
+						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->
 						  
 						</select>
 					</div>
@@ -116,13 +116,13 @@ $events = $req->fetchAll();
 				  <div class="form-group">
 					<label for="start" class="col-sm-2 control-label">Date de début</label>
 					<div class="col-sm-10">
-					  <input type="text" name="start" class="form-control" id="start" readonly>
+					  <input type="text" name="start" class="form-control" id="start">
 					</div>
 				  </div>
 				  <div class="form-group">
 					<label for="end" class="col-sm-2 control-label">Date de fin</label>
 					<div class="col-sm-10">
-					  <input type="text" name="end" class="form-control" id="end" readonly>
+					  <input type="text" name="end" class="form-control" id="end">
 					</div>
 				  </div>
 				
@@ -162,17 +162,17 @@ $events = $req->fetchAll();
 					</div>
 				  </div>
 				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Couleur</label>
+					<label for="color" class="col-sm-2 control-label">Lieu de l'événement</label>
 					<div class="col-sm-10">
 					  <select name="color" class="form-control" id="color">
 									  <option value="">Sélectionnez</option>
-						  <option style="color:#0071c5;" value="#0071c5">&#9724; Bleu foncé</option>
-						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
-						  <option style="color:#008000;" value="#008000">&#9724; Vert</option>						  
-						  <option style="color:#FFD700;" value="#FFD700">&#9724; Jaune</option>
-						  <option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
+						  <option style="color:#0071c5;" value="#0071c5">&#9724; Lamia</option>
+						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Abhuva</option>
+						  <option style="color:#008000;" value="#008000">&#9724; Les deux serveurs</option>						  
+						  <option style="color:#FFD700;" value="#FFD700">&#9724; Autre</option>
+						  <!--<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
 						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rouge</option>
-						  <option style="color:#000;" value="#000">&#9724; Noir</option>
+						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->
 						  
 						</select>
 					</div>
@@ -225,17 +225,19 @@ $events = $req->fetchAll();
        var dd  = (date.getDate()).toString().length == 1 ? "0"+(date.getDate()).toString() : (date.getDate()).toString();
 				
 		$('#calendar').fullCalendar({
+			defaultView: 'agendaWeek',
+			nowIndicator: 'true',
 			header: {
 				language: 'fr',
 				left: 'title',
-				center: 'month,basicWeek,basicDay',
+				center: 'month,agendaWeek,agendaDay',
 				right: 'prev,next today',
 			},
 			views: {
-        month: {columnFormat: 'dddd'}, 
-        week: {columnFormat: 'DD/MM'}, 
-        day: {columnFormat: 'dddd' }
-},
+			month: {columnFormat: 'dddd'}, 
+			week: {columnFormat: 'DD/MM'}, 
+			day: {columnFormat: 'dddd' }
+			},
 			
 			defaultDate: yyyy+"-"+mm+"-"+dd,
 			editable: true,

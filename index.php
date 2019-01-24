@@ -24,9 +24,12 @@ $events = $req->fetchAll();
 
     <title>Accueil</title>
 	
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+	
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+
 	<!-- FullCalendar -->
 	<link href='css/fullcalendar.css' rel='stylesheet' />
 
@@ -91,14 +94,20 @@ $events = $req->fetchAll();
 					  <input type="text" name="title" class="form-control" id="title" placeholder="Titre">
 					</div>
 				  </div>
-				  <div class="form-group">
+				  <!--<div class="form-group">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-10">
 					  <input type="textarea" name="description" class="form-control" id="description" placeholder="Description" rows="3" cols="10">
 					</div>
+				  </div>-->
+				  <div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+					<textarea  name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+				    </div>
 				  </div>
 				  <div class="form-group">
-					<label for="description" class="col-sm-2 control-label">Organisateur</label>
+					<label for="organisateur" class="col-sm-2 control-label">Organisateur</label>
 					<div class="col-sm-10">
 					  <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
 					</div>
@@ -114,24 +123,32 @@ $events = $req->fetchAll();
 						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>
 						  <!--<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
 						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rouge</option>
-						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->
-						  
+						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->						  
 						</select>
 					</div>
 				  </div>
+				  <!--<div class="form-group">
+					<label for="start" class="col-sm-2 control-label">Date de début</label>
+					<div class="col-sm-10">
+					  <input type="text" name="start" class="form-control" id="start" readonly>
+					</div>
+				  </div>-->
 				  <div class="form-group">
 					<label for="start" class="col-sm-2 control-label">Date de début</label>
 					<div class="col-sm-10">
-					  <input type="text" name="start" class="form-control" id="start">
+					  <!--<input type="text" name="start" class="form_datetime" id="start" readonly>-->
+					  <input type="text" name="start" class="form_datetime" id="start" value="" readonly>
 					</div>
 				  </div>
+
+
 				  <div class="form-group">
 					<label for="end" class="col-sm-2 control-label">Date de fin</label>
 					<div class="col-sm-10">
-					  <input type="text" name="end" class="form-control" id="end">
+					  <!--<input type="text" name="end" class="form-control" id="end" >-->
+					  <input type="text" name="end" class="form_datetime" id="end" value="" readonly>
 					</div>
 				  </div>
-				
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-info" data-dismiss="modal">Fermer</button>
@@ -161,11 +178,17 @@ $events = $req->fetchAll();
 					  <input type="text" name="title" class="form-control" id="title" placeholder="Titre">
 					</div>
 				  </div>
+				  <!--<div class="form-group">
+					<label for="description" class="col-sm-2 control-label">Description</label>
+					<div class="col-sm-10">
+					  <input type="textarea" name="description" class="form-control" id="description" placeholder="Description" rows="3" cols="10">
+					</div>
+				  </div>-->
 				  <div class="form-group">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-10">
-					  <input type="textarea" name="description" class="form-control" id="description" placeholder="Description">
-					</div>
+					<textarea  name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+				    </div>
 				  </div>
 				  <div class="form-group">
 					<label for="description" class="col-sm-2 control-label">Organisateur</label>
@@ -184,8 +207,7 @@ $events = $req->fetchAll();
 						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>
 						  <!--<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
 						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rouge</option>
-						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->
-						  
+						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->					  
 						</select>
 					</div>
 				  </div>
@@ -225,6 +247,7 @@ $events = $req->fetchAll();
 	<script src='js/fullcalendar/fullcalendar.min.js'></script>
 	<script src='js/fullcalendar/fullcalendar.js'></script>
 	<script src='js/fullcalendar/locale/fr.js'></script>
+	<script src="js/bootstrap-datetimepicker.min.js"></script>
 	
 	
 	<script>
@@ -348,6 +371,14 @@ $events = $req->fetchAll();
 		}
 		
 	});
+
+    $(".form_datetime").datetimepicker({
+        format: "yyyy-mm-dd hh:ii:ss",
+        autoclose: true,
+        todayBtn: true,
+        pickerPosition: "bottom-left"
+    });
+	
 
 </script>
 

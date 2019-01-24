@@ -27,7 +27,6 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 	$color = $_POST['color'];
 	
 	$sql = "UPDATE events SET  title = '$title', description = '$description', organisateur = '$organisateur', color = '$color' WHERE id = $id ";
-
 	
 	$query = $bdd->prepare( $sql );
 	if ($query == false) {

@@ -11,7 +11,14 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['orga
 	$start = $_POST['start'];
 	$end = $_POST['end'];
 	$color = $_POST['color'];
-
+	
+	$title = addslashes($title);
+	$description = addslashes($description);
+	$organisateur = addslashes($organisateur);
+	$start = addslashes($start);
+	$end = addslashes($end);
+	$color = addslashes($color);
+	
 	$sql = "INSERT INTO events(title, description, organisateur, start, end, color) values ('$title', '$description', '$organisateur', '$start', '$end', '$color')";
 	
 	echo $sql;

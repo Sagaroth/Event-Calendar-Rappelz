@@ -3,12 +3,11 @@ require_once('bdd.php');
 
 
 $sql = "SELECT id, title, description, organisateur, start, end, color FROM events ";
-
+$sql = $sql;
 $req = $bdd->prepare($sql);
 $req->execute();
 
 $events = $req->fetchAll();
-
 ?>
 
 <!DOCTYPE html>
@@ -254,7 +253,7 @@ $events = $req->fetchAll();
 
 	$(document).ready(function() {
 
-		var date = new Date();
+	   var date = new Date();
        var yyyy = date.getFullYear().toString();
        var mm = (date.getMonth()+1).toString().length == 1 ? "0"+(date.getMonth()+1).toString() : (date.getMonth()+1).toString();
        var dd  = (date.getDate()).toString().length == 1 ? "0"+(date.getDate()).toString() : (date.getDate()).toString();
@@ -311,6 +310,7 @@ $events = $req->fetchAll();
 				edit(event);
 
 			},
+					
 			events: [
 			<?php foreach($events as $event): 
 			

@@ -1,4 +1,5 @@
 <?php
+error_reporting( E_ALL );
 require_once('bdd.php');
 
 
@@ -326,12 +327,18 @@ $events = $req->fetchAll();
 				}else{
 					$end = $event['end'];
 				}
+				$eventtitle = htmlspecialchars_decode ($event['title'], ENT_QUOTES);
+				$eventtitle = addslashes ($eventtitle);
+				$eventdescription = htmlspecialchars_decode ($event['description'], ENT_QUOTES);
+				$eventdescription = addslashes ($eventdescription);
+				$eventorganisateur = htmlspecialchars_decode ($event['organisateur'], ENT_QUOTES);
+				$eventorganisateur = addslashes ($eventorganisateur);
 			?>
-				{
+							{
 					id: '<?php echo $event['id']; ?>',
-					title: '<?php echo $event['title']; ?>',
-					description: '<?php echo $event['description']; ?>',
-					organisateur: '<?php echo $event['organisateur']; ?>',
+					title: '<?php echo $eventtitle; ?>',
+					description: `<?php echo $eventdescription; ?>`,
+					organisateur: '<?php echo $eventorganisateur; ?>',
 					start: '<?php echo $start; ?>',
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event['color']; ?>',

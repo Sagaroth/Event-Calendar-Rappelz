@@ -21,9 +21,9 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 }elseif (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['color']) && isset($_POST['id'])){
 	
 	$id = $_POST['id'];
-	$title = $_POST['title'];
-	$description = $_POST['description'];
-    $organisateur = $_POST['organisateur'];
+	$title = htmlspecialchars($_POST['title'], ENT_QUOTES);
+	$description = htmlspecialchars($_POST['description'], ENT_QUOTES);
+	$organisateur = htmlspecialchars($_POST['organisateur'], ENT_QUOTES);
 	$color = $_POST['color'];
 	
 	$sql = "UPDATE events SET  title = '$title', description = '$description', organisateur = '$organisateur', color = '$color' WHERE id = $id ";

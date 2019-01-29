@@ -5,20 +5,13 @@ require_once('bdd.php');
 
 if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['start']) && isset($_POST['end']) && isset($_POST['color'])){
 	
-	$title = $_POST['title'];
-	$description = $_POST['description'];
-	$organisateur = $_POST['organisateur'];
+	$title = htmlspecialchars($_POST['title'], ENT_QUOTES);
+	$description = htmlspecialchars($_POST['description'], ENT_QUOTES);
+	$organisateur = htmlspecialchars($_POST['organisateur'], ENT_QUOTES);
 	$start = $_POST['start'];
 	$end = $_POST['end'];
 	$color = $_POST['color'];
-	
-	$title = addslashes($title);
-	$description = addslashes($description);
-	$organisateur = addslashes($organisateur);
-	$start = addslashes($start);
-	$end = addslashes($end);
-	$color = addslashes($color);
-	
+		
 	$sql = "INSERT INTO events(title, description, organisateur, start, end, color) values ('$title', '$description', '$organisateur', '$start', '$end', '$color')";
 	
 	echo $sql;

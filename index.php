@@ -327,12 +327,9 @@ $events = $req->fetchAll();
 				}else{
 					$end = $event['end'];
 				}
-				$eventtitle = htmlspecialchars_decode ($event['title'], ENT_QUOTES);
-				$eventtitle = addslashes ($eventtitle);
-				$eventdescription = htmlspecialchars_decode ($event['description'], ENT_QUOTES);
-				$eventdescription = addslashes ($eventdescription);
-				$eventorganisateur = htmlspecialchars_decode ($event['organisateur'], ENT_QUOTES);
-				$eventorganisateur = addslashes ($eventorganisateur);
+				$eventtitle = addslashes ($event['title']);
+				$eventdescription = addslashes ($event['description']);
+				$eventorganisateur = addslashes ($event['organisateur']);
 			?>
 							{
 					id: '<?php echo $event['id']; ?>',

@@ -247,7 +247,8 @@ $events = $req->fetchAll();
 	<script src='js/fullcalendar/fullcalendar.min.js'></script>
 	<script src='js/fullcalendar/fullcalendar.js'></script>
 	<script src='js/fullcalendar/locale/fr.js'></script>
-	<script src="js/bootstrap-datetimepicker.min.js"></script>
+	<script src="js/bootstrap-datetimepicker.js"></script>
+	<script src="js/locales/bootstrap-datetimepicker.fr.js"></script>
 	
 	
 	<script>
@@ -380,10 +381,11 @@ $events = $req->fetchAll();
 	});
 
     $(".form_datetime").datetimepicker({
-        format: "yyyy-mm-dd hh:ii:ss",
+		language: 'fr',
+        format: "yyyy-mm-dd hh:ii:00",
         autoclose: true,
         todayBtn: true,
-        pickerPosition: "bottom-left"
+        pickerPosition: "bottom-left",
     });
 	
 

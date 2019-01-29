@@ -330,6 +330,9 @@ $events = $req->fetchAll();
 				$eventtitle = addslashes ($event['title']);
 				$eventdescription = addslashes ($event['description']);
 				$eventorganisateur = addslashes ($event['organisateur']);
+			    $eventtitle = htmlspecialchars ($eventtitle);
+				$eventdescription = htmlspecialchars ($eventdescription);
+				$eventorganisateur = htmlspecialchars ($eventorganisateur);
 			?>
 							{
 					id: '<?php echo $event['id']; ?>',

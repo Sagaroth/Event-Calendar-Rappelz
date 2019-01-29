@@ -24,6 +24,9 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 	$title = addslashes($title);
 	$description = addslashes($description);
 	$organisateur = addslashes($organisateur);
+	$title = htmlspecialchars($title);
+	$description = htmlspecialchars($description);
+	$organisateur = htmlspecialchars($organisateur);	
 	$color = $_POST['color'];
 	
 	$sql = "UPDATE events SET  title = '$title', description = '$description', organisateur = '$organisateur', color = '$color' WHERE id = $id ";

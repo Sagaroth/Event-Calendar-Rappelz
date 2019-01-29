@@ -15,6 +15,9 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['orga
 	$title = addslashes($title);
 	$description = addslashes($description);
 	$organisateur = addslashes($organisateur);
+	$title = htmlspecialchars($title);
+	$description = htmlspecialchars($description);
+	$organisateur = htmlspecialchars($organisateur);	
 	$start = addslashes($start);
 	$end = addslashes($end);
 	$color = addslashes($color);

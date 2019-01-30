@@ -299,6 +299,7 @@ $events = $req->fetchAll();
 			element.qtip({
                   content: "<b>" + event.title + "</b>" + "<br> <br>" + event.description,
               });
+			event.description = event.description.replace(/ [ \r\n]+/gm, "\n");
 			},
 
 			eventDrop: function(event, delta, revertFunc) { // si changement de position
@@ -327,18 +328,12 @@ $events = $req->fetchAll();
 				}else{
 					$end = $event['end'];
 				}
-				$eventtitle = addslashes ($event['title']);
-				$eventdescription = addslashes ($event['description']);
-				$eventorganisateur = addslashes ($event['organisateur']);
-			    $eventtitle = htmlspecialchars ($eventtitle);
-				$eventdescription = htmlspecialchars ($eventdescription);
-				$eventorganisateur = htmlspecialchars ($eventorganisateur);
 			?>
 							{
 					id: '<?php echo $event['id']; ?>',
-					title: '<?php echo $eventtitle; ?>',
-					description: `<?php echo $eventdescription; ?>`,
-					organisateur: '<?php echo $eventorganisateur; ?>',
+					title: '<?php echo $event['title']; ?>',
+					description: "<?php echo $event['description']; ?>",
+					organisateur: '<?php echo $event['organisateur']; ?>',
 					start: '<?php echo $start; ?>',
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event['color']; ?>',

@@ -328,12 +328,17 @@ $events = $req->fetchAll();
 				}else{
 					$end = $event['end'];
 				}
+				
+				$title = addslashes($event['title']);
+				$description = addslashes($event['description']);
+				$organisateur = addslashes($event['organisateur']);
+
 			?>
 							{
 					id: '<?php echo $event['id']; ?>',
-					title: '<?php echo $event['title']; ?>',
-					description: "<?php echo $event['description']; ?>",
-					organisateur: '<?php echo $event['organisateur']; ?>',
+					title: '<?php echo $title; ?>',
+					description: "<?php echo $description; ?>",
+					organisateur: '<?php echo $organisateur; ?>',
 					start: '<?php echo $start; ?>',
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event['color']; ?>',

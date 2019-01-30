@@ -21,11 +21,16 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 }elseif (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['color']) && isset($_POST['id'])){
 	
 	$id = $_POST['id'];
+	$title = $_POST['title'];
+	$description = $_POST['description'];
+	$organisateur = $_POST['organisateur'];
+	
 	$title = addslashes($title);
 	$description = addslashes($description);
 	$organisateur = addslashes($organisateur);
 	$title = htmlspecialchars($title);
 	$description = htmlspecialchars($description);
+	$description = str_replace(["\r\n", "\r", "\n"], "<br/>", $description);
 	$organisateur = htmlspecialchars($organisateur);	
 	$color = $_POST['color'];
 	

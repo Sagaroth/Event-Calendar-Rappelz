@@ -33,6 +33,8 @@ Everybody !
 
 ## License
 
-Ce projet est sous licence GPLv3 - voir le fichier [LICENSE](LICENSE) pour plus d'informations
+Ce projet est publié sous forme de logiciel open source sous la licence [GPL v3](https://opensource.org/licenses/gpl-3.0.html) 
+voir le fichier [LICENSE](./LICENSE) à la racine du projet pour le texte complet de la licence.
 
-This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details
+This project is released as open source software under the [GPL v3](https://opensource.org/licenses/gpl-3.0.html) 
+license, see the [LICENSE](./LICENSE) file in the project root for the full license text.

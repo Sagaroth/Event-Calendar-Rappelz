@@ -33,6 +33,6 @@ Everybody !
 
 ## License
 
-Ce projet est sous licence MIT - voir le fichier [LICENSE](LICENSE) pour plus d'informations
+Ce projet est sous licence GPLv3 - voir le fichier [LICENSE](LICENSE) pour plus d'informations
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details

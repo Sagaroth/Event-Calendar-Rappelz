@@ -25,6 +25,9 @@ $events = $req->fetchAll();
 	
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
@@ -61,6 +64,37 @@ $events = $req->fetchAll();
 </head>
 
 <body>
+
+<div class="container">
+	
+	<div class="register_container">
+	<form class="form-signin" method="post" id="register-form">
+	<h2 class="form-signin-heading">User Registration Form</h2><hr />
+	<div id="error">
+	</div>
+	<div class="form-group">
+	<input type="text" class="form-control" placeholder="Username" name="user_name" id="user_name" />
+	</div>
+	<div class="form-group">
+	<input type="email" class="form-control" placeholder="Email address" name="user_email" id="user_email" />
+	<span id="check-e"></span>
+	</div>
+	<div class="form-group">
+	<input type="password" class="form-control" placeholder="Password" name="password" id="password" />
+	</div>
+	<div class="form-group">
+	<input type="password" class="form-control" placeholder="Retype Password" name="cpassword" id="cpassword" />
+	</div>
+	<hr />
+	<div class="form-group">
+	<button type="submit" class="btn btn-default" name="btn-save" id="btn-submit">
+	<span class="glyphicon glyphicon-log-in"></span> &nbsp; Create Account
+	</button> 
+	</div>  
+	</form>
+	</div>
+</div>
+
     <!-- Page Content -->
     <div class="container">
 
@@ -235,11 +269,13 @@ $events = $req->fetchAll();
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->
-    <script src="js/jquery.js"></script>
+    <!--<script src="js/jquery.js"></script>-->
 	<script src='js/jquery.qtip.min.js'></script>
-
+	<script type="text/javascript" src="script/validation.min.js"></script>
+	<script type="text/javascript" src="script/register.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <!--<script src="js/bootstrap.min.js"></script>-->
+
 	
 	<!-- FullCalendar -->
 	<script src='js/moment.min.js'></script>

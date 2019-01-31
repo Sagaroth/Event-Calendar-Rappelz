@@ -69,11 +69,12 @@ $events = $req->fetchAll();
 	
 	<div class="register_container">
 	<form class="form-signin" method="post" id="register-form">
-	<h2 class="form-signin-heading">User Registration Form</h2><hr />
+	<h2 class="form-signin-heading">Je veux organiser un event</h2><hr />
+	<p class="lead">En remplissant le formulaire ci-dessous, vous pouvez vous inscrire sur la liste des personnes disponibles pour organiser un event</p>
 	<div id="error">
 	</div>
 	<div class="form-group">
-	<input type="text" class="form-control" placeholder="Username" name="user_name" id="user_name" />
+	<input type="text" class="form-control" placeholder="Pseudo" name="user_name" id="user_name" />
 	</div>
 	<div class="form-group">
 	<input type="email" class="form-control" placeholder="Email address" name="user_email" id="user_email" />
@@ -88,7 +89,7 @@ $events = $req->fetchAll();
 	<hr />
 	<div class="form-group">
 	<button type="submit" class="btn btn-default" name="btn-save" id="btn-submit">
-	<span class="glyphicon glyphicon-log-in"></span> &nbsp; Create Account
+	<span class="glyphicon glyphicon-log-in"></span> &nbsp; M'inscrire
 	</button> 
 	</div>  
 	</form>
@@ -271,8 +272,8 @@ $events = $req->fetchAll();
     <!-- jQuery Version 1.11.1 -->
     <!--<script src="js/jquery.js"></script>-->
 	<script src='js/jquery.qtip.min.js'></script>
-	<script type="text/javascript" src="script/validation.min.js"></script>
-	<script type="text/javascript" src="script/register.js"></script>
+	<script type="text/javascript" src="js/validation.min.js"></script>
+	<script type="text/javascript" src="js/register.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <!--<script src="js/bootstrap.min.js"></script>-->
 

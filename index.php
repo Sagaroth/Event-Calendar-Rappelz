@@ -26,10 +26,19 @@ $events = $req->fetchAll();
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>-->
+	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+	<!-- NavBar -->
+	<link rel="stylesheet" href="css/docs.css">
+	<link rel="stylesheet" href="css/navbar-fixed-right.min.css">	
+	<link rel="stylesheet" href="css/navbar-fixed-left.min.css">
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	
     <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
 
 	<!-- FullCalendar -->
@@ -65,7 +74,57 @@ $events = $req->fetchAll();
 
 <body>
 
-<div class="container">
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-left">
+    <span class="navbar-brand">Event Calendar Rappelz</span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+	
+		<form class="form-signin" method="post" id="register-form">
+        <ul class="navbar-nav">
+		    <span class="navbar-text">Je veux organiser un event</span>
+			<span class="navbar-text">En remplissant le formulaire ci-dessous, vous pouvez vous inscrire sur la liste des personnes disponibles pour organiser un event</span>
+			<div id="error">
+			</div>
+            <li class="nav-item">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+				<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-ninja"></i></span>
+				</div>
+				<input type="text" class="form-control" placeholder="Pseudo" aria-label="Pseudo" aria-describedby="basic-addon1" name="user_name" id="user_name">
+			</div>
+            </li>
+            <li class="nav-item">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+				<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
+				</div>
+				<select class="custom-select" id="inputGroupSelect01" name="user_server">
+				<option selected>Sélectionnez...</option>
+				<option value="1">Lamia</option>
+				<option value="2">Abhuva</option>
+				<option value="3">Les deux serveurs</option>
+				<option value="4">Autre</option>
+				</select>
+			</div>
+            </li>
+			<li class="nav-item">
+			<center><button class="btn btn-success" type="submit" name="btn-save" id="btn-submit">M'inscrire</button></center>
+            </li>
+        </ul>
+		</form>
+		
+    </div>
+</nav>
+
+
+
+<!--<div class="container">
 	
 	<div class="register_container">
 	<form class="form-signin" method="post" id="register-form">
@@ -77,6 +136,15 @@ $events = $req->fetchAll();
 	<input type="text" class="form-control" placeholder="Pseudo" name="user_name" id="user_name" />
 	</div>
 	<div class="form-group">
+						  <select name="user_server" class="form-control" id="user_server">
+						  <option value="">Sélectionnez</option>
+						  <option style="color:#42a5f5;" value="Lamia">Lamia</option>
+						  <option style="color:#f44336;" value="Abhuva">Abhuva</option>
+						  <option style="color:#66bb6a;" value="Les deux serveurs">Les deux serveurs</option>						  
+						  <option style="color:#5e35b1;" value="Autre">Autre</option>					  
+						</select>
+	</div>
+	<!--<div class="form-group">
 	<input type="email" class="form-control" placeholder="Email address" name="user_email" id="user_email" />
 	<span id="check-e"></span>
 	</div>
@@ -85,8 +153,8 @@ $events = $req->fetchAll();
 	</div>
 	<div class="form-group">
 	<input type="password" class="form-control" placeholder="Retype Password" name="cpassword" id="cpassword" />
-	</div>
-	<hr />
+	</div>-->
+<!--	<hr />
 	<div class="form-group">
 	<button type="submit" class="btn btn-default" name="btn-save" id="btn-submit">
 	<span class="glyphicon glyphicon-log-in"></span> &nbsp; M'inscrire
@@ -94,7 +162,7 @@ $events = $req->fetchAll();
 	</div>  
 	</form>
 	</div>
-</div>
+</div>-->
 
     <!-- Page Content -->
     <div class="container">
@@ -128,12 +196,6 @@ $events = $req->fetchAll();
 					  <input type="text" name="title" class="form-control" id="title" placeholder="Titre">
 					</div>
 				  </div>
-				  <!--<div class="form-group">
-					<label for="description" class="col-sm-2 control-label">Description</label>
-					<div class="col-sm-10">
-					  <input type="textarea" name="description" class="form-control" id="description" placeholder="Description" rows="3" cols="10">
-					</div>
-				  </div>-->
 				  <div class="form-group">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-10">
@@ -154,23 +216,13 @@ $events = $req->fetchAll();
 						  <option style="color:#42a5f5;" value="#42a5f5">Lamia</option>
 						  <option style="color:#f44336;" value="#f44336">Abhuva</option>
 						  <option style="color:#66bb6a;" value="#66bb6a">Les deux serveurs</option>						  
-						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>
-						  <!--<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
-						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rouge</option>
-						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->						  
+						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>				  
 						</select>
 					</div>
 				  </div>
-				  <!--<div class="form-group">
-					<label for="start" class="col-sm-2 control-label">Date de début</label>
-					<div class="col-sm-10">
-					  <input type="text" name="start" class="form-control" id="start" readonly>
-					</div>
-				  </div>-->
 				  <div class="form-group">
 					<label for="start" class="col-sm-2 control-label">Date de début</label>
 					<div class="col-sm-10">
-					  <!--<input type="text" name="start" class="form_datetime" id="start" readonly>-->
 					  <input type="text" name="start" class="form_datetime" id="start" value="" readonly>
 					</div>
 				  </div>
@@ -179,7 +231,6 @@ $events = $req->fetchAll();
 				  <div class="form-group">
 					<label for="end" class="col-sm-2 control-label">Date de fin</label>
 					<div class="col-sm-10">
-					  <!--<input type="text" name="end" class="form-control" id="end" >-->
 					  <input type="text" name="end" class="form_datetime" id="end" value="" readonly>
 					</div>
 				  </div>
@@ -212,12 +263,6 @@ $events = $req->fetchAll();
 					  <input type="text" name="title" class="form-control" id="title" placeholder="Titre">
 					</div>
 				  </div>
-				  <!--<div class="form-group">
-					<label for="description" class="col-sm-2 control-label">Description</label>
-					<div class="col-sm-10">
-					  <input type="textarea" name="description" class="form-control" id="description" placeholder="Description" rows="3" cols="10">
-					</div>
-				  </div>-->
 				  <div class="form-group">
 					<label for="description" class="col-sm-2 control-label">Description</label>
 					<div class="col-sm-10">
@@ -238,10 +283,7 @@ $events = $req->fetchAll();
 						  <option style="color:#42a5f5;" value="#42a5f5">Lamia</option>
 						  <option style="color:#f44336;" value="#f44336">Abhuva</option>
 						  <option style="color:#66bb6a;" value="#66bb6a">Les deux serveurs</option>						  
-						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>
-						  <!--<option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
-						  <option style="color:#FF0000;" value="#FF0000">&#9724; Rouge</option>
-						  <option style="color:#000;" value="#000">&#9724; Noir</option>-->					  
+						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>		  
 						</select>
 					</div>
 				  </div>
@@ -270,12 +312,10 @@ $events = $req->fetchAll();
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->
-    <!--<script src="js/jquery.js"></script>-->
 	<script src='js/jquery.qtip.min.js'></script>
 	<script type="text/javascript" src="js/validation.min.js"></script>
 	<script type="text/javascript" src="js/register.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <!--<script src="js/bootstrap.min.js"></script>-->
 
 	
 	<!-- FullCalendar -->

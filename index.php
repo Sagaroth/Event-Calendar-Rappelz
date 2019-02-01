@@ -180,7 +180,7 @@ $events = $req->fetchAll();
 		
 		<!-- Modal -->
 		<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
+		  <div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 			<form class="form-horizontal" method="POST" action="addEvent.php">
 			
@@ -189,43 +189,47 @@ $events = $req->fetchAll();
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			  </div>
 			  <div class="modal-body">
-				
-				  <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Titre</label>
-					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Titre">
+
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-font"></i></span>
 					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="description" class="col-sm-2 control-label">Description</label>
-					<div class="col-sm-10">
-					<textarea  name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
-				    </div>
-				  </div>
-				  <div class="form-group">
-					<label for="organisateur" class="col-sm-2 control-label">Organisateur</label>
-					<div class="col-sm-10">
-					  <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+					<input type="text" name="title" class="form-control" id="title" placeholder="Titre">
 					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Lieu de l'événement</label>
-					<div class="col-sm-10">
+					
+					<div class="input-group mb-3">
+				    <div class="input-group-prepend">
+					<span class="input-group-text"><i class="fas fa-text-height"></i></span>
+					</div>
+					<textarea name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+					</div>
+				  
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+					</div>
+					<input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+					</div>
+					
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
+					</div>
 					  <select name="color" class="form-control" id="color">
-									  <option value="">Sélectionnez</option>
+						  <option value="">Lieu de l'événement</option>
 						  <option style="color:#42a5f5;" value="#42a5f5">Lamia</option>
 						  <option style="color:#f44336;" value="#f44336">Abhuva</option>
 						  <option style="color:#66bb6a;" value="#66bb6a">Les deux serveurs</option>						  
 						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>				  
 						</select>
 					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="start" class="col-sm-2 control-label">Date de début</label>
-					<div class="col-sm-10">
-					  <input type="text" name="start" class="form_datetime" id="start" value="" readonly>
+					
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
 					</div>
-				  </div>
+					<input type="text" name="start" class="form-control" id="start" value="">
+					</div>
 
 
 				  <div class="form-group">
@@ -235,13 +239,17 @@ $events = $req->fetchAll();
 					</div>
 				  </div>
 			  </div>
+			  
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-info" data-dismiss="modal">Fermer</button>
 				<button type="submit" class="btn btn-primary">Go !</button>
 			  </div>
+			  			  </div>
 			</form>
 			</div>
-		  </div>
+			</div>
+							  </div>
+
 		</div>
 		
 		

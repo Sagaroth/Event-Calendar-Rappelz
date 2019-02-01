@@ -226,29 +226,29 @@ $events = $req->fetchAll();
 					
 					<div class="input-group mb-3">
 					<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+					<span class="input-group-text" id="basic-addon1">Date et heure de début</span>
 					</div>
-					<input type="text" name="start" class="form-control" id="start" value="">
+					<input type="text" name="start" class="form_datetime" id="start" value="" readonly>
 					</div>
 
-
-				  <div class="form-group">
-					<label for="end" class="col-sm-2 control-label">Date de fin</label>
-					<div class="col-sm-10">
-					  <input type="text" name="end" class="form_datetime" id="end" value="" readonly>
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1">Date et heure de fin</span>
 					</div>
-				  </div>
+					<input type="text" name="end" class="form_datetime" id="end" value="" readonly>
+					</div>
+
 			  </div>
 			  
 			  <div class="modal-footer">
-				<button type="button" class="btn btn-info" data-dismiss="modal">Fermer</button>
-				<button type="submit" class="btn btn-primary">Go !</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+				<button type="submit" class="btn btn-success">Go !</button>
 			  </div>
-			  			  </div>
+			  </div>
 			</form>
 			</div>
 			</div>
-							  </div>
+			</div>
 
 		</div>
 		

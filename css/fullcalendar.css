@@ -14,6 +14,7 @@
 	text-align: right;
 }
 
+
 body .fc { /* extra precedence to overcome jqui */
 	font-size: 1em;
 }
@@ -27,7 +28,7 @@ i#calendarbutton {
 }
 
 input#start {
-    display: block;
+    /*display: block;
     width: 100%;
     height: 34px;
     padding: 6px 12px;
@@ -42,11 +43,31 @@ input#start {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;*/
+	    /* display: block; */
+    width: 75.2%;
+    /* height: 34px; */
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    /* border-radius: 4px; */
+    /* -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075); */
+    /* box-shadow: inset 0 1px 1px rgba(0,0,0,.075); */
+    /* -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s; */
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    /* transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; */
+    border-radius: .25rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
+
 input#end {
-    display: block;
+    /*display: block;
     width: 100%;
     height: 34px;
     padding: 6px 12px;
@@ -61,7 +82,26 @@ input#end {
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
     -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;*/
+	    /* display: block; */
+    width: 78.3%;
+    /* height: 34px; */
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    /* border-radius: 4px; */
+    /* -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075); */
+    /* box-shadow: inset 0 1px 1px rgba(0,0,0,.075); */
+    /* -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s; */
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    /* transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s; */
+    border-radius: .25rem;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
 }
 
 /* Colors
@@ -493,7 +533,7 @@ td.fc-head-container.fc-widget-header {
 
 .fc .fc-row { /* extra precedence to overcome themes w/ .ui-widget-content forcing a 1px border */
 	/* no visible border by default. but make available if need be (scrollbar width compensation) */
-	border-style: solid;
+	/*border-style: solid;*/
 	border-width: 0;
 }
 
@@ -812,6 +852,7 @@ a.fc-more:hover {
 
 .fc-toolbar h2 {
 	margin: 0;
+	font-weight: 300;
 }
 
 /* button layering (for border precedence) */
@@ -888,6 +929,12 @@ a.fc-more:hover {
 }
 
 /* week and day number styling */
+
+@media screen and (max-width: 600px) {
+  th.fc-day-header.fc-widget-header {
+    font-size: 6px;
+  }
+}
 
 th.fc-day-header.fc-widget-header {
     border: 0;

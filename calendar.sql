@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 31 jan. 2019 à 16:26
+-- Généré le :  lun. 04 fév. 2019 à 14:36
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `calendar`
 --
-CREATE DATABASE IF NOT EXISTS `calendar` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `calendar`;
 
 -- --------------------------------------------------------
 
@@ -36,18 +34,19 @@ CREATE TABLE IF NOT EXISTS `events` (
   `title` varchar(255) NOT NULL,
   `description` varchar(5000) NOT NULL,
   `organisateur` varchar(255) NOT NULL,
+  `orgaavailable` varchar(255) NOT NULL,
   `color` varchar(7) DEFAULT NULL,
   `start` datetime NOT NULL,
   `end` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `description`, `organisateur`, `color`, `start`, `end`) VALUES
-(87, 'TEST', 'TEST', 'HOYL', '', '2019-02-02 10:30:00', '2019-02-02 11:00:00');
+INSERT INTO `events` (`id`, `title`, `description`, `organisateur`, `orgaavailable`, `color`, `start`, `end`) VALUES
+(3, 'Holyblood et ses amis !', 'Holyblood et ses amis !<br/>Les oufs !', 'Holyblood', 'Nessy - Abhuva', '#f44336', '2019-02-04 00:00:00', '2019-02-05 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -59,21 +58,28 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(255) DEFAULT NULL,
+  `server` varchar(255) NOT NULL,
   `pass` varchar(100) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `profile_photo` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`uid`),
-  UNIQUE KEY `username` (`user`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+  UNIQUE KEY `email` (`email`),
+  KEY `username` (`user`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`uid`, `user`, `pass`, `email`, `profile_photo`) VALUES
-(6, 'Testeur2', 'a9q6w3xx', 'testeur2@gmail.com', NULL),
-(7, 'test', 'a9q6w3xx', 'TEST@GMAIL.COM', NULL);
+INSERT INTO `users` (`uid`, `user`, `server`, `pass`, `email`, `profile_photo`) VALUES
+(41, 'Leriana', 'Lamia', NULL, NULL, NULL),
+(42, 'Starman', 'Abhuva', NULL, NULL, NULL),
+(43, 'Holyblood', 'Lamia', NULL, NULL, NULL),
+(44, 'Nessy', 'Abhuva', NULL, NULL, NULL),
+(45, 'Mulhog', 'Autre', NULL, NULL, NULL),
+(46, 'Pokegaia', 'Lamia', NULL, NULL, NULL),
+(47, 'Sagaroth', 'Les deux serveurs', NULL, NULL, NULL),
+(49, 'Holyblood', 'Abhuva', NULL, NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

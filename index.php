@@ -2,7 +2,7 @@
 require_once('bdd.php');
 
 
-$sql = "SELECT id, title, description, organisateur, start, end, color FROM events ";
+$sql = "SELECT id, title, description, organisateur, orgaavailable, start, end, color FROM events ";
 $sql = $sql;
 $req = $bdd->prepare($sql);
 $req->execute();
@@ -30,10 +30,14 @@ $events = $req->fetchAll();
 	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<link href='css/typeaheadjs.css' rel='stylesheet' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
+	
 	
     <!-- Bootstrap Core CSS -->
 	<!-- NavBar -->
-	<link rel="stylesheet" href="css/docs.css">
+	<!--<link rel="stylesheet" href="css/docs.css">-->
 	<link rel="stylesheet" href="css/navbar-fixed-right.min.css">	
 	<link rel="stylesheet" href="css/navbar-fixed-left.min.css">
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
@@ -74,8 +78,6 @@ $events = $req->fetchAll();
 
 <body>
 
-
-
 <nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-left">
     <span class="navbar-brand">Event Calendar Rappelz</span>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
@@ -106,10 +108,10 @@ $events = $req->fetchAll();
 				</div>
 				<select class="custom-select" id="inputGroupSelect01" name="user_server">
 				<option selected>Sélectionnez...</option>
-				<option value="1">Lamia</option>
-				<option value="2">Abhuva</option>
-				<option value="3">Les deux serveurs</option>
-				<option value="4">Autre</option>
+				<option value="Lamia">Lamia</option>
+				<option value="Abhuva">Abhuva</option>
+				<option value="Les deux serveurs">Les deux serveurs</option>
+				<option value="Autre">Autre</option>
 				</select>
 			</div>
             </li>
@@ -123,54 +125,11 @@ $events = $req->fetchAll();
 </nav>
 
 
-
-<!--<div class="container">
-	
-	<div class="register_container">
-	<form class="form-signin" method="post" id="register-form">
-	<h2 class="form-signin-heading">Je veux organiser un event</h2><hr />
-	<p class="lead">En remplissant le formulaire ci-dessous, vous pouvez vous inscrire sur la liste des personnes disponibles pour organiser un event</p>
-	<div id="error">
-	</div>
-	<div class="form-group">
-	<input type="text" class="form-control" placeholder="Pseudo" name="user_name" id="user_name" />
-	</div>
-	<div class="form-group">
-						  <select name="user_server" class="form-control" id="user_server">
-						  <option value="">Sélectionnez</option>
-						  <option style="color:#42a5f5;" value="Lamia">Lamia</option>
-						  <option style="color:#f44336;" value="Abhuva">Abhuva</option>
-						  <option style="color:#66bb6a;" value="Les deux serveurs">Les deux serveurs</option>						  
-						  <option style="color:#5e35b1;" value="Autre">Autre</option>					  
-						</select>
-	</div>
-	<!--<div class="form-group">
-	<input type="email" class="form-control" placeholder="Email address" name="user_email" id="user_email" />
-	<span id="check-e"></span>
-	</div>
-	<div class="form-group">
-	<input type="password" class="form-control" placeholder="Password" name="password" id="password" />
-	</div>
-	<div class="form-group">
-	<input type="password" class="form-control" placeholder="Retype Password" name="cpassword" id="cpassword" />
-	</div>-->
-<!--	<hr />
-	<div class="form-group">
-	<button type="submit" class="btn btn-default" name="btn-save" id="btn-submit">
-	<span class="glyphicon glyphicon-log-in"></span> &nbsp; M'inscrire
-	</button> 
-	</div>  
-	</form>
-	</div>
-</div>-->
-
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h1>FullCalendar PHP MySQL</h1>
-                <p class="lead">Complétez avec des chemins d'accès prédéfinis que vous n'aurez pas à modifier !</p>
                 <div id="calendar" class="col-centered">
                 </div>
             </div>
@@ -185,7 +144,7 @@ $events = $req->fetchAll();
 			<form class="form-horizontal" method="POST" action="addEvent.php">
 			
 			  <div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">Ajouter un événement</h4>
+				<h4 class="modal-title" id="myModalLabel"><i class="far fa-plus-square"></i>&nbsp;&nbsp;Ajouter un événement</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			  </div>
 			  <div class="modal-body">
@@ -209,6 +168,13 @@ $events = $req->fetchAll();
 					<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
 					</div>
 					<input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+					</div>
+					
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-plus"></i></span>
+					</div>
+					<input type="text" name="orgaavailable" class="form-dispo" style="margin:0px auto;width:300px;" placeholder="Rechercher une personne disponible pour vous aider à organiser l'événement">
 					</div>
 					
 					<div class="input-group mb-3">
@@ -250,51 +216,61 @@ $events = $req->fetchAll();
 			</div>
 			</div>
 
-		</div>
 		
 		
 		
 		<!-- Modal -->
 		<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
+		  <div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 			<form class="form-horizontal" method="POST" action="editEventTitle.php">
 			  <div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">Modifier l'événement</h4>
+				<h4 class="modal-title" id="myModalLabel"><i class="far fa-edit"></i>&nbsp;&nbsp;Modifier l'événement</h4>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 			  </div>
 			  <div class="modal-body">
 				
-				  <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Titre</label>
-					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Titre">
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-font"></i></span>
 					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="description" class="col-sm-2 control-label">Description</label>
-					<div class="col-sm-10">
-					<textarea  name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
-				    </div>
-				  </div>
-				  <div class="form-group">
-					<label for="description" class="col-sm-2 control-label">Organisateur</label>
-					<div class="col-sm-10">
-					  <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+					<input type="text" name="title" class="form-control" id="title" placeholder="Titre">
 					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Lieu de l'événement</label>
-					<div class="col-sm-10">
+					
+					<div class="input-group mb-3">
+				    <div class="input-group-prepend">
+					<span class="input-group-text"><i class="fas fa-text-height"></i></span>
+					</div>
+					<textarea name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+					</div>
+					
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
+					</div>
+					<input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+					</div>
+					
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-plus"></i></span>
+					</div>
+					<input type="text" name="orgaavailable" class="form-dispo" id="orgaavailable" placeholder="Rechercher une personne disponible pour vous aider à organiser l'événement">
+					</div>
+					
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
+					</div>
 					  <select name="color" class="form-control" id="color">
-									  <option value="">Sélectionnez</option>
+						  <option value="">Lieu de l'événement</option>
 						  <option style="color:#42a5f5;" value="#42a5f5">Lamia</option>
 						  <option style="color:#f44336;" value="#f44336">Abhuva</option>
 						  <option style="color:#66bb6a;" value="#66bb6a">Les deux serveurs</option>						  
-						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>		  
+						  <option style="color:#5e35b1;" value="#5e35b1">Autre</option>				  
 						</select>
 					</div>
-				  </div>
+					
 				    <div class="form-group"> 
 						<div class="col-sm-offset-2 col-sm-10">
 						  <div class="checkbox">
@@ -309,14 +285,12 @@ $events = $req->fetchAll();
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-				<button type="submit" class="btn btn-primary">Go !</button>
+				<button type="submit" class="btn btn-success">Go !</button>
 			  </div>
 			</form>
 			</div>
 		  </div>
-		</div>
-
-    </div>
+		</div>		
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->
@@ -378,6 +352,7 @@ $events = $req->fetchAll();
 					$('#ModalEdit #title').val(event.title);
 					$('#ModalEdit #description').val(event.description);
 					$('#ModalEdit #organisateur').val(event.organisateur);
+					$('#ModalEdit #orgaavailable').val(event.orgaavailable);
 					$('#ModalEdit #color').val(event.color);
 					$('#ModalEdit').modal('show');
 				});
@@ -417,6 +392,7 @@ $events = $req->fetchAll();
 				$title = addslashes($event['title']);
 				$description = addslashes($event['description']);
 				$organisateur = addslashes($event['organisateur']);
+				$orgaavailable = addslashes($event['orgaavailable']);
 
 			?>
 							{
@@ -424,6 +400,7 @@ $events = $req->fetchAll();
 					title: '<?php echo $title; ?>',
 					description: "<?php echo $description; ?>",
 					organisateur: '<?php echo $organisateur; ?>',
+					orgaavailable: '<?php echo $orgaavailable; ?>',
 					start: '<?php echo $start; ?>',
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event['color']; ?>',
@@ -475,6 +452,19 @@ $events = $req->fetchAll();
 
 </script>
 
-</body>
+<script type="text/javascript">
+	$('input.form-dispo').typeahead({
+	    source:  function (query, process) {
+        return $.get('/FormAutoComplete.php', { query: query }, function (data) {
+        		console.log(data);
+        		data = $.parseJSON(data);
+	            return process(data);
+	        });
+	    }
+	});
 
+
+</script>
+
+</body>
 </html>

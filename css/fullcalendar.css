@@ -23,8 +23,41 @@ textarea {
 	resize: none;
 }
 
+.row {
+	margin-top: 80px;
+	margin-bottom: 60px;
+}
+
 i#calendarbutton {
     cursor: pointer;
+}
+
+.modal-title {
+	font-weight: 400;
+}
+
+.form-dispo {
+	margin: 0px auto;
+    width: 300px;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
 }
 
 input#start {
@@ -45,7 +78,7 @@ input#start {
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;*/
 	    /* display: block; */
-    width: 75.2%;
+    width: 100%;
     /* height: 34px; */
     padding: 6px 12px;
     font-size: 14px;
@@ -63,6 +96,12 @@ input#start {
     border-radius: .25rem;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+	 position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
 }
 
 
@@ -84,7 +123,7 @@ input#end {
     -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;*/
 	    /* display: block; */
-    width: 78.3%;
+    width: 100%;
     /* height: 34px; */
     padding: 6px 12px;
     font-size: 14px;
@@ -102,6 +141,12 @@ input#end {
     border-radius: .25rem;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
+	position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
 }
 
 /* Colors
@@ -761,8 +806,13 @@ be a descendant of the grid when it is being dragged.
 	overflow: hidden;
 }
 
+span.fc-title {
+    color: white;
+}
+
 .fc-day-grid-event .fc-time {
 	font-weight: bold;
+	color: white;
 }
 
 .fc-day-grid-event .fc-resizer { /* enlarge the default hit area */

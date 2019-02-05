@@ -36,6 +36,76 @@ i#calendarbutton {
 	font-weight: 400;
 }
 
+.bootstrap-tagsinput {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: none;
+    display: inline-block;
+    padding: 4px 6px;
+    color: #555;
+    vertical-align: middle;
+    border-radius: 4px;
+    max-width: 100%;
+    line-height: 22px;
+    cursor: text;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 4px 6px;
+    color: #555;
+    vertical-align: middle;
+    max-width: 100%;
+    line-height: 22px;
+    cursor: text;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-radius: .25rem;
+    margin: 0px auto;
+    width: 300px;
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    width: 1%;
+    margin-bottom: 0;
+}
+
+.bootstrap-tagsinput input {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+	padding: 0;
+    margin: 0;
+    width: 100%;
+    max-width: inherit;
+}
+
+.bootstrap-tagsinput .tag {
+    color: #ffffff;
+    background-color: #3f4b79;
+    padding: 0px 0.25em 0.25em 2px;
+    border-radius: 0.25em;
+}
+
+span.tag.label.label-info {
+    margin: 1px -3px 0 0;
+    display: inline-block;
+}
+
 .form-dispo {
 	margin: 0px auto;
     width: 300px;

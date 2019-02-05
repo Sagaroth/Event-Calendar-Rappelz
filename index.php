@@ -2,7 +2,7 @@
 require_once('bdd.php');
 
 
-$sql = "SELECT id, title, description, organisateur, orgaavailable, start, end, color FROM events ";
+$sql = "SELECT id, title, description, organisateur, orgaavailable, donator, start, end, color FROM events ";
 $sql = $sql;
 $req = $bdd->prepare($sql);
 $req->execute();
@@ -30,7 +30,9 @@ $events = $req->fetchAll();
 	<!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
+	<script src="js/custom_tags_input.js"></script>
+	
 	<link href='css/typeaheadjs.css' rel='stylesheet' />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 	
@@ -39,6 +41,7 @@ $events = $req->fetchAll();
 	<!-- NavBar -->
 	<!--<link rel="stylesheet" href="css/docs.css">-->
 	<link rel="stylesheet" href="css/navbar-fixed-right.min.css">	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
 	<link rel="stylesheet" href="css/navbar-fixed-left.min.css">
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -179,6 +182,13 @@ $events = $req->fetchAll();
 					
 					<div class="input-group mb-3">
 					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-gifts"></i></span>
+					</div>
+					<input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="Donateur(s) - Séparer chaque entrée par une virgule (5 max)">
+					</div>
+					
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
 					<label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
 					</div>
 					  <select name="color" class="form-control" id="color">
@@ -271,6 +281,13 @@ $events = $req->fetchAll();
 						</select>
 					</div>
 					
+					<div class="input-group mb-3">
+					<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><i class="fas fa-gifts"></i></span>
+					</div>
+					<input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="Donateur(s) - Séparer chaque entrée par une virgule (5 max)">
+					</div>
+					
 				    <div class="form-group"> 
 						<div class="col-sm-offset-2 col-sm-10">
 						  <div class="checkbox">
@@ -353,13 +370,14 @@ $events = $req->fetchAll();
 					$('#ModalEdit #description').val(event.description);
 					$('#ModalEdit #organisateur').val(event.organisateur);
 					$('#ModalEdit #orgaavailable').val(event.orgaavailable);
+					$('#ModalEdit #donator').val(event.donator);
 					$('#ModalEdit #color').val(event.color);
 					$('#ModalEdit').modal('show');
 				});
 			element.qtip({
                   content: "<b>" + event.title + "</b>" + "<br> <br>" + event.description,
               });
-			event.description = event.description.replace(/ [ \r\n]+/gm, "\n");
+			//event.description = event.description.replace(/ [ \r\n]+/gm, "\n");
 			},
 
 			eventDrop: function(event, delta, revertFunc) { // si changement de position
@@ -393,6 +411,7 @@ $events = $req->fetchAll();
 				$description = addslashes($event['description']);
 				$organisateur = addslashes($event['organisateur']);
 				$orgaavailable = addslashes($event['orgaavailable']);
+				$donator = addslashes($event['donator']);
 
 			?>
 							{
@@ -401,6 +420,7 @@ $events = $req->fetchAll();
 					description: "<?php echo $description; ?>",
 					organisateur: '<?php echo $organisateur; ?>',
 					orgaavailable: '<?php echo $orgaavailable; ?>',
+					donator: '<?php echo $donator; ?>',
 					start: '<?php echo $start; ?>',
 					end: '<?php echo $end; ?>',
 					color: '<?php echo $event['color']; ?>',
@@ -448,8 +468,6 @@ $events = $req->fetchAll();
         todayBtn: true,
         pickerPosition: "bottom-left",
     });
-	
-
 </script>
 
 <script type="text/javascript">
@@ -462,9 +480,13 @@ $events = $req->fetchAll();
 	        });
 	    }
 	});
-
-
 </script>
 
+<script type="text/javascript">
+$('#donator').tagsinput({
+confirmKeys: [13, 44],
+maxTags: 5
+});
+</script>
 </body>
 </html>

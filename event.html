@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Events</title>
 
-	<!-- LICENCE -->
+	<!-- GPL LICENCE -->
 	
 	<!--
 		Rappelz Event Calendar - Make events with players
@@ -138,6 +138,14 @@
 		<script 
 			src="scripts/Lingumania/lingumania.js"></script>
 
+		<!-- ICS JS -->
+		<script 
+			src="https://cdnjs.cloudflare.com/ajax/libs/blob-polyfill/3.0.20180112/Blob.min.js"></script>
+		<script 
+			src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
+		<script 
+			src="scripts/icsFormatter/icsFormatter.js"></script>
+
 		<!-- Site JS -->
 		<script 
 			src="scripts/site.js"></script>
@@ -146,8 +154,13 @@
 
 	<script type="text/javascript">
 	
+		// ics file of an event to dl
+		var icsFile = icsFormatter();
+		var eventTitle;
 
 		// TOSTORE see for id if we use lang/id or unique id ?
+		var regionList = [{id:'en', text: 'EN'}, {id:'fr', text: 'FR'}];
+
 		var serverDict = {
 			'en': [{id: 1, text: 'Reviac'}, {id: 2, text: 'Unicorn'}],
 			'fr': [{id: 1, text: 'Abhuva'}, {id: 2, text: 'Lamia'}]
@@ -166,6 +179,17 @@
 			// Initialize region
 			var currentRegion = getCurrentLanguage();
 			moment.locale(currentRegion);
+
+			// Initialize Languages list
+			$('.region-list').select2({
+    			minimumResultsForSearch: -1,
+				data: regionList
+			})
+			.on("select2:select", function(e) {
+				window.location.href = '?lang=' + $('.region-list').select2('val');
+			})
+			.val(currentRegion).trigger('change');
+
 
 			// Initialize Server list
 			$('.server-list').select2({
@@ -217,9 +241,17 @@
 
 		        },
 		        eventClick:  function(event, jsEvent, view) {
+
 		            $('#description-event-modal-title').html(event.title + ' (' + event.start.format(moment.localeData().longDateFormat('L') + ' HH:mm') + (!event.end ? '' : (' - ' + event.end.format(moment.localeData().longDateFormat('L') + ' HH:mm'))) + ')');
 		            $('#description-event-modal-body').html(event.description);
 		            $('#description-event-modal').modal();
+
+		            var selectedServer = $('.server-list').select2('data');
+
+		            // Create ICS file to dl, see https://github.com/nwcell/ics.js
+					icsFile = icsFormatter();
+					eventTitle = event.title;
+					icsFile.addEvent(event.title, event.description, 'Rappelz ' + selectedServer[0].text, event.start.format(), !event.end ? event.start.add(30, 'm').format() : event.end.format());
 		        },
 
 		       	// event samples
@@ -321,10 +353,20 @@
 <body>                              
 	<div class="container-fluid">
 
+		<style type="text/css">
+			/* TODO TEMP CSS*/
+			.dropdown-menu {
+				min-width: 0;
+			}
+			.btn-white {
+				background-image: none;
+			}
+		</style>
+
 		<!-- Test lingumania for translation (translated strings in scripts/translation) -->
-		<div class="btn-group pull-right">
-			<a href="?lang=en" class="btn btn-default lang-select ml10">EN</a>
-			<a href="?lang=fr" class="btn btn-default lang-select">FR</a>
+
+		<div class="pull-right">
+			<select class="region-list"></select>
 		</div>
 
 		<div class="pull-right">
@@ -338,55 +380,18 @@
 		<!-- HEAD -->
 		<div class="row text-center">
 			<div class="col-md-12">
-				<p>Cette page recense des events que prévoient de faire les joueurs. Nhésitez pas à participer et à enregistrer les prochains évènements dans votre agenda !</p>
+				<p>This page lists events that players plan to do. Do not hesitate to participate and save the next events in your calendar!</p>
 			</div>
 		</div>
 		<!-- END HEAD -->
 
+		<hr>
+
 		<!-- CALENDAR + ASIDES -->
 		<div class="row text-center">
-
-			<!-- LEFT ASIDE -->
-			<div class="col-md-2">
-				<div class="row">
-					<aside class="col-md-12 ml10">
-						<div class="row">
-							<strong>Events voulus/appréciés</strong>
-						</div>
-						<div class="row">
-							<div class="progress">
-								<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60"
-								aria-valuemin="0" aria-valuemax="100" style="width:60%">
-								Nos amis les mobs 60%
-								</div>
-							</div>
-
-							<div class="progress">
-								<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="30"
-								aria-valuemin="0" aria-valuemax="100" style="width:30%">
-								Cache-cache 30%
-								</div>
-							</div>
-
-							<div class="progress">
-								<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="10"
-								aria-valuemin="0" aria-valuemax="100" style="width:10%">
-								Pingouin 10%
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<img style="width: 100px" class="center-block" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIzMnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzE1N0VGQiIgaWQ9Imljb24tOTItaW5ib3gtZG93bmxvYWQiPjxwYXRoIGQ9Ik0xNiwxNiBMMTIuNzUsMTIuNzUgTDEyLDEzLjUgTDE2LjUsMTggTDIxLDEzLjUgTDIwLjI1LDEyLjc1IEwxNywxNiBMMTcsNSBMMTYsNSBMMTYsMTYgTDE2LDE2IEwxNiwxNiBaIE0yMSwxOCBMMjcuNzc1MDI0NCwxOCBMMjcuNzc1MDI0NCwxOCBMMjMuNDAwMDI0NCwxMSBMMTgsMTEgTDE4LDEwIEwyNCwxMCBMMjksMTggTDI5LDE5IEwyOSwyNyBMNCwyNyBMNCwxOCBMOSwxMCBMMTUsMTAgTDE1LDExIEw5LjU5OTk3NTU5LDExIEw1LjIyNDk3NTU5LDE4IEwxMiwxOCBMMTIsMjAgQzEyLDIxLjEwNDU2OTUgMTIuODk1ODU3OCwyMiAxMy45OTczOTE3LDIyIEwxOS4wMDI2MDgzLDIyIEMyMC4xMDU3MzczLDIyIDIxLDIxLjExMjI3MDQgMjEsMjAgTDIxLDE4IEwyMSwxOCBaIiBpZD0iaW5ib3gtZG93bmxvYWQiLz48L2c+PC9nPjwvc3ZnPg==" alt="télécharger ics" />
-						</div>
-						<p><strong>Enregistrer l'event dans mon calendrier !</strong></p>
-					</aside>
-				</div>
-				<div class="row"></div>
-			</div>
-			<!-- END LEFT ASIDE -->
 			
 			<!-- CALENDAR -->
-			<section class="col-md-8">
+			<section class="col-md-10">
 				
 				<div id='wrap'>
 					<div id='calendar'></div>
@@ -396,41 +401,46 @@
 			</section>
 			<!-- END CALENDAR -->
 
+			<hr class="visible-xs visible-sm">
+
 			<!-- RIGHT ASIDE -->
 			<div class="col-md-2">
 				<div class="row">
 					<aside class="col-md-12">
 						<strong>Personnes cherchant âme soeur pour créer un event</strong>
 						<blockquote>
-							<p>Poulet</p>
+							<p>Chicken</p>
 							<p>Roger</p>
 							<p>Kikoulol93</p>
 						</blockquote>
 					</aside>
 				</div>
+
+				<hr class="visible-xs visible-sm">
+			
 				<div class="row">
 					<div class="row chat-window" id="chat_window_1" style="margin-left:10px;">
 				        <div class="col-xs-12 col-md-12">
 				        	<div class="panel panel-default">
 				                <div class="panel-heading top-bar">
 				                    <div class="col-md-8 col-xs-8">
-				                        <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Chats en boîte</h3>
+				                        <h3 class="panel-title"><span class="glyphicon glyphicon-comment"></span> Cats in box</h3>
 				                    </div>
 				                </div>
 				                <div class="panel-body msg_container_base">
 				                    <div class="row msg_container base_sent">
 				                        <div class="col-md-10 col-xs-10">
 				                            <div class="messages msg_sent">
-				                                <p>miaou, miaouu !!</p>
-				                                <time datetime="2009-11-13T20:00">chat noir • 51 min</time>
+				                                <p>meeow, meeow !!</p>
+				                                <time datetime="2009-11-13T20:00">black cat • 51 min</time>
 				                            </div>
 				                        </div>
 				                    </div>
 				                    <div class="row msg_container base_receive">
 				                        <div class="col-md-10 col-xs-10">
 				                            <div class="messages msg_receive">
-				                                <p>on pourrait pas faire un event avec des tank qui écrasent des poulets ? ou des types qui mitraillent des poulets ? </p>
-				                                <time datetime="2009-11-13T20:00">Poulet • 51 min</time>
+				                                <p>couldn't we do an event with tanks crushing chickens ? </p>
+				                                <time datetime="2009-11-13T20:00">Chicken • 51 min</time>
 				                            </div>
 				                        </div>
 				                    </div>
@@ -438,15 +448,15 @@
 				                        <div class="col-xs-10 col-md-10">
 				                            <div class="messages msg_receive">
 				                                <p>Meeow ?</p>
-				                                <time datetime="2009-11-13T20:00">chat noir • 51 min</time>
+				                                <time datetime="2009-11-13T20:00">black cat • 51 min</time>
 				                            </div>
 				                        </div>
 				                    </div>
 				                    <div class="row msg_container base_sent">
 				                        <div class="col-xs-10 col-md-10">
 				                            <div class="messages msg_sent">
-				                                <p>stop causer comme ça sale bête ! *-* </p>
-				                                <time datetime="2009-11-13T20:00">Poulet • 51 min</time>
+				                                <p>stop chatting like that nasty animal ! *-* </p>
+				                                <time datetime="2009-11-13T20:00">Chicken • 51 min</time>
 				                            </div>
 				                        </div>
 				                    </div>
@@ -470,26 +480,61 @@
 		</div>
 		<!-- end calendar + asides -->
 
+		<hr>
+
+		<!-- APPRECIATED EVENTS -->
+		<div class="col-md-12 visible-md visible-lg text-center">
+			<div class="row">
+				<strong>Appreciated events</strong>
+			</div>
+			<div class="row">
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60"
+					aria-valuemin="0" aria-valuemax="100" style="width:60%">
+					Our friends the mobs 60%
+					</div>
+				</div>
+
+				<div class="progress">
+					<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="30"
+					aria-valuemin="0" aria-valuemax="100" style="width:30%">
+					Hide and Seek 30%
+					</div>
+				</div>
+
+				<div class="progress">
+					<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="10"
+					aria-valuemin="0" aria-valuemax="100" style="width:10%">
+					Penguin 10%
+					</div>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<!-- END APPRECIATED EVENTS -->
+				
 		<!-- description -->
 		<div class="row">
 			<div class="col-md-12">
 				<caption><h4>Description</h4></caption>
-				<p>Comme il est indiqué plus haut, le but de cette page est de promouvoir les event créés par les joueurs de Rappelz, de faciliter leur communication, et de mettre en relation des personnes voulant s'essayer à en faire.</p>
-				<p>Le principe est simple. Si vous savez ce que vous voulez faire, cliquez sur la date de votre event et remplissez le formulaire. Si vous avez besoin de monde, ou n'êtes pas assez confiant pour organiser un event, vous pouvez regarder la liste à droite et utiliser le chat pour communiquer avec d'autres joueurs intéressés.</p>
-				<p>Dans la liste de joueurs à droite, il est conseillé de mettre votre pseudo ig, ainsi la communication sera plus facile !</p>
-				<p>Bon courage pour la création de vos events !!!</p>
+				<p>As mentioned above, the purpose of this page is to promote the events created by Rappelz players, to facilitate their communication, and to connect people who want to try to do so.</p>
+				<p>The principle is simple. If you know what you want to do, click on the date of your event and fill out the form. If you need people, or are not confident enough to organize an event, you can look at the list on the right and use chat to communicate with other interested players.</p>
+				<p>In the list of players on the right, it is advisable to put your nickname ig, so the communication will be easier!</p>
+				<p>Good luck for the creation of your events !!!</p>
 			</div>
 		</div>
 		<!-- end description -->
 
+		<hr class="visible-xs visible-sm">
+
 		<!-- sample -->
 		<div class="row">
 			<div class="col-md-12">
-				<caption><h4>Exemples d'event</h4></caption>
+				<caption><h4>Event ideas</h4></caption>
 				<table id="eventSample" class="table table-bordered table-striped table-condensed">
 					<thead>
 						<tr>
-							<th>Nom</th>
+							<th>Name</th>
 							<th>Description</th>
 						</tr>
 					</thead>
@@ -499,37 +544,39 @@
 							<td id="event_fr_id_1"></td>
 						</tr>
 						<tr>
-							<td>Elle est folle !</td>
-							<td id="event_fr_id_2">Almianeldriem a pété une durite à force de voir des arcs-en-ciel de partout ! Trouvez-là et maîtrisez-la !</td>
+							<td>She is crazy !</td>
+							<td id="event_fr_id_2">Almianeldriem lost her mind by dint of seeing rainbows everywhere ! Find her and stop her !</td>
 						</tr>
 						<tr>
 							<td>Gesture Mimic</td>
-							<td id="event_fr_id_3">La personne de l'event fait une action gestuelle, et les candidats doivent la reproduire (ou la nommer). A noter que cela peut changer selon la race, peut-être plusieurs animateurs/persos pour event</td>
+							<td id="event_fr_id_3">The event organizer does a gesture action, and the candidates must reproduce it (or name it). Note that this may change depending on race.</td>
 						</tr>
 						<tr>
-							<td>Cache-cache inversé</td>
-							<td id="event_fr_id_4">L'animateur doit trouver les candidats sur un terrain (par exemple île) ?</td>
+							<td>Hide and seek (reverse)</td>
+							<td id="event_fr_id_4">The leader must find the candidates on a field (eg lost island)</td>
 						</tr>
 						<tr>
-							<td>Chopez le pingouin !</td>
-							<td id="event_fr_id_5">Il s'est échappé du zoo ! Une personne en costume de pingouin (ou autre, chat, vache -> à rôtir *-* ...) cours d'un point A à un point B (zig/zag, sans stuff), il faut le choper (stun/sceller)  ou le tuer avant qu'il n'arrive au point d'arrivée -> version alternative où les participants on un arc (voir dans le chat dégât la première personne à toucher)</td>
+							<td>Catch the penguin!</td>
+							<td id="event_fr_id_5">He escaped from the zoo! A person in penguin costume (or other, cat, cow -> to roast *-* ...) run from a point A to B, he must be caught (stun/seal ?) or kill before he reaches the point of arrival -> alternate version where the participants have a bow</td>
 						</tr>
 					</tbody>
 				</table>
 
-    			<button class="btn btn-info" onclick="initEventTypeForm()">Créer un type d'event !</button>
+    			<button class="btn btn-info" onclick="initEventTypeForm()">Create an event type !</button>
 			</div>
 			
 		</div>
 		<!-- end sample -->
+		
+		<hr class="visible-xs visible-sm">
 
 		<!-- advises -->
 		<div class="row">
 			<div class="col-md-12">
-				<caption><h4>Conseils</h4></caption>
-				<p>Lorsque vous préparez un event, n'hésitez pas à être à plusieurs ! ( la liste sur la droite de la page sert à ça). Il n'est pas toujours facile d'organiser un event car il y a plusieurs aspects à gérer tels que la communication sur la date, les règles, la gestion des participants (pas forcément facile, et on peut recevoir beaucoup de mp lors du jeu).</p>
-				<p>Pour les <strong>lots</strong>, si vous êtes nouveaux, vous n'aurez pas forcément de donnateurs. A voir avec <strong>HOR</strong> (<strong>TODO + joueurs "sponsors" ? système de "ticket" où le gagnant ira voir le joueur ?</strong>) qui peut faire office d'intermédaire, ou alors inviter une personne qui veut donner mais n'a pas forcément confiance à remettre le lot en mains propres (prévoir tout de même une autre possibilité si elle se désiste)</p>
-				<p>Si vous souhaitez <strong>créer un event</strong>, un nouveau jeu, préférrez des règles simples pour commencer. Quelque chose qui n'est pas complexe ou long (si il a du succès vous pourrez apporter des variantes). Pensez aussi à toutes les possibilités qui pourraient fausser l'event (ex: sur un cache-cache, une personne qui vous trouve peut très bien revenir avec un reroll...)</p>
+				<caption><h4>Advice</h4></caption>
+				<p>When you want to organize an event, do not hesitate to be several ! (the list on the right of the page is for that). It is not always easy to organize an event because there are several aspects to manage such as the communication on the date, the rules, the management of the participants (not necessarily easy, and you can have a lot of people messaging you during the event).</p>
+				<p>For <strong>prices</strong>, if you are new, you will not have necessarily donators. To see with <strong>HOR</strong> (<strong>TODO + players "sponsors"? System of "ticket" where the winner will go see the player?</strong>) Who can act as intermediary, or invite a person who wants to give but does not necessarily trust an unknown organizer (foresee any other possibility if it withdraws)</p>
+				<p>If you want to <strong>create an event</strong>, a new type of game, start with simple rules. Something that is not too complex or long (if it is successful you can bring variants). Also think of all the possibilities for why the event could fail (ex: on a hide and seek, a person who finds you can come back with a reroll ...)</p>
 			</div>
 			
 		</div>
@@ -544,7 +591,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Création d'un event</h4>
+					<h4 class="modal-title">Event creation form</h4>
 				</div>
 
 				<!-- MODAL BODY -->
@@ -556,14 +603,14 @@
 					          <form class="form-horizontal row-border" id="create-event-form">
 
 					            <div class="form-group">
-					              <label class="col-md-2 control-label">Type d'event</label>
+					              <label class="col-md-2 control-label">Event type</label>
 					              <div class="col-md-10">
 					              	<select name="eventType" id="eventType" class="form-control" required></select>
 					              </div>
 					            </div>
 
 					            <div class="form-group">
-					              <label class="col-md-2 control-label">Nom de l'event</label>
+					              <label class="col-md-2 control-label">Title</label>
 					              <div class="col-md-10">
 					                <input type="text" name="eventName" id="eventName" class="form-control" placeholder="Choississez un nom court, ex: Cache-chache" required />
 					              </div>
@@ -590,7 +637,7 @@
 					              </div>
 					            </div>
 					            
-			            		<button type="submit" class="btn btn-info pull-right">Créer mon event !</button>
+			            		<button type="submit" class="btn btn-info pull-right">Create my event</button>
 					          </form>
 					        </div>
 
@@ -612,7 +659,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">Création d'un type d'event</h4>
+					<h4 class="modal-title">Event type creation form</h4>
 				</div>
 
 				<!-- MODAL BODY -->
@@ -623,27 +670,27 @@
 					        <div class="panel-body">
 					          <form class="form-horizontal row-border" id="create-event-type-form">
 					            <div class="form-group">
-					              <label class="col-md-2 control-label">Nom de l'event</label>
+					              <label class="col-md-2 control-label">Title</label>
 					              <div class="col-md-10">
-					                <input type="text" name="eventTypeName" id="eventTypeName" class="form-control" placeholder="Choississez un nom court, ex: Cache-chache" required />
+					                <input type="text" name="eventTypeName" id="eventTypeName" class="form-control" placeholder="Choose a short name, eg: Hide and seek" required />
 					              </div>
 					            </div>
 					            
 					            <div class="form-group">
-					              <label class="col-md-2 control-label">Votre nom</label>
+					              <label class="col-md-2 control-label">Your name</label>
 					              <div class="col-md-10">
-					                <input type="text" name="eventTypeCreator" id="eventTypeCreator" class="form-control" placeholder="Votre pseudo ig" />
+					                <input type="text" name="eventTypeCreator" id="eventTypeCreator" class="form-control" placeholder="Your nickname ig" />
 					              </div>
 					            </div>
 
 					            <div class="form-group">
 					              <label class="col-md-2 control-label" rows="3">Description</label>
 					              <div class="col-md-10">
-					                <textarea type="text" name="eventTypeDescription" id="eventTypeDescription" class="form-control" rows="3" placeholder="Décrivez votre event de manière claire concise" required></textarea>
+					                <textarea type="text" name="eventTypeDescription" id="eventTypeDescription" class="form-control" rows="3" placeholder="Describe your event shortly" required></textarea>
 					              </div>
 					            </div>
 					            
-			            		<button type="submit" class="btn btn-info pull-right">Créer mon event !</button>
+			            		<button type="submit" class="btn btn-info pull-right">Create my event type !</button>
 					          </form>
 					        </div>
 
@@ -668,6 +715,14 @@
 					<h4 id="description-event-modal-title" class="modal-title"></h4>
 				</div>
 				<div id="description-event-modal-body" class="modal-body"></div>
+				
+				<div class="text-center">
+					<a href="javascript:icsFile.download(eventTitle);" style="cursor: pointer;">
+						<img style="width: 85px" class="center-block" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgaGVpZ2h0PSIzMnB4IiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzMiAzMiIgd2lkdGg9IjMycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6c2tldGNoPSJodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2gvbnMiIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48dGl0bGUvPjxkZXNjLz48ZGVmcy8+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBpZD0iUGFnZS0xIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSI+PGcgZmlsbD0iIzE1N0VGQiIgaWQ9Imljb24tOTItaW5ib3gtZG93bmxvYWQiPjxwYXRoIGQ9Ik0xNiwxNiBMMTIuNzUsMTIuNzUgTDEyLDEzLjUgTDE2LjUsMTggTDIxLDEzLjUgTDIwLjI1LDEyLjc1IEwxNywxNiBMMTcsNSBMMTYsNSBMMTYsMTYgTDE2LDE2IEwxNiwxNiBaIE0yMSwxOCBMMjcuNzc1MDI0NCwxOCBMMjcuNzc1MDI0NCwxOCBMMjMuNDAwMDI0NCwxMSBMMTgsMTEgTDE4LDEwIEwyNCwxMCBMMjksMTggTDI5LDE5IEwyOSwyNyBMNCwyNyBMNCwxOCBMOSwxMCBMMTUsMTAgTDE1LDExIEw5LjU5OTk3NTU5LDExIEw1LjIyNDk3NTU5LDE4IEwxMiwxOCBMMTIsMjAgQzEyLDIxLjEwNDU2OTUgMTIuODk1ODU3OCwyMiAxMy45OTczOTE3LDIyIEwxOS4wMDI2MDgzLDIyIEMyMC4xMDU3MzczLDIyIDIxLDIxLjExMjI3MDQgMjEsMjAgTDIxLDE4IEwyMSwxOCBaIiBpZD0iaW5ib3gtZG93bmxvYWQiLz48L2c+PC9nPjwvc3ZnPg==" alt="télécharger ics" />
+					<strong>Save event in my calendar !</strong>
+					</a>
+				</div>
+					
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
 				</div>

@@ -33,6 +33,6 @@ Everybody !
 
 ## License
 
-Ce projet est sous licence MIT - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
+Ce projet est sous licence GPL - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the GPL License - see the [LICENSE.md](LICENSE.md) file for details

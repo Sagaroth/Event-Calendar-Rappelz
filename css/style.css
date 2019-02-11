@@ -1,0 +1,55 @@
+/*	<Rappelz Event Calendar  - Make events with players.>
+    Copyright (C) <2019>  <History of Rappelz>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
+
+@charset "utf-8";
+body {
+	background:#f1f9f9;
+}
+.form-login {
+	max-width: 500px;
+	padding: 19px 29px 29px;
+	margin: 0 auto;
+	background-color: #fff;	
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+	box-shadow: 0 1px 2px rgba(0,0,0,.05);			
+	font-family:Tahoma, Geneva, sans-serif;
+	color:#990000;
+	font-weight:lighter;
+}
+.form-login .form-login-heading {
+    color:#00A2D1;
+}
+.form-login input[type="text"],
+.form-login input[type="password"],
+.form-login input[type="email"] {
+    font-size: 16px;
+    height: 45px;
+    padding: 7px 9px;
+}
+.body-container {
+	margin-top:110px;
+}
+.navbar-brand {
+	font-family:"Lucida Handwriting";
+}
+#btn-submit{
+	height:45px;
+}

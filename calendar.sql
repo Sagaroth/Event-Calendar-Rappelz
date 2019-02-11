@@ -66,16 +66,6 @@ CREATE TABLE IF NOT EXISTS `uploads` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `uploads`
---
-
-INSERT INTO `uploads` (`id`, `file_name`, `upload_time`, `md5_checksum`) VALUES
-(55, 'testÃ‰lÃ©ments envoyÃ©s - Gael.Potin@ext.saint-gobain.com - Microsoft Outlook.jpg', '2019-02-11 16:42:18', '921ed95109e81974b295776102051315'),
-(56, 'test1024px-Octicons-mark-github.svg.png', '2019-02-11 16:42:18', '921ed95109e81974b295776102051315'),
-(57, 'testDCIM15478.jpg', '2019-02-11 16:42:18', '921ed95109e81974b295776102051315'),
-(58, 'testÃ‰lÃ©ments envoyÃ©s - Gael.Potin@ext.saint-gobain.com - Microsoft Outlook_2.jpg', '2019-02-11 16:42:18', '921ed95109e81974b295776102051315');
-
 -- --------------------------------------------------------
 
 --

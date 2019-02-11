@@ -183,6 +183,11 @@ $events = $req->fetchAll();
 					<textarea name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
 					</div>
 				  
+				  	<div class="input-group mb-3">
+				  	<div class="dropzone" id="myDropzoneElementId">
+					</div>
+				  	</div>
+
 					<div class="input-group mb-3">
 					<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
@@ -235,7 +240,7 @@ $events = $req->fetchAll();
 			  
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-				<button type="submit" class="btn btn-success">Go !</button>
+				<button type="submit" class="btn btn-success" id="btn_calendar">Go !</button>
 			  </div>
 			  </div>
 			</form>
@@ -327,6 +332,7 @@ $events = $req->fetchAll();
 		</div>		
     <!-- /.container -->
 
+	
     <!-- jQuery Version 1.11.1 -->
 	<script src='js/jquery.qtip.min.js'></script>
 	<script type="text/javascript" src="js/validation.min.js"></script>
@@ -342,7 +348,10 @@ $events = $req->fetchAll();
 	<script src="js/bootstrap-datetimepicker.js"></script>
 	<script src="js/locales/bootstrap-datetimepicker.fr.js"></script>
 	
-	
+	<link rel="stylesheet" type="text/css" href="dropzone/dropzone.css" />
+	<script type="text/javascript" src="dropzone/dropzone.js"></script>
+	<script type="text/javascript" src="js/upload.js"></script>
+
 	<script>
 
 	$(document).ready(function() {
@@ -505,5 +514,25 @@ confirmKeys: [13, 44],
 maxTags: 5
 });
 </script>
+
+<script type="text/javascript">
+Dropzone.autoDiscover = false;
+Dropzone.options.myDropzoneElementId = { 
+	maxFilesize: 5,
+	parallelUploads: 5,
+	acceptedFiles: 'image/*',
+	autoProcessQueue : false,
+	    init: function (e) {
+
+        var myDropzone = this;
+
+        $('#btn_calendar').on("click", function() {
+            myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+        });
+    }
+	};
+	
+</script>
+
 </body>
 </html>

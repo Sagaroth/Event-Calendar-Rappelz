@@ -1,4 +1,5 @@
-<!--	<Rappelz Event Calendar  - Make events with players.>
+<?php
+/*<!--	<Rappelz Event Calendar  - Make events with players.>
     Copyright (C) <2019>  <History of Rappelz>
 
     This program is free software: you can redistribute it and/or modify
@@ -12,12 +13,16 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>. -->
-
-<?php
-
+    along with this program.  If not, see <https://www.gnu.org/licenses/>. -->*/
+	
 // Connexion a la base
+
+
 require_once('bdd.php');
+include_once("db_connect.php");
+
+$creationtime = date("Y-m-d H:i:s");
+$md5checksum = md5($creationtime);
 
 if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['orgaavailable']) && isset($_POST['donator']) && isset($_POST['start']) && isset($_POST['end']) && isset($_POST['color'])){
 	
@@ -45,7 +50,7 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['orga
 	$end = addslashes($end);
 	$color = addslashes($color);
 	
-	$sql = "INSERT INTO events(title, description, organisateur, orgaavailable, donator, start, end, color) values ('$title', '$description', '$organisateur', '$orgaavailable', '$donator', '$start', '$end', '$color')";
+	$sql = "INSERT INTO events(title, description, organisateur, orgaavailable, donator, start, end, color, creation_time, md5_checksum) values ('$title', '$description', '$organisateur', '$orgaavailable', '$donator', '$start', '$end', '$color', '$creationtime', '$md5checksum')";
 	
 	echo $sql;
 	
@@ -61,6 +66,18 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['orga
 	}
 
 }
+
+if(!empty($_FILES)){     
+    $uploadDir = "uploads/";
+    $fileName = $_FILES['file']['name'];
+	$fileName = 'test'.$fileName;
+    $uploadedFile = $uploadDir.$fileName;    
+    if(move_uploaded_file($_FILES['file']['tmp_name'],$uploadedFile)) {
+        $mysqlInsert = "INSERT INTO uploads (file_name, upload_time, md5_checksum)VALUES('".$fileName."','$creationtime', '$md5checksum')";
+		mysqli_query($conn, $mysqlInsert);
+    }   
+}
+
 header('Location: '.$_SERVER['HTTP_REFERER']);
 
 	

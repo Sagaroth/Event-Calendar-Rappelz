@@ -1,4 +1,5 @@
-<!--	<Rappelz Event Calendar  - Make events with players.>
+<?php
+/*  Rappelz Event Calendar  - Make events with players.>
     Copyright (C) <2019>  <History of Rappelz>
 
     This program is free software: you can redistribute it and/or modify
@@ -12,10 +13,8 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>. -->
-
-<?php
-
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
 /* Database connection start */
 $servername = "localhost";
 $username = "root";

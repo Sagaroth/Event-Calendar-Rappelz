@@ -17,6 +17,7 @@
 
 <?php
 require_once('bdd.php');
+include_once 'language.php';
 
 $sql = "SELECT id, title, description, organisateur, orgaavailable, donator, start, end, color FROM events ";
 $req = $bdd->prepare($sql);
@@ -26,21 +27,22 @@ $events = $req->fetchAll();
 ?>
 
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?php echo $lang['HTML_LANG']; ?>">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Calendrier communautaire pour la création d'événements sur Rappelz">
+        <meta name="description" content="<?php echo $lang['PAGE_DESCRIPTION']; ?>">
         <meta name="author" content="HOR">
 
-        <title>Rappelz Events</title>
+        <title><?php echo $lang['PAGE_TITLE']; ?></title>
 	    
 	    <!-- CSS REFERENCES-->
 
 		    <!-- Bootstrap -->
     	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css" rel="stylesheet"/>
             <link href='css/typeaheadjs.css' rel='stylesheet' />
             <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
 
@@ -124,49 +126,50 @@ $events = $req->fetchAll();
 							    <li>
 								    <a onclick="$('#ModalRegister').modal('show');">
                                         <span class="fa fa-user-plus"></span>
-                                        Inscription
+                                        <?php echo $lang['MENU_REGISTRATION']; ?>
                                     </a>
 							    </li>
 							    <li>
                                     <a>
                                         <span class="fa fa-users"></span>
-                                        Organisateurs
+                                        <?php echo $lang['MENU_ORGANIZERS']; ?>
                                     </a>
                                 </li>
 							    <li>
                                     <a>
                                         <span class="fa fa-comments"></span>
-                                        Chatbox
+                                        <?php echo $lang['MENU_CHATBOX']; ?>
                                     </a>
                                 </li>
 							    <li>
                                     <a>
                                         <span class="fa fa-trophy"></span>
-                                        Donnateurs
+                                        <?php echo $lang['MENU_DONATORS']; ?>
                                     </a>
                                 </li>						
                                 <li>
 								    <a>
                                         <span class="fa fa-cogs"></span>
-                                        Paramètres
+                                        <?php echo $lang['MENU_SETTINGS']; ?>
                                     </a>
 								    <ul class="gn-submenu">
 									    <li>
                                             <a>
                                                 <span class="fa fa-bell"></span>
-                                                Notifications
+                                                <?php echo $lang['MENU_NOTIFICATIONS']; ?>
                                             </a>
                                         </li>
 									    <li>
                                             <a>
                                                 <span class="fa fa-globe"></span>
-                                                Région
+                                                <?php echo $lang['MENU_LANGUAGES']; ?> -&nbsp; <a href="index.php?lang=en"><span class="flag-icon flag-icon-us"></span><span class="flag-icon flag-icon-gb"></span></a>&nbsp; <a href="index.php?lang=fr"><span class="flag-icon flag-icon-fr"></span></a>
+
                                             </a>
                                         </li>
                                         <li>
                                             <a>
                                                 <span class="fa fa-tablet-alt"></span>
-                                                Thème
+                                                <?php echo $lang['MENU_THEME']; ?>
                                             </a>
                                         </li>
 								    </ul>
@@ -174,7 +177,7 @@ $events = $req->fetchAll();
 							    <li>
                                     <a>
                                         <span class="fa fa-info-circle"></span>
-                                        Infos
+                                        <?php echo $lang['MENU_ABOUT']; ?>
                                     </a>
                                 </li>	
 						    </ul>
@@ -188,12 +191,12 @@ $events = $req->fetchAll();
 		    <!-- HEAD -->
 		    <header class="page-header text-center">
 			    <h1>RAPPELZ Events</h1>
-                <span>par les joueurs !</span>
+                <span><?php echo $lang['HEADER_TITLE']; ?></span>
 		    </header>
 
 		    <div class="row text-center">
 			    <div class="col-md-12">
-				    <p>Cette page recense des events que prévoient de faire les joueurs. Nhésitez pas à participer !</p>
+				    <p><?php echo $lang['HEADING']; ?></p>
 			    </div>
 		    </div>
 		    <!-- ./HEAD -->
@@ -215,13 +218,13 @@ $events = $req->fetchAll();
                         <div class="modal-content">
                             <form class="form-horizontal" method="POST" id="register-form">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel">Je veux organiser un event</h4>
+                                    <h4 class="modal-title" id="myModalLabel"><?php echo $lang['REGISTER_TITLE']; ?></h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
 								<div class="modal-register">
                                 <div class="modal-body">
                                     <p>
-                                        En remplissant le formulaire ci-dessous, vous pouvez vous inscrire sur la liste des personnes disponibles pour organiser un event.
+                                        <?php echo $lang['REGISTER_DESCRIPTION']; ?>
                                     </p>
 
                                     <div id="error"></div>
@@ -445,9 +448,9 @@ $events = $req->fetchAll();
                     titleFormat: 'MMMM',
 			        header: {
 				        language: 'fr',
-				        left: 'prev,next',
+				        left: 'prev,next,today',
 				        center: 'title',
-				        right: 'listMonth' // other buttons are irrelevent for this calendar (no need for a full day or hours per day), stay simple
+				        right: 'listMonth,month,agendaWeek,agendaDay' // other buttons are irrelevent for this calendar (no need for a full day or hours per day), stay simple
 			        },    
                     buttonText: {
                         listMonth: 'L'

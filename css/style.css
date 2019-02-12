@@ -1,4 +1,4 @@
-/*	<Rappelz Event Calendar  - Make events with players.>
+﻿/*	<Rappelz Event Calendar  - Make events with players.>
     Copyright (C) <2019>  <History of Rappelz>
 
     This program is free software: you can redistribute it and/or modify
@@ -15,41 +15,216 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. */
 
 @charset "utf-8";
+
+/* Global */
 body {
-	background:#f1f9f9;
+    background-color: #1d2951; /*TODO léger gradient ?*/
+    background-color: #393e7d; /* #2a305f */
+    background: rgb(57,62,125);
+    background: linear-gradient(180deg, rgba(57,62,125,1) 0%, rgba(42,48,95,1) 100%);
+    color: #fff;
+    font-family: 'Rubik', sans-serif;
 }
+
+.modal {
+    color: #495057;
+}
+
+.row {
+    margin-top: initial;
+    margin-bottom: initial;
+}
+
+.nopadding {
+    padding: 0;
+}
+
+header.page-header {
+    padding-top: 2em;
+}
+
+    header.page-header > span {
+        position: relative;
+        margin-left: 13em;
+        top: -1em;
+        font-style: italic;
+        font-weight: 300;
+    }
+
+/* container fluid on mobile devices */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        max-width: none;
+    }
+
+    header.page-header {
+        padding-top: 4em;
+    }
+}
+/* ./Global */
+
+/* Forms */
 .form-login {
-	max-width: 500px;
-	padding: 19px 29px 29px;
-	margin: 0 auto;
-	background-color: #fff;	
-	border: 1px solid #e5e5e5;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
-	box-shadow: 0 1px 2px rgba(0,0,0,.05);			
-	font-family:Tahoma, Geneva, sans-serif;
-	color:#990000;
-	font-weight:lighter;
+    max-width: 500px;
+    padding: 19px 29px 29px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    font-family: Tahoma, Geneva, sans-serif;
+    color: #990000;
+    font-weight: lighter;
 }
-.form-login .form-login-heading {
-    color:#00A2D1;
+
+    .form-login .form-login-heading {
+        color: #00A2D1;
+    }
+
+    .form-login input[type="text"],
+    .form-login input[type="password"],
+    .form-login input[type="email"] {
+        font-size: 16px;
+        height: 45px;
+        padding: 7px 9px;
+    }
+
+#btn-submit {
+    /*height: 45px;*/
 }
-.form-login input[type="text"],
-.form-login input[type="password"],
-.form-login input[type="email"] {
-    font-size: 16px;
-    height: 45px;
-    padding: 7px 9px;
+/* ./Forms */
+
+/* Menu */
+.gn-menu-main {
+    z-index: 2;
+    width: initial;
 }
-.body-container {
-	margin-top:110px;
+
+    .gn-menu-main a {
+        display: inline-block;
+        text-align: center;
+        text-transform: none;
+        font-style: normal;
+        font-variant: normal;
+        line-height: 1;
+        speak: none;
+        -webkit-font-smoothing: antialiased;
+    }
+
+        .gn-menu-main a > span.fa {
+            width: 60px;
+        }
+
+    .gn-menu-main > li > a.gn-menu-close {
+        font-size: 20px;
+        padding: 0;
+        display: none;
+    }
+
+    .gn-menu-main.gn-open-bar > li > a.gn-menu-close {
+        display: inline-block;
+    }
+
+    .gn-menu-main.gn-open-bar {
+        width: 340px;
+    }
+
+@media screen and (max-width: 422px) {
+    .gn-menu-main.gn-open-bar {
+        width: 100%;
+    }
 }
-.navbar-brand {
-	font-family:"Lucida Handwriting";
+/* ./Menu */
+
+/* Calendar, custom */
+.fc-toolbar.fc-header-toolbar {
+    background-color: #353C80;
+    padding: 10px;
+    -webkit-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.25);
+    box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.25);
+    text-align: center;
+    margin-bottom: 2em;
 }
-#btn-submit{
-	height:45px;
+
+.fc-toolbar .fc-center {
+    text-transform: uppercase;
 }
+
+.fc button {
+    color: #fff;
+    border-color: #fff;
+    border-color: rgba(255,255,255,0.5);
+    padding: 7px 8px;
+}
+
+    .fc button .fc-icon {
+        top: -0.2em;
+    }
+
+.fc .fc-button-group > * {
+    margin: 0;
+}
+
+.fc-button.fc-listMonth-button {
+    border: 0;
+    font-size: 18px;
+}
+
+.fc-center {
+    margin-left: -36px; /* correct padding of left buttons */
+}
+
+.fc td {
+    border-color: rgba(255,255,255,0.30);
+}
+
+th.fc-day-header.fc-widget-header {
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+}
+
+.fc .fc-state-active, .fc .fc-state-active:focus, .fc .fc-state-active:hover, .fc .fc-state-active:active:focus, .fc .fc-state-active:active:hover, .fc .fc-state-active:active,
+.fc button:hover {
+    background-color: inherit;
+    color: inherit;
+    border-color: inherit;
+}
+/* no scroller ! */
+.fc-widget-content > div {
+    overflow: hidden !important;
+    height: initial !important;
+}
+
+.fc-other-month.fc-future {
+    visibility: hidden;
+}
+
+.fc-unthemed .fc-today {
+    background: #fb5c49;
+}
+
+.fc-ltr .fc-list-heading-alt, .fc-rtl .fc-list-heading-main {
+    float: right;
+}
+
+.fc-list-table tr.fc-list-item {
+    font-weight: lighter;
+}
+
+.fc td.fc-list-item-marker, .fc td.fc-list-item-time {
+    vertical-align: top;
+    width: 1px;
+    padding: 8px 0;
+}
+
+.fc-ltr .fc-list-item-marker {
+    padding-right: 0;
+}
+/* ./Calendar */

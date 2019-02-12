@@ -98,7 +98,7 @@ $events = $req->fetchAll();
             <!-- FullCalendar -->
 	        <script src='js/fullcalendar/fullcalendar.min.js'></script>
 	        <script src='js/fullcalendar/fullcalendar.js'></script>
-	        <script src='js/fullcalendar/locale/fr.js'></script>
+	        <script src='js/fullcalendar/locale/<?php echo $lang['HTML_LANGALT']; ?>.js'></script>
 
             <!-- Menu -->
             <script src="js/classie.js"></script>
@@ -579,7 +579,7 @@ $events = $req->fetchAll();
             
                 // Init datepicker
                 $(".form_datetime").datetimepicker({
-		            language: '<?php echo $lang['HTML_LANG']; ?>',
+		            language: '<?php echo $lang['HTML_LANGALT']; ?>',
                     format: "yyyy-mm-dd hh:ii:00",
                     autoclose: true,
                     todayBtn: true,

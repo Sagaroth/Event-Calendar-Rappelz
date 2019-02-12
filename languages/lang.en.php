@@ -7,6 +7,7 @@ Language: English
 $lang = array();
 //MARKUP
 $lang['HTML_LANG'] = 'en';
+$lang['HTML_LANGALT'] = 'en-GB';
 
 //GENERAL
 $lang['GENERAL_CLOSE'] = 'Close';

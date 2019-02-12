@@ -8,6 +8,10 @@ $lang = array();
 //MARKUP
 $lang['HTML_LANG'] = 'fr';
 
+//GENERAL
+$lang['GENERAL_CLOSE'] = 'Fermer';
+$lang['GENERAL_REGISTER'] = 'M\'inscrire !';
+
 //HEADER
 $lang['PAGE_TITLE'] = 'Rappelz Events Calendar';
 $lang['PAGE_DESCRIPTION'] = 'Calendrier communautaire pour la création d\'événements sur Rappelz';
@@ -28,5 +32,6 @@ $lang['MENU_ABOUT'] = 'A propos de l\'event calendar';
 // REGISTER MODAL
 $lang['REGISTER_TITLE'] = 'Je veux organiser un event';
 $lang['REGISTER_DESCRIPTION'] = 'En remplissant le formulaire ci-dessous, vous pouvez vous inscrire sur la liste des personnes disponibles pour organiser un event.';
+$lang['REGISTER_SELECT'] = 'Sélectionnez...';
 
 ?>

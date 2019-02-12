@@ -239,7 +239,7 @@ $events = $req->fetchAll();
 				                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
 				                        </div>
 				                        <select class="custom-select" id="inputGroupSelect01" name="user_server">
-				                            <option>Sélectionnez...</option>
+				                            <option><?php echo $lang['REGISTER_SELECT']; ?></option>
 				                            <option value="Lamia">Lamia</option>
 				                            <option value="Abhuva">Abhuva</option>
 				                            <option value="Les deux serveurs">Les deux serveurs</option>
@@ -248,8 +248,8 @@ $events = $req->fetchAll();
 			                        </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
-                                    <button type="submit" class="btn btn-success" name="btn-save" id="btn-submit">M'inscrire !</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
+                                    <button type="submit" class="btn btn-success" name="btn-save" id="btn-submit"><?php echo $lang['GENERAL_REGISTER']; ?></button>
                                 </div>
 								</div>
                             </form>

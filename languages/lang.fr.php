@@ -35,10 +35,13 @@ $lang['REGISTER_TITLE'] = 'Je veux organiser un event';
 $lang['REGISTER_DESCRIPTION'] = 'En remplissant le formulaire ci-dessous, vous pouvez vous inscrire sur la liste des personnes disponibles pour organiser un event.';
 $lang['REGISTER_SELECT'] = 'Sélectionnez...';
 
+<<<<<<< HEAD
 // ORGANIZERS MODAL
 $lang['ORGANIZERS_TITLE'] = 'Les joueurs suivants sont de superbes organisateurs !';
 $lang['ORGANIZERS_DESCRIPTION'] = 'Ces joueurs ont organisé des events. Vous pouvez en organiser également en utilisant le calendrier.';
 
+=======
+>>>>>>> 9b93a42d4cc15fa38490e9aa6f8ab3db96a49a1c
 // EVENT ADD
 $lang['EVENTADD_TITLE'] = 'Ajouter un événement';
 $lang['EVENTADD_TEXTTITLE'] = 'Titre';

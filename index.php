@@ -16,6 +16,9 @@
 
 
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 require_once('bdd.php');
 include_once 'language.php';
 
@@ -98,7 +101,7 @@ $events = $req->fetchAll();
             <!-- FullCalendar -->
 	        <script src='js/fullcalendar/fullcalendar.min.js'></script>
 	        <script src='js/fullcalendar/fullcalendar.js'></script>
-	        <script src='js/fullcalendar/locale/fr.js'></script>
+	        <script src='js/fullcalendar/locale/<?php echo $lang['HTML_LANGALT']; ?>.js'></script>
 
             <!-- Menu -->
             <script src="js/classie.js"></script>
@@ -130,7 +133,7 @@ $events = $req->fetchAll();
                                     </a>
 							    </li>
 							    <li>
-                                    <a>
+                                    <a onclick="$('#ModalOrganizers').modal('show');">
                                         <span class="fa fa-users"></span>
                                         <?php echo $lang['MENU_ORGANIZERS']; ?>
                                     </a>
@@ -162,7 +165,7 @@ $events = $req->fetchAll();
 									    <li>
                                             <a>
                                                 <span class="fa fa-globe"></span>
-                                                <?php echo $lang['MENU_LANGUAGES']; ?> -&nbsp; <a href="index.php?lang=en"><span class="flag-icon flag-icon-us"></span><span class="flag-icon flag-icon-gb"></span></a>&nbsp; <a href="index.php?lang=fr"><span class="flag-icon flag-icon-fr"></span></a>
+                                                <?php echo $lang['MENU_LANGUAGES']; ?> -&nbsp; <a href="index.php?lang=fr"><span class="flag-icon flag-icon-fr"></span></a>&nbsp; <a href="index.php?lang=en"><span class="flag-icon flag-icon-us"></span><span class="flag-icon flag-icon-gb"></span></a>
 
                                             </a>
                                         </li>
@@ -258,6 +261,60 @@ $events = $req->fetchAll();
                 </div>
                 <!-- ./REGISTER MODAL -->
 
+				<!-- ORGANIZERS MODAL -->
+                <div class="modal fade" id="ModalOrganizers" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel"><?php echo $lang['ORGANIZERS_TITLE']; ?></h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+								<div class="modal-organizers">
+                                <div class="modal-body">
+                                    <p>
+                                        <?php echo $lang['ORGANIZERS_DESCRIPTION']; ?>	
+                                    </p>
+									<div id="listorga">
+										<?php
+										/*foreach ($events as $eventorga) {
+										
+										//echo $eventorga['organisateur'].'</br>';
+										}*/
+
+$orgasql = "SELECT organisateur FROM events ";
+$orgareq = $bdd->prepare($orgasql);
+$orgareq->execute();
+
+while($eventrow = $orgareq->fetch(PDO::FETCH_ASSOC)) {
+$eventorgaas[] = $eventrow['organisateur'];
+}
+
+$eventimploded = implode('",',$eventorgaas);
+
+echo $eventimploded;
+
+$eventorgaarray =  [$eventimploded];
+
+$eventorgas = $eventorgaarray;
+$eventCounts = [];
+foreach ($eventorgas as $key => $eventorga) {
+    if(!isset($eventCounts[$eventorga]))
+        $eventCounts[$eventorga] = 0;
+    $eventCounts[$eventorga]++   ;     
+
+}
+foreach ($eventCounts as $eventName => $eventCount) {
+    echo $eventName . ' - ' . $eventCount . '<br>';
+}
+										?>
+									</div>
+								</div>
+								</div>
+						</div>
+					</div>
+				</div>
+                <!-- ./ORGANIZERS MODAL -->
+				
                 <!-- ADD EVENT MODAL -->
                 <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
@@ -265,7 +322,7 @@ $events = $req->fetchAll();
                             <form class="form-horizontal" method="POST" action="addEvent.php">
 
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel"><i class="far fa-plus-square"></i>&nbsp;&nbsp;Ajouter un événement</h4>
+                                    <h4 class="modal-title" id="myModalLabel"><i class="far fa-plus-square"></i>&nbsp;&nbsp;<?php echo $lang['EVENTADD_TITLE']; ?></h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
@@ -274,14 +331,14 @@ $events = $req->fetchAll();
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-font"></i></span>
                                         </div>
-                                        <input type="text" name="title" class="form-control" id="title" placeholder="Titre">
+                                        <input type="text" name="title" class="form-control" id="title" placeholder="<?php echo $lang['EVENTADD_TEXTTITLE']; ?>">
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-text-height"></i></span>
                                         </div>
-                                        <textarea name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+                                        <textarea name="description" class="form-control" id="description" placeholder="<?php echo $lang['EVENTADD_TEXTDES']; ?>" rows="5"></textarea>
                                     </div>
                                     			  	    
                                     <div class="input-group mb-3">
@@ -293,21 +350,21 @@ $events = $req->fetchAll();
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
                                         </div>
-                                        <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+                                        <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="<?php echo $lang['EVENTADD_TEXTORGA']; ?>">
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-plus"></i></span>
                                         </div>
-                                        <input type="text" name="orgaavailable" class="form-dispo" style="margin:0px auto;width:300px;" placeholder="Rechercher une personne disponible pour vous aider à organiser l'événement">
+                                        <input type="text" name="orgaavailable" class="form-dispo" style="margin:0px auto;width:300px;" placeholder="<?php echo $lang['EVENTADD_TEXTSEARCH']; ?>">
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-gifts"></i></span>
                                         </div>
-                                        <input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="Donateur(s) - Séparer chaque entrée par une virgule (5 max)">
+                                        <input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="<?php echo $lang['EVENTADD_TEXTDONA']; ?>">
                                     </div>
 
                                     <div class="input-group mb-3">
@@ -315,7 +372,7 @@ $events = $req->fetchAll();
                                             <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
                                         </div>
                                         <select name="color" class="form-control" id="color">
-                                            <option value="">Lieu de l'événement</option>
+                                            <option value=""><?php echo $lang['EVENTADD_SELECTEVENTLOCA']; ?></option>
                                             <option style="color:#f83f90;" value="#f83f90">Lamia</option>
                                             <option style="color:#43aaf8;" value="#43aaf8">Abhuva</option>
                                             <option style="color:#f14afb;" value="#f14afb">Les deux serveurs</option>
@@ -325,14 +382,14 @@ $events = $req->fetchAll();
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">Date et heure de début</span>
+                                            <span class="input-group-text" id="basic-addon1"><?php echo $lang['EVENTADD_DATESTART']; ?></span>
                                         </div>
                                         <input type="text" name="start" class="form_datetime" id="start" value="" readonly>
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" id="basic-addon1">Date et heure de fin</span>
+                                            <span class="input-group-text" id="basic-addon1"><?php echo $lang['EVENTADD_DATEEND']; ?></span>
                                         </div>
                                         <input type="text" name="end" class="form_datetime" id="end" value="" readonly>
                                     </div>
@@ -340,7 +397,7 @@ $events = $req->fetchAll();
                                 </div>
 
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
 									<button type="submit" class="btn btn-success" id="btn_calendar">Go !</button>
                                 </div>
                             </form>
@@ -355,7 +412,7 @@ $events = $req->fetchAll();
                         <div class="modal-content">
                             <form class="form-horizontal" method="POST" action="editEventTitle.php">
                                 <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel"><i class="far fa-edit"></i>&nbsp;&nbsp;Modifier l'événement</h4>
+                                    <h4 class="modal-title" id="myModalLabel"><i class="far fa-edit"></i>&nbsp;&nbsp;<?php echo $lang['EVENTMOD_TITLE']; ?></h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
                                 <div class="modal-body">
@@ -364,28 +421,28 @@ $events = $req->fetchAll();
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-font"></i></span>
                                         </div>
-                                        <input type="text" name="title" class="form-control" id="title" placeholder="Titre">
+                                        <input type="text" name="title" class="form-control" id="title" placeholder="<?php echo $lang['EVENTMOD_TEXTTITLE']; ?>">
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fas fa-text-height"></i></span>
                                         </div>
-                                        <textarea name="description" class="form-control" id="description" placeholder="Description" rows="5"></textarea>
+                                        <textarea name="description" class="form-control" id="description" placeholder="<?php echo $lang['EVENTMOD_TEXTDES']; ?>" rows="5"></textarea>
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
                                         </div>
-                                        <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="Organisateur">
+                                        <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="<?php echo $lang['EVENTMOD_TEXTORGA']; ?>">
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-plus"></i></span>
                                         </div>
-                                        <input type="text" name="orgaavailable" class="form-dispo" id="orgaavailable" placeholder="Rechercher une personne disponible pour vous aider à organiser l'événement">
+                                        <input type="text" name="orgaavailable" class="form-dispo" id="orgaavailable" placeholder="<?php echo $lang['EVENTMOD_TEXTSEARCH']; ?>">
                                     </div>
 
                                     <div class="input-group mb-3">
@@ -393,7 +450,7 @@ $events = $req->fetchAll();
                                             <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
                                         </div>
                                         <select name="color" class="form-control" id="color">
-                                            <option value="">Lieu de l'événement</option>
+                                            <option value=""><?php echo $lang['EVENTMOD_SELECTEVENTLOCA']; ?></option>
                                             <option style="color:#42a5f5;" value="#42a5f5">Lamia</option>
                                             <option style="color:#f44336;" value="#f44336">Abhuva</option>
                                             <option style="color:#66bb6a;" value="#66bb6a">Les deux serveurs</option>
@@ -405,14 +462,14 @@ $events = $req->fetchAll();
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-gifts"></i></span>
                                         </div>
-                                        <input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="Donateur(s) - Séparer chaque entrée par une virgule (5 max)">
+                                        <input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="<?php $lang['EVENTMOD_TEXTDONA']; ?>">
                                     </div>
 
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
                                             <div class="checkbox">
                                                 <label class="text-danger">
-                                                    <input type="checkbox" name="delete"> Supprimer cet événement</label>
+                                                    <input type="checkbox" name="delete"> <?php echo $lang['EVENTMOD_DELETE']; ?></label>
                                             </div>
                                         </div>
                                     </div>
@@ -421,7 +478,7 @@ $events = $req->fetchAll();
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fermer</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
                                     <button type="submit" class="btn btn-success">Go !</button>
                                 </div>
                             </form>
@@ -447,7 +504,7 @@ $events = $req->fetchAll();
 			        nowIndicator: 'true',
                     titleFormat: 'MMMM',
 			        header: {
-				        language: 'fr',
+				        language: '<?php echo $lang['HTML_LANG']; ?>',
 				        left: 'prev,next,today',
 				        center: 'title',
 				        right: 'listMonth,month,agendaWeek,agendaDay' // other buttons are irrelevent for this calendar (no need for a full day or hours per day), stay simple
@@ -486,7 +543,6 @@ $events = $req->fetchAll();
 			        element.qtip({
                           content: "<b>" + event.title + "</b>" + "<br> <br>" + event.description,
                       });
-			        //event.description = event.description.replace(/ [ \r\n]+/gm, "\n");
 			        },
 
 			        eventDrop: function(event, delta, revertFunc) { // si changement de position
@@ -579,7 +635,7 @@ $events = $req->fetchAll();
             
                 // Init datepicker
                 $(".form_datetime").datetimepicker({
-		            language: 'fr',
+		            language: '<?php echo $lang['HTML_LANGALT']; ?>',
                     format: "yyyy-mm-dd hh:ii:00",
                     autoclose: true,
                     todayBtn: true,
@@ -611,7 +667,7 @@ $events = $req->fetchAll();
 			parallelUploads: 5,
 			maxFiles: 5,
 			acceptedFiles: 'image/*',
-			dictDefaultMessage: "Glissez une image ici ou cliquez pour l'ajouter </br>(5Mo Max, 5 Images Max)",
+			dictDefaultMessage: "<?php echo $lang['EVENTADD_TEXTDROP']; ?>",
 			dictInvalidFileType : "Ce type de fichier n'est pas accepté",
 			addRemoveLinks: true,  
 			dictRemoveFile : "Supprimer le fichier",

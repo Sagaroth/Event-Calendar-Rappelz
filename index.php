@@ -109,6 +109,7 @@ $events = $req->fetchAll();
 
             <!-- Site -->
     	    <script type="text/javascript" src="js/register.js"></script>
+    	    <script type="text/javascript" src="js/addevent.js"></script>
 
         <!-- END JS REFERENCES -->
 
@@ -235,7 +236,7 @@ $events = $req->fetchAll();
 				                        <div class="input-group-prepend">
 				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-ninja"></i></span>
 				                        </div>
-				                        <input type="text" class="form-control" placeholder="Pseudo" aria-label="Pseudo" aria-describedby="basic-addon1" name="user_name" id="user_name">
+				                        <input type="text" class="form-control" placeholder="Pseudo" aria-label="Pseudo" aria-describedby="basic-addon1" name="user_name" id="user_name"></br>
 			                        </div>
 			                        <div class="input-group mb-3">
 				                        <div class="input-group-prepend">
@@ -276,36 +277,33 @@ $events = $req->fetchAll();
                                     </p>
 									<div id="listorga">
 										<?php
-										/*foreach ($events as $eventorga) {
-										
-										//echo $eventorga['organisateur'].'</br>';
-										}*/
-
-$orgasql = "SELECT organisateur FROM events ";
-$orgareq = $bdd->prepare($orgasql);
-$orgareq->execute();
-
-while($eventrow = $orgareq->fetch(PDO::FETCH_ASSOC)) {
-$eventorgaas[] = $eventrow['organisateur'];
-}
-
-$eventimploded = implode('",',$eventorgaas);
-
-echo $eventimploded;
-
-$eventorgaarray =  [$eventimploded];
-
-$eventorgas = $eventorgaarray;
-$eventCounts = [];
-foreach ($eventorgas as $key => $eventorga) {
-    if(!isset($eventCounts[$eventorga]))
-        $eventCounts[$eventorga] = 0;
-    $eventCounts[$eventorga]++   ;     
-
-}
-foreach ($eventCounts as $eventName => $eventCount) {
-    echo $eventName . ' - ' . $eventCount . '<br>';
-}
+										$orgasql = "SELECT organisateur, COUNT(*) as count FROM events GROUP BY organisateur";                                  
+										$orgareq = $bdd->prepare($orgasql);                                     
+										$orgareq->execute();                                        
+										while($eventrow = $orgareq->fetch(PDO::FETCH_ASSOC)) {             
+												if ($eventrow['count'] == "1")
+												{	$eventorgaas[] = '<b>'.$eventrow['organisateur'] . '</b> - ' . $eventrow['count'] . ' ' . $lang['ORGANIZERS_EVENT_STRING'];                                     
+												}
+												 elseif ($eventrow['count'] >= "3" && $eventrow['count'] < "5")
+												{	$eventorgaas[] = '<i class="fa fa-trophy" style="color:#CD7F32"></i> <b>'.$eventrow['organisateur'] . '</b> - ' . $eventrow['count'] . ' ' . $lang['ORGANIZERS_EVENTS_STRING'];     
+												}
+												elseif ($eventrow['count'] >= "5" && $eventrow['count'] < "10")
+												{	$eventorgaas[] = '<i class="fa fa-trophy" style="color:silver"></i> <b>'.$eventrow['organisateur'] . '</b> - ' . $eventrow['count'] . ' ' . $lang['ORGANIZERS_EVENTS_STRING'];     
+												}
+												elseif ($eventrow['count'] >= "10")
+												{	$eventorgaas[] = '<i class="fa fa-trophy" style="color:gold"></i> <b>'.$eventrow['organisateur'] . '</b> - ' . $eventrow['count'] . ' ' . $lang['ORGANIZERS_EVENTS_STRING'];     
+												}
+												 else
+												{	$eventorgaas[] = '<b>'.$eventrow['organisateur'] . '</b> - ' . $eventrow['count'] . ' ' . $lang['ORGANIZERS_EVENTS_STRING'];     
+												}
+										}
+										if (empty($eventorgaas)) {
+											$eventimploded = "<div class='alert alert-warning'>".$lang['ORGANIZERS_NO_EVENT']."</div>";
+										}							
+										else {
+											$eventimploded = implode('</br>',$eventorgaas); 
+										}	
+										echo $eventimploded;
 										?>
 									</div>
 								</div>
@@ -319,7 +317,7 @@ foreach ($eventCounts as $eventName => $eventCount) {
                 <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
-                            <form class="form-horizontal" method="POST" action="addEvent.php">
+                            <form class="form-horizontal" method="POST" id="add-form">
 
                                 <div class="modal-header">
                                     <h4 class="modal-title" id="myModalLabel"><i class="far fa-plus-square"></i>&nbsp;&nbsp;<?php echo $lang['EVENTADD_TITLE']; ?></h4>
@@ -491,7 +489,6 @@ foreach ($eventCounts as $eventName => $eventCount) {
         </div>
 
 	    <script type="text/javascript">
-
 	        $(document).ready(function() {
 
 	           var date = new Date();
@@ -686,6 +683,51 @@ foreach ($eventCounts as $eventName => $eventCount) {
 			});
 			}
 			};
+			
+			/* handle form validation */  
+			$("#add-form").validate({
+			  rules:
+			{
+			title: {
+			required: true,
+			minlength: 6
+			},
+			organisateur: {
+			required: true,
+			minlength: 4
+			},
+			},
+			   messages:
+			{
+			title: {
+			required: "<?php echo $lang['EVENTADD_NOTITLE_ERROR']; ?>",
+			minlength: "<?php echo $lang['EVENTADD_TITLELENGHT_ERROR']; ?>"
+			},
+			organisateur: {
+			required: "<?php echo $lang['EVENTADD_NOORGA_ERROR']; ?>",
+			minlength: "<?php echo $lang['EVENTADD_ORGALENGHT_ERROR']; ?>"
+			},
+			   },
+			submitHandler: submitForm 
+			   });  
+		 
+			/* handle form submit */
+			function submitForm() {  
+			var data = $("#add-form").serialize();    
+			$.ajax({    
+			type : 'POST',
+			url  : 'addEvent.php',
+			data : data,
+			beforeSend: function() { 
+			 $("#error").fadeOut();
+			 $("#btn_calendar").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
+			setTimeout(function(){
+			window.location.reload(true);
+			},100);     
+			},
+			});
+			return false;
+			}
         </script>
     </body>
 </html>

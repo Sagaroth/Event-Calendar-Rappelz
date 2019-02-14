@@ -26,10 +26,11 @@ $('document').ready(function() {
     },
        messages:
     {
-            user_name: "Veuillez entrer un pseudo",
+            user_name: ('&nbsp; Veuillez entrer un pseudo</div>'),
        },
     submitHandler: submitForm 
        });  
+ 
     /* handle form submit */
     function submitForm() {  
     var data = $("#register-form").serialize();    

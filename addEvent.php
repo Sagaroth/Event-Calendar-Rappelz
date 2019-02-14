@@ -64,7 +64,6 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['orga
 	 print_r($query->errorInfo());
 	 die ('Erreur execute');
 	}
-
 }
 
 if(!empty($_FILES)){     
@@ -77,7 +76,7 @@ if(!empty($_FILES)){
     }   
 }
 
-header('Location: '.$_SERVER['HTTP_REFERER']);
+//header('Location: '.$_SERVER['HTTP_REFERER']);
 
 	
 ?>

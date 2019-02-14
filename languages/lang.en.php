@@ -35,13 +35,13 @@ $lang['REGISTER_TITLE'] = 'I want to organize an event';
 $lang['REGISTER_DESCRIPTION'] = 'By filling out the form below, you can register on the list of people available to organize an event.';
 $lang['REGISTER_SELECT'] = 'Select...';
 
-<<<<<<< HEAD
 // ORGANIZERS MODAL
 $lang['ORGANIZERS_TITLE'] = 'The following players are great organizers!';
 $lang['ORGANIZERS_DESCRIPTION'] = 'These players have organized events. You can also organize them using the calendar.';
+$lang['ORGANIZERS_EVENTS_STRING'] = 'events';
+$lang['ORGANIZERS_EVENT_STRING'] = 'event';
+$lang['ORGANIZERS_NO_EVENT'] = 'No events were organized';
 
-=======
->>>>>>> 9b93a42d4cc15fa38490e9aa6f8ab3db96a49a1c
 // EVENT ADD
 $lang['EVENTADD_TITLE'] = 'Add an event';
 $lang['EVENTADD_TEXTTITLE'] = 'Title';
@@ -53,6 +53,10 @@ $lang['EVENTADD_TEXTDONA'] = 'Donator(s) - Separate each entry with a comma (5 m
 $lang['EVENTADD_SELECTEVENTLOCA'] = 'Location of the event';
 $lang['EVENTADD_DATESTART'] = 'Start time and start date';
 $lang['EVENTADD_DATEEND'] = 'End time and end date';
+$lang['EVENTADD_NOTITLE_ERROR'] = '&nbsp; Please enter a title';
+$lang['EVENTADD_TITLELENGHT_ERROR'] = '&nbsp; This field requires 6 characters at least';
+$lang['EVENTADD_NOORGA_ERROR'] = '&nbsp; An organizer is required';
+$lang['EVENTADD_ORGALENGHT_ERROR'] = '&nbsp; This field requires 4 characters at least';
 
 // EVENT MODIFICATION
 $lang['EVENTMOD_TITLE'] = 'Modify the event';

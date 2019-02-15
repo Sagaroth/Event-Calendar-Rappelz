@@ -1,3 +1,40 @@
+<?php
+    session_start();
+    header('Cache-control: private'); // IE 6 FIX
+    if(isSet($_GET['lang']))
+    {
+        $lang = $_GET['lang'];
+        // register the session and set the cookie
+        $_SESSION['lang'] = $lang;
+        setcookie("lang", $lang, time() + (3600 * 24 * 30));
+    }
+    else if(isSet($_SESSION['lang']))
+    {
+        $lang = $_SESSION['lang'];
+    }
+    else if(isSet($_COOKIE['lang']))
+    {
+        $lang = $_COOKIE['lang'];
+    }
+    else
+    {
+        $lang = 'fr';
+    }
+    switch ($lang) {
+          case 'en':
+          //English
+          $lang_file = 'lang.en.php';
+          break;
+          case 'fr':
+          //French
+          $lang_file = 'lang.fr.php';
+          break;
+        // Default French
+          default:
+          $lang_file = 'lang.fr.php';
+    }
+    include_once 'languages/'.$lang_file;
+?>
 <!--	<Rappelz Event Calendar  - Make events with players.>
     Copyright (C) <2019>  <History of Rappelz>
 
@@ -16,11 +53,8 @@
 
 
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 require_once('bdd.php');
-include_once 'language.php';
+//include_once 'language.php';
 
 $sql = "SELECT id, title, description, organisateur, orgaavailable, donator, start, end, color FROM events ";
 $req = $bdd->prepare($sql);
@@ -146,7 +180,7 @@ $events = $req->fetchAll();
                                     </a>
                                 </li>
 							    <li>
-                                    <a>
+                                    <a onclick="$('#ModalDonators').modal('show');">
                                         <span class="fa fa-trophy"></span>
                                         <?php echo $lang['MENU_DONATORS']; ?>
                                     </a>
@@ -312,6 +346,46 @@ $events = $req->fetchAll();
 					</div>
 				</div>
                 <!-- ./ORGANIZERS MODAL -->
+				
+				<!-- DONATORS MODAL -->
+                <div class="modal fade" id="ModalDonators" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel"><?php echo $lang['DONATORS_TITLE']; ?></h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+								<div class="modal-organizers">
+                                <div class="modal-body">
+                                    <p>
+                                        <?php echo $lang['DONATORS_DESCRIPTION']; ?>	
+                                    </p>
+									<div id="listdona">
+										<?php
+										$donasql = "SELECT donator, COUNT(*) as count FROM events GROUP BY donator";                                  
+										$donareq = $bdd->prepare($donasql);                                     
+										$donareq->execute();                                        
+										while($eventrowdona = $donareq->fetch(PDO::FETCH_ASSOC)) {       
+												$eventdonas[] = $eventrowdona['donator'];
+										}
+										if (empty($eventdonas)) {
+											$eventimexplodedona = "<div class='alert alert-warning'>".$lang['DONATORS_NO_EVENT']."</div>";
+										}							
+										else {
+											$eventimplodedona = implode("</br>", $eventdonas);
+											$eventexlodedona = explode(",", $eventimplodedona);
+											$eventimplodedonabr = implode("</br>", $eventexlodedona);
+											$eventimexplodedona = implode('</br>', array_unique(explode('</br>', $eventimplodedonabr)));
+										}	
+										echo '<b>'.$eventimexplodedona. '</b>';
+										?>
+									</div>
+								</div>
+								</div>
+						</div>
+					</div>
+				</div>
+                <!-- ./DONATORS MODAL -->
 				
                 <!-- ADD EVENT MODAL -->
                 <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

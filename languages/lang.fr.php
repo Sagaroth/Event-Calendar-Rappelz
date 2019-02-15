@@ -1,7 +1,7 @@
 <?php
 /* 
 ------------------
-Language: English
+Language: French
 ------------------
 */
 $lang = array();
@@ -41,6 +41,11 @@ $lang['ORGANIZERS_DESCRIPTION'] = 'Ces joueurs ont organisé des events. Vous po
 $lang['ORGANIZERS_EVENTS_STRING'] = 'événements';
 $lang['ORGANIZERS_EVENT_STRING'] = 'événement';
 $lang['ORGANIZERS_NO_EVENT'] = 'Aucun événement n\'a été organisé';
+
+// DONATORS MODAL
+$lang['DONATORS_TITLE'] = 'Les généreux donateurs !';
+$lang['DONATORS_DESCRIPTION'] = 'Ces joueurs ont participé aux lots des événements organisés.';
+$lang['DONATORS_NO_EVENT'] = 'Aucun événement n\'a été organisé';
 
 // EVENT ADD
 $lang['EVENTADD_TITLE'] = 'Ajouter un événement';

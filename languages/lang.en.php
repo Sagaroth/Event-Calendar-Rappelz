@@ -42,6 +42,11 @@ $lang['ORGANIZERS_EVENTS_STRING'] = 'events';
 $lang['ORGANIZERS_EVENT_STRING'] = 'event';
 $lang['ORGANIZERS_NO_EVENT'] = 'No events were organized';
 
+// DONATORS MODAL
+$lang['DONATORS_TITLE'] = 'The generous donators!';
+$lang['DONATORS_DESCRIPTION'] = 'These players participated in the prizes of the events organized.';
+$lang['DONATORS_NO_EVENT'] = 'No events were organized';
+
 // EVENT ADD
 $lang['EVENTADD_TITLE'] = 'Add an event';
 $lang['EVENTADD_TEXTTITLE'] = 'Title';

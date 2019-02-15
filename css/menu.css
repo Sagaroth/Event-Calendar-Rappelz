@@ -19,6 +19,16 @@ div#listorga {
     font-size: 17px;
 }
 
+div#listdona {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 5em;
+    font-weight: 400;
+    font-size: 17px;
+}
+
 .gn-menu-main,
 .gn-menu-main ul {
     margin: 0;

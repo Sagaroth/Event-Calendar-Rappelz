@@ -99,6 +99,10 @@ label.error {
     max-width: inherit;
 }
 
+small#donatorlabel {
+    width: 100%;
+}
+
 .bootstrap-tagsinput .tag {
     color: #ffffff;
     background-color: #3f4b79;

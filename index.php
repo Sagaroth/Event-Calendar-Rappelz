@@ -437,6 +437,8 @@ $events = $req->fetchAll();
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-gifts"></i></span>
                                         </div>
                                         <input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="<?php echo $lang['EVENTADD_TEXTDONA']; ?>">
+										<small id="donatorlabel" class="form-text text-muted">
+<?php echo $lang['EVENTADD_LABELDONA']; ?>										</small>
                                     </div>
 
                                     <div class="input-group mb-3">

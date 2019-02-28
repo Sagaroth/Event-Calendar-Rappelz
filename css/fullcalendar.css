@@ -36,6 +36,11 @@ i#calendarbutton {
 	font-weight: 400;
 }
 
+label.error {
+    color: #721c24;
+    margin-top: 6px;
+}
+
 .bootstrap-tagsinput {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -92,6 +97,10 @@ i#calendarbutton {
     margin: 0;
     width: 100%;
     max-width: inherit;
+}
+
+small#donatorlabel {
+    width: 100%;
 }
 
 .bootstrap-tagsinput .tag {

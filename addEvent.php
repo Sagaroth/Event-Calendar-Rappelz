@@ -64,13 +64,11 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['orga
 	 print_r($query->errorInfo());
 	 die ('Erreur execute');
 	}
-
 }
 
 if(!empty($_FILES)){     
     $uploadDir = "uploads/";
     $fileName = $_FILES['file']['name'];
-	$fileName = 'test'.$fileName;
     $uploadedFile = $uploadDir.$fileName;    
     if(move_uploaded_file($_FILES['file']['tmp_name'],$uploadedFile)) {
         $mysqlInsert = "INSERT INTO uploads (file_name, upload_time, md5_checksum)VALUES('".$fileName."','$creationtime', '$md5checksum')";
@@ -78,7 +76,7 @@ if(!empty($_FILES)){
     }   
 }
 
-header('Location: '.$_SERVER['HTTP_REFERER']);
+//header('Location: '.$_SERVER['HTTP_REFERER']);
 
 	
 ?>

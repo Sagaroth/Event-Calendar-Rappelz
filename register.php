@@ -1,4 +1,5 @@
-<!--	<Rappelz Event Calendar  - Make events with players.>
+<?php
+/*<!--	<Rappelz Event Calendar  - Make events with players.>
     Copyright (C) <2019>  <History of Rappelz>
 
     This program is free software: you can redistribute it and/or modify
@@ -13,8 +14,7 @@
 
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>. -->
-
-<?php
+*/
 include_once("db_connect.php");
 if(isset($_POST['btn-save'])) {
 	$user_name = $_POST['user_name'];

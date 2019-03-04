@@ -36,7 +36,7 @@ $('document').ready(function() {
     {
             identifier: ('&nbsp; Veuillez entrer un nom d\'utilisateur</div>'),
 			password: ('&nbsp; Un mot de passe de 8 caractères minimum est requis</div>'),
-			confirmpassword: ('&nbsp; Les mot de passes ne sont pas les mêmes</div>'),
+			confirmpassword: ('&nbsp; Les mot de passe ne sont pas les mêmes</div>'),
        },
     submitHandler: submitForm 
        });  

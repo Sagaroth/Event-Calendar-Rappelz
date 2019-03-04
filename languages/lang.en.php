@@ -20,24 +20,31 @@ $lang['HEADER_TITLE'] = 'For the players!';
 $lang['HEADING'] = 'This page lists events that players plan to do. Feel free to participate!';
 
 // MENU
-$lang['MENU_REGISTRATION'] = 'Sign up \ Sign in';
+$lang['MENU_REGISTRATION'] = 'Sign up/Sign in';
+$lang['MENU_SUBREGISTRATION'] = 'Sign up';
+$lang['MENU_SUBLOGIN'] = 'Sign in';
 $lang['MENU_AVAILABLE'] = 'Help to organize';
 $lang['MENU_ORGANIZERS'] = 'Organizers';
 $lang['MENU_CHATBOX'] = 'Chatbox';
 $lang['MENU_DONATORS'] = 'Donators';
 $lang['MENU_SETTINGS'] = 'Settings';
-$lang['MENU_NOTIFICATIONS'] = 'Notifications';
 $lang['MENU_LANGUAGES'] = 'Languages';
-$lang['MENU_THEME'] = 'Themes';
 $lang['MENU_ABOUT'] = 'About the event calendar'; 
 
-// REGISTER MODAL
+// SIGNUP MODAL
 $lang['SIGNUP_TITLE'] = 'Create an account on the event calendar';
 $lang['SIGNUP_DESCRIPTION'] = 'By creating an account on the event calendar, you have the possibility to create, modify, delete events and thus participate in the community life of Rappelz!';
 $lang['SIGNUP_ID'] = 'Username';
 $lang['SIGNUP_PASSWORD'] = 'Password';
 $lang['SIGNUP_BISPASSWORD'] = 'Confirm password';
 $lang['SIGNUP_REGISTER'] = 'Create my account';
+
+// SIGNIN MODAL
+$lang['SIGNIN_TITLE'] = 'Sign in to my event calendar account';
+$lang['SIGNIN_DESCRIPTION'] = 'By connecting, you can access all the features of the event calendar (Creation and management of events etc...)';
+$lang['SIGNIN_ID'] = 'Username';
+$lang['SIGNIN_PASSWORD'] = 'Password';
+$lang['SIGNIN_VALIDATION'] = 'Sign in';
 
 // REGISTER MODAL
 $lang['REGISTER_TITLE'] = 'I want to help to organize an event';

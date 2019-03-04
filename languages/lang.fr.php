@@ -20,7 +20,8 @@ $lang['HEADER_TITLE'] = 'Pour les joueurs !';
 $lang['HEADING'] = 'Cette page recense des events que prévoient de faire les joueurs. Nhésitez pas à participer !';
 
 // MENU
-$lang['MENU_REGISTRATION'] = 'Inscription';
+$lang['MENU_REGISTRATION'] = 'S\'inscrire \ Se connecter';
+$lang['MENU_AVAILABLE'] = 'Aider à organiser';
 $lang['MENU_ORGANIZERS'] = 'Organisateurs';
 $lang['MENU_CHATBOX'] = 'Chatbox';
 $lang['MENU_DONATORS'] = 'Donateurs';
@@ -31,7 +32,15 @@ $lang['MENU_THEME'] = 'Thèmes';
 $lang['MENU_ABOUT'] = 'A propos de l\'event calendar'; 
 
 // REGISTER MODAL
-$lang['REGISTER_TITLE'] = 'Je veux organiser un event';
+$lang['SIGNUP_TITLE'] = 'Créer un compte sur l\'event calendar';
+$lang['SIGNUP_DESCRIPTION'] = 'En créant un compte sur l\'event calendar, vous avez la possibilité de créer, modifier, supprimer des événements et ainsi participer à la vie communautaire de Rappelz !';
+$lang['SIGNUP_ID'] = 'Identifiant';
+$lang['SIGNUP_PASSWORD'] = 'Mot de passe';
+$lang['SIGNUP_BISPASSWORD'] = 'Confirmez le mot de passe';
+$lang['SIGNUP_REGISTER'] = 'Créer mon compte';
+
+// REGISTER MODAL
+$lang['REGISTER_TITLE'] = 'Je veux aider à organiser un event';
 $lang['REGISTER_DESCRIPTION'] = 'En remplissant le formulaire ci-dessous, vous pouvez vous inscrire sur la liste des personnes disponibles pour organiser un event.';
 $lang['REGISTER_SELECT'] = 'Sélectionnez...';
 

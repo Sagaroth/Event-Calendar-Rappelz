@@ -143,6 +143,7 @@ $events = $req->fetchAll();
 
             <!-- Site -->
     	    <script type="text/javascript" src="js/register.js"></script>
+			<script type="text/javascript" src="js/sign.js"></script>
     	    <script type="text/javascript" src="js/addevent.js"></script>
 
         <!-- END JS REFERENCES -->
@@ -162,9 +163,15 @@ $events = $req->fetchAll();
 					    <div class="gn-scroller">
 						    <ul class="gn-menu">
 							    <li>
-								    <a onclick="$('#ModalRegister').modal('show');">
+								    <a onclick="$('#ModalSignup').modal('show');">
                                         <span class="fa fa-user-plus"></span>
-                                        <?php echo $lang['MENU_REGISTRATION']; ?>
+                                         <?php echo $lang['MENU_REGISTRATION'];?>
+                                    </a>
+							    </li>
+								<li>
+								    <a onclick="$('#ModalRegister').modal('show');">
+                                        <span class="fa fa-hands-helping"></span>
+                                        <?php echo $lang['MENU_AVAILABLE'];?>
                                     </a>
 							    </li>
 							    <li>
@@ -190,27 +197,25 @@ $events = $req->fetchAll();
                                         <span class="fa fa-cogs"></span>
                                         <?php echo $lang['MENU_SETTINGS']; ?>
                                     </a>
-								    <ul class="gn-submenu">
-									    <li>
-                                            <a>
-                                                <span class="fa fa-bell"></span>
-                                                <?php echo $lang['MENU_NOTIFICATIONS']; ?>
-                                            </a>
-                                        </li>
-									    <li>
-                                            <a>
-                                                <span class="fa fa-globe"></span>
-                                                <?php echo $lang['MENU_LANGUAGES']; ?> -&nbsp; <a href="index.php?lang=fr"><span class="flag-icon flag-icon-fr"></span></a>&nbsp; <a href="index.php?lang=en"><span class="flag-icon flag-icon-us"></span><span class="flag-icon flag-icon-gb"></span></a>
-
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a>
-                                                <span class="fa fa-tablet-alt"></span>
-                                                <?php echo $lang['MENU_THEME']; ?>
-                                            </a>
-                                        </li>
-								    </ul>
+								</li>
+								<li>
+                                    <a>
+                                        <span class="fa fa-bell"></span>
+                                         <?php echo $lang['MENU_NOTIFICATIONS']; ?>
+                                    </a>
+                                </li>
+								<li>
+                                    <a>
+                                        <span class="fa fa-globe"></span>
+                                        <?php echo $lang['MENU_LANGUAGES']; ?> -&nbsp; <a href="index.php?lang=fr"><span class="flag-icon flag-icon-fr"></span></a>&nbsp; <a href="index.php?lang=en"><span class="flag-icon flag-icon-us"></span><span class="flag-icon flag-icon-gb"></span></a>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="fa fa-tablet-alt"></span>
+                                        <?php echo $lang['MENU_THEME']; ?>
+                                    </a>
+                                </li>
 							    </li>
 							    <li>
                                     <a>
@@ -250,6 +255,52 @@ $events = $req->fetchAll();
 		
             <!-- MODALS -->
             
+                <!-- SIGNUP MODAL -->
+				<div class="modal fade" id="ModalSignup" tabindex="-1" role="dialog">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <form class="form-horizontal" method="POST" id="sign-form">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="myModalLabel"><?php echo $lang['SIGNUP_TITLE']; ?></h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+								<div class="modal-sign">
+                                <div class="modal-body">
+                                    <p>
+                                        <?php echo $lang['SIGNUP_DESCRIPTION']; ?>
+                                    </p>
+
+                                    <div id="error"></div>
+			                        <div class="input-group mb-3">
+				                        <div class="input-group-prepend">
+				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-ninja"></i></span>
+				                        </div>
+				                        <input type="text" class="form-control" placeholder="<?php echo $lang['SIGNUP_ID'];?>" aria-label="id" aria-describedby="basic-addon1" name="identifier" id="identifier"></br>
+			                        </div>
+			                        <div class="input-group mb-3">
+										<div class="input-group-prepend">
+				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+				                        </div>
+				                        <input type="password" class="form-control" placeholder="<?php echo $lang['SIGNUP_PASSWORD'];?>" aria-label="pwd" aria-describedby="basic-addon1" name="password" id="password"></br>
+			                        </div>
+									<div class="input-group mb-3">
+										<div class="input-group-prepend">
+				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
+				                        </div>
+				                        <input type="password" class="form-control" placeholder="<?php echo $lang['SIGNUP_BISPASSWORD'];?>" aria-label="pwd" aria-describedby="basic-addon1" name="confirmpassword" id="confirmpassword"></br>
+			                        </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
+                                    <button type="submit" class="btn btn-success" name="btn-save" id="btn-sign"><?php echo $lang['SIGNUP_REGISTER']; ?></button>
+                                </div>
+								</div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+				<!-- ./SIGNUP MODAL -->
+				
                 <!-- REGISTER MODAL -->
                 <div class="modal fade" id="ModalRegister" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg" role="document">

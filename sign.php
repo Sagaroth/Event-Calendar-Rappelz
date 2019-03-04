@@ -16,18 +16,16 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>. -->
 */
 include_once("db_connect.php");
+$creationtime = date("Y-m-d H:i:s");
 if(isset($_POST['btn-save'])) {
-	$user_name = $_POST['user_name'];
-	$user_name = addslashes($user_name);
-	$user_name = htmlspecialchars($user_name);
-	$user_server = $_POST['user_server'];
-	$user_server = addslashes($user_server);
-	$user_server = htmlspecialchars($user_server);
-	$sql = "SELECT user FROM usersavalaibles WHERE user='$user_name'";
+	$identifier = $_POST['identifier'];
+	$password = $_POST['password'];
+	$password = md5($password);
+	$sql = "SELECT username FROM users WHERE username='$identifier'";
 	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
 	$row = mysqli_fetch_assoc($resultset);		
-	if(!$row['user']){	
-		$sql = "INSERT INTO usersavalaibles(`uid`, `user`, `server`) VALUES (NULL, '$user_name', '$user_server')";
+	if(!$row['username']){	
+		$sql = "INSERT INTO users(`id`, `username`, `password`, `creation_time`) VALUES (NULL, '$identifier', '$password', '$creationtime')";
 		mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn)."qqq".$sql);			
 		echo "registered";
 	} else {				

@@ -16,46 +16,56 @@
 
 $('document').ready(function() {   
   /* handle form validation */  
-  $("#register-form").validate({
+  $("#sign-form").validate({
       rules:
    {
-   user_name: {
+   identifier: {
       required: true,
-   minlength: 3
+   minlength: 4
    },
-    },
+  password: {
+	  required: true,
+	minlength: 8
+   },
+  confirmpassword: {
+	  required: true,
+      equalTo: "#password"
+   },
+   },
        messages:
     {
-            user_name: ('&nbsp; Veuillez entrer un pseudo</div>'),
+            identifier: ('&nbsp; Veuillez entrer un nom d\'utilisateur</div>'),
+			password: ('&nbsp; Un mot de passe de 8 caractères minimum est requis</div>'),
+			confirmpassword: ('&nbsp; Les mot de passes ne sont pas les mêmes</div>'),
        },
     submitHandler: submitForm 
        });  
  
     /* handle form submit */
     function submitForm() {  
-    var data = $("#register-form").serialize();    
+    var data = $("#sign-form").serialize();    
     $.ajax({    
     type : 'POST',
-    url  : 'register.php',
+    url  : 'sign.php',
     data : data,
     beforeSend: function() { 
      $("#error").fadeOut();
-     $("#btn-submit").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
+     $("#btn-sign").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
     },
     success :  function(response) {      
         if(response==1){         
 			 $("#error").fadeIn(1000, function(){
-			   $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Ce pseudo est déjà enregistré !</div>');           
-			   $("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; M\'inscrire');          
+			   $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Ce compte existe déjà !</div>');           
+			   $("#btn-sign").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Créer mon compte');          
 			 });                    
         } else if(response=="registered"){         
-			 $("#btn-submit").html('<img src="ajax-loader.gif" /> &nbsp; Entrée dans le monde de Gaïa ...');
-			 setTimeout('$(".modal-register").load("welcome.php");',3000);         
+			 $("#btn-sign").html('<img src="ajax-loader.gif" /> &nbsp; Entrée dans le monde de Gaïa ...');
+			 setTimeout('$(".modal-sign").load("welcomesign.php");',3000);         
 
         } else {          
          	$("#error").fadeIn(1000, function(){           
       			$("#error").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+data+' !</div>');           
-         		$("#btn-submit").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; M\'inscrire');         
+         		$("#btn-sign").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; M\'inscrire');         
          	});           
        	}
         }

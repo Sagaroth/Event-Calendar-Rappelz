@@ -20,7 +20,8 @@ $lang['HEADER_TITLE'] = 'For the players!';
 $lang['HEADING'] = 'This page lists events that players plan to do. Feel free to participate!';
 
 // MENU
-$lang['MENU_REGISTRATION'] = 'Registration';
+$lang['MENU_REGISTRATION'] = 'Sign up \ Sign in';
+$lang['MENU_AVAILABLE'] = 'Help to organize';
 $lang['MENU_ORGANIZERS'] = 'Organizers';
 $lang['MENU_CHATBOX'] = 'Chatbox';
 $lang['MENU_DONATORS'] = 'Donators';
@@ -31,7 +32,15 @@ $lang['MENU_THEME'] = 'Themes';
 $lang['MENU_ABOUT'] = 'About the event calendar'; 
 
 // REGISTER MODAL
-$lang['REGISTER_TITLE'] = 'I want to organize an event';
+$lang['SIGNUP_TITLE'] = 'Create an account on the event calendar';
+$lang['SIGNUP_DESCRIPTION'] = 'By creating an account on the event calendar, you have the possibility to create, modify, delete events and thus participate in the community life of Rappelz!';
+$lang['SIGNUP_ID'] = 'Username';
+$lang['SIGNUP_PASSWORD'] = 'Password';
+$lang['SIGNUP_BISPASSWORD'] = 'Confirm password';
+$lang['SIGNUP_REGISTER'] = 'Create my account';
+
+// REGISTER MODAL
+$lang['REGISTER_TITLE'] = 'I want to help to organize an event';
 $lang['REGISTER_DESCRIPTION'] = 'By filling out the form below, you can register on the list of people available to organize an event.';
 $lang['REGISTER_SELECT'] = 'Select...';
 

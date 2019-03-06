@@ -12,6 +12,7 @@ $lang['HTML_LANGALT'] = 'en-GB';
 //GENERAL
 $lang['GENERAL_CLOSE'] = 'Close';
 $lang['GENERAL_REGISTER'] = 'Sign up';
+$lang['GENERAL_WELCOME'] = 'Welcome ';
 
 //HEADER
 $lang['PAGE_TITLE'] = 'Rappelz Events Calendar';
@@ -30,6 +31,7 @@ $lang['MENU_DONATORS'] = 'Donators';
 $lang['MENU_SETTINGS'] = 'Settings';
 $lang['MENU_LANGUAGES'] = 'Languages';
 $lang['MENU_ABOUT'] = 'About the event calendar'; 
+$lang['MENU_LOGOUT'] = 'Logout';
 
 // SIGNUP MODAL
 $lang['SIGNUP_TITLE'] = 'Create an account on the event calendar';
@@ -45,6 +47,7 @@ $lang['SIGNIN_DESCRIPTION'] = 'By connecting, you can access all the features of
 $lang['SIGNIN_ID'] = 'Username';
 $lang['SIGNIN_PASSWORD'] = 'Password';
 $lang['SIGNIN_VALIDATION'] = 'Sign in';
+$lang['SIGNIN_BADLOGIN'] = 'Whoops! Your ID or password is invalid!';
 
 // REGISTER MODAL
 $lang['REGISTER_TITLE'] = 'I want to help to organize an event';

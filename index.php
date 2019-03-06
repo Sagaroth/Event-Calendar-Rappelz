@@ -34,6 +34,8 @@
           $lang_file = 'lang.fr.php';
     }
     include_once 'languages/'.$lang_file;
+	if(isSet($_SESSION['user_session']))
+		$userlogged = ucfirst($_SESSION['user_session']);
 ?>
 <!--	<Rappelz Event Calendar  - Make events with players.>
     Copyright (C) <2019>  <History of Rappelz>
@@ -152,10 +154,9 @@ $events = $req->fetchAll();
     </head>
 
     <body>
-
         <!-- Page Content -->
         <div class="container">
-        
+		
             <!-- MENU -->
 		    <ul id="gn-menu" class="gn-menu-main">
 			    <li class="gn-trigger">
@@ -163,7 +164,29 @@ $events = $req->fetchAll();
 				    <nav class="gn-menu-wrapper">
 					    <div class="gn-scroller">
 						    <ul class="gn-menu">
-							    <li>
+							    <?php 
+									if(isSet($_SESSION['user_session']))
+									{
+								?>
+								<li>
+								    <a>
+                                        <span class="fa fa-home"></span>
+                                        <?php echo $lang['GENERAL_WELCOME'].$userlogged.' !';?>
+                                    </a>
+								<ul class="gn-submenu">
+                                <li><a href="response.php?action=logout">
+                                        <span class="fa fa-sign-out-alt"></span>
+                                        <?php echo $lang['MENU_LOGOUT'];?>
+                                    </a>
+                                </li>
+								</ul>
+							    </li>
+								<?php
+									}
+									else
+									{
+								?>
+								<li>
 								    <a>
                                         <span class="fa fa-user-circle"></span>
 										<?php echo $lang['MENU_REGISTRATION'];?>
@@ -181,6 +204,9 @@ $events = $req->fetchAll();
                                 </li>
 								</ul>
 							    </li>
+									<?php
+									}
+									?>
 								<li>
 								    <a onclick="$('#ModalRegister').modal('show');">
                                         <span class="fa fa-hands-helping"></span>
@@ -306,9 +332,8 @@ $events = $req->fetchAll();
 				<div class="modal fade" id="ModalSignin" tabindex="-1" role="dialog">
                     <div class="modal-dialog modal-lg" role="document">
                         <div class="modal-content">
-							<div class="alert alert-danger" role="alert" id="error" style="display: none;">...</div>
-                            <form class="form-horizontal" method="POST" id="login-form">
-                                <div class="modal-header">
+							<form class="form-horizontal" id="login-form" name="login_form" role="form" style="display: block;" method="post">
+								<div class="modal-header">
                                     <h4 class="modal-title" id="myModalLabel"><?php echo $lang['SIGNIN_TITLE']; ?></h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                 </div>
@@ -317,10 +342,10 @@ $events = $req->fetchAll();
                                     <p>
                                         <?php echo $lang['SIGNIN_DESCRIPTION']; ?>
                                     </p>
+									<div class="alert alert-danger" role="alert" id="errorlogin" style="display: none;"><?php echo $lang['SIGNIN_BADLOGIN']; ?></div>
 
-                                    <div id="error"></div>
 			                        <div class="input-group mb-3">
-				                        <div class="input-group-prepend">
+										<div class="input-group-prepend">
 				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-ninja"></i></span>
 				                        </div>
 				                        <input type="text" class="form-control" placeholder="<?php echo $lang['SIGNIN_ID'];?>" aria-label="id" aria-describedby="basic-addon1" name="username" id="username"></br>
@@ -331,14 +356,16 @@ $events = $req->fetchAll();
 				                        </div>
 				                        <input type="password" class="form-control" placeholder="<?php echo $lang['SIGNIN_PASSWORD'];?>" aria-label="pwd" aria-describedby="basic-addon1" name="password" id="password"></br>
 			                        </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
-                                    <button type="submit" class="btn btn-success" name="login-submit" id="login-submit"><?php echo $lang['SIGNIN_VALIDATION']; ?></button>
-                                </div>
 								</div>
-                            </form>
-                        </div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
+									<button type="submit" class="btn btn-success" name="login-submit" id="login-submit" tabindex="4">
+									<span class="spinner"><i class="icon-spin icon-refresh" id="spinner"></i></span><?php echo $lang['SIGNIN_VALIDATION']; ?>
+									</button>
+								</div>
+								</div>							
+							</form>	   
+                        </div>	
                     </div>
                 </div>
 				<!-- ./SIGNIN MODAL -->

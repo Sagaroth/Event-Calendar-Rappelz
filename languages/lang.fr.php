@@ -12,6 +12,7 @@ $lang['HTML_LANGALT'] = 'fr';
 //GENERAL
 $lang['GENERAL_CLOSE'] = 'Fermer';
 $lang['GENERAL_REGISTER'] = 'M\'inscrire !';
+$lang['GENERAL_WELCOME'] = 'Bienvenue ';
 
 //HEADER
 $lang['PAGE_TITLE'] = 'Rappelz Events Calendar';
@@ -30,6 +31,7 @@ $lang['MENU_DONATORS'] = 'Donateurs';
 $lang['MENU_SETTINGS'] = 'Paramètres';
 $lang['MENU_LANGUAGES'] = 'Langues';
 $lang['MENU_ABOUT'] = 'A propos de l\'event calendar'; 
+$lang['MENU_LOGOUT'] = 'Se déconnecter';
 
 // SIGNUP MODAL
 $lang['SIGNUP_TITLE'] = 'Créer un compte sur l\'event calendar';
@@ -45,6 +47,7 @@ $lang['SIGNIN_DESCRIPTION'] = 'En vous connectant, vous accèdez à l\'ensemble 
 $lang['SIGNIN_ID'] = 'Identifiant';
 $lang['SIGNIN_PASSWORD'] = 'Mot de passe';
 $lang['SIGNIN_VALIDATION'] = 'Connexion';
+$lang['SIGNIN_BADLOGIN'] = 'Oups ! Votre ID ou mot de passe est invalide !';
 
 // REGISTER MODAL
 $lang['REGISTER_TITLE'] = 'Je veux aider à organiser un event';

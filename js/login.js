@@ -13,7 +13,7 @@ $(document).ready(function(){
 		},
 		messages: {
 			password:{
-			  required: "&nbsp; Veuillez indiquer votre mot de passe</div>",
+			  required: "&nbsp; </div>",
 			  minlength: "&nbsp; Le mot de passe indiqué doit faire plus de 8 caractères</div>"
 			 },
 			username: "&nbsp; Veuillez indiquer votre identifiant</div>",

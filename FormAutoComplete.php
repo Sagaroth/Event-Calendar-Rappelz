@@ -21,7 +21,7 @@ $password = "";
 $dbname = "calendar";
 $mysqli = new mysqli($servername, $username, $password, $dbname);
 	
-$sql = "SELECT Concat(user, ' - ', server) AS fulldetail FROM users 
+$sql = "SELECT Concat(user, ' - ', server) AS fulldetail FROM usersavalaibles 
 		WHERE user LIKE '%".$_GET['query']."%'
 		LIMIT 15"; 
 $result = $mysqli->query($sql);

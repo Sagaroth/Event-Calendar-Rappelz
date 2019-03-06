@@ -186,7 +186,7 @@ $events = $req->fetchAll();
 								<li>
 								    <a>
                                         <span class="fa fa-user-circle"></span>
-										<?php echo $lang['MENU_REGISTRATION'].' '.substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);?>
+										<?php echo $lang['MENU_REGISTRATION'];?>
                                     </a>
 								<ul class="gn-submenu">
                                 <li><a onclick="$('#ModalSignup').modal('show');">

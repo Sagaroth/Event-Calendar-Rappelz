@@ -18,20 +18,16 @@
     }
     else
     {
-        $lang = 'fr';
+        $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
     }
     switch ($lang) {
-          case 'en':
-          //English
-          $lang_file = 'lang.en.php';
-          break;
           case 'fr':
           //French
           $lang_file = 'lang.fr.php';
           break;
-        // Default French
+        // Default English if other language than FR detected
           default:
-          $lang_file = 'lang.fr.php';
+          $lang_file = 'lang.en.php';
     }
     include_once 'languages/'.$lang_file;
 	if(isSet($_SESSION['user_session']))
@@ -164,6 +160,7 @@ $events = $req->fetchAll();
 				    <nav class="gn-menu-wrapper">
 					    <div class="gn-scroller">
 						    <ul class="gn-menu">
+							
 							    <?php 
 									if(isSet($_SESSION['user_session']))
 									{
@@ -171,7 +168,7 @@ $events = $req->fetchAll();
 								<li>
 								    <a>
                                         <span class="fa fa-home"></span>
-                                        <?php echo $lang['GENERAL_WELCOME'].$userlogged.' !';?>
+                                        <?php echo $lang['GENERAL_WELCOME'].$userlogged.' !';?>	
                                     </a>
 								<ul class="gn-submenu">
                                 <li><a href="response.php?action=logout">
@@ -189,7 +186,7 @@ $events = $req->fetchAll();
 								<li>
 								    <a>
                                         <span class="fa fa-user-circle"></span>
-										<?php echo $lang['MENU_REGISTRATION'];?>
+										<?php echo $lang['MENU_REGISTRATION'].' '.substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);?>
                                     </a>
 								<ul class="gn-submenu">
                                 <li><a onclick="$('#ModalSignup').modal('show');">

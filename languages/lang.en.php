@@ -12,6 +12,7 @@ $lang['HTML_LANGALT'] = 'en-GB';
 //GENERAL
 $lang['GENERAL_CLOSE'] = 'Close';
 $lang['GENERAL_REGISTER'] = 'Sign up';
+$lang['GENERAL_WELCOME'] = 'Welcome ';
 
 //HEADER
 $lang['PAGE_TITLE'] = 'Rappelz Events Calendar';
@@ -30,6 +31,7 @@ $lang['MENU_DONATORS'] = 'Donators';
 $lang['MENU_SETTINGS'] = 'Settings';
 $lang['MENU_LANGUAGES'] = 'Languages';
 $lang['MENU_ABOUT'] = 'About the event calendar'; 
+$lang['MENU_LOGOUT'] = 'Logout';
 
 // SIGNUP MODAL
 $lang['SIGNUP_TITLE'] = 'Create an account on the event calendar';
@@ -45,6 +47,7 @@ $lang['SIGNIN_DESCRIPTION'] = 'By connecting, you can access all the features of
 $lang['SIGNIN_ID'] = 'Username';
 $lang['SIGNIN_PASSWORD'] = 'Password';
 $lang['SIGNIN_VALIDATION'] = 'Sign in';
+$lang['SIGNIN_BADLOGIN'] = 'Whoops! Your ID or password is invalid!';
 
 // REGISTER MODAL
 $lang['REGISTER_TITLE'] = 'I want to help to organize an event';
@@ -79,6 +82,10 @@ $lang['EVENTADD_NOTITLE_ERROR'] = '&nbsp; Please enter a title';
 $lang['EVENTADD_TITLELENGHT_ERROR'] = '&nbsp; This field requires 6 characters at least';
 $lang['EVENTADD_NOORGA_ERROR'] = '&nbsp; An organizer is required';
 $lang['EVENTADD_ORGALENGHT_ERROR'] = '&nbsp; This field requires 4 characters at least';
+
+// EVENT ADD NO CONNECTED
+$lang['NOCONNECTED_TITLE'] = 'You are not logged in';
+$lang['NOCONNECTED_DESCRIPTION'] = 'For security reasons, the creation of an event is not allowed when you are not connected</br><center><h4>But we believe in you!</h4></center></br>If you do not have an account, you can create one quickly or login via the forms below!';
 
 // EVENT MODIFICATION
 $lang['EVENTMOD_TITLE'] = 'Modify the event';

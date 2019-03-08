@@ -16,56 +16,56 @@
 
 $('document').ready(function() {   
   /* handle form validation */  
-  $("#sign-form").validate({
+  $("#sign-bis").validate({
       rules:
    {
    identifier: {
       required: true,
    minlength: 4
    },
-  password: {
+  passwordbis: {
 	  required: true,
 	minlength: 8
    },
-  confirmpassword: {
+  confirmpasswordbis: {
 	  required: true,
-      equalTo: "#password"
+      equalTo: "#passwordbis"
    },
    },
        messages:
     {
             identifier: ('&nbsp; Veuillez entrer un nom d\'utilisateur</div>'),
-			password: ('&nbsp; Un mot de passe de 8 caractères minimum est requis</div>'),
-			confirmpassword: ('&nbsp; Les mots de passe ne sont pas les mêmes</div>'),
+			passwordbis: ('&nbsp; Un mot de passe de 8 caractères minimum est requis</div>'),
+			confirmpasswordbis: ('&nbsp; Les mots de passe ne sont pas les mêmes</div>'),
        },
     submitHandler: submitForm 
        });  
  
     /* handle form submit */
     function submitForm() {  
-    var data = $("#sign-form").serialize();    
+    var data = $("#sign-bis").serialize();    
     $.ajax({    
     type : 'POST',
     url  : 'sign.php',
     data : data,
     beforeSend: function() { 
-     $("#error").fadeOut();
-     $("#btn-sign").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
+     $("#errorsignbis").fadeOut();
+     $("#btn-sign-bis").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
     },
     success :  function(response) {      
         if(response==1){         
-			 $("#error").fadeIn(1000, function(){
-			   $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Ce compte existe déjà !</div>');           
-			   $("#btn-sign").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Créer mon compte');          
+			 $("#errorsignbis").fadeIn(1000, function(){
+			   $("#errorsignbis").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Ce compte existe déjà !</div>');           
+			   $("#btn-sign-bis").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Créer mon compte');          
 			 });                    
         } else if(response=="registered"){         
-			 $("#btn-sign").html('<img src="ajax-loader.gif" /> &nbsp; Entrée dans le monde de Gaïa ...');
+			 $("#btn-sign-bis").html('<img src="ajax-loader.gif" /> &nbsp; Entrée dans le monde de Gaïa ...');
 			 setTimeout('$(".modal-sign").load("welcomesign.php");',3000);         
 
         } else {          
-         	$("#error").fadeIn(1000, function(){           
-      			$("#error").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+data+' !</div>');           
-         		$("#btn-sign").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; M\'inscrire');         
+         	$("#errorsignbis").fadeIn(1000, function(){           
+      			$("#errorsignbis").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+data+' !</div>');           
+         		$("#btn-sign-bis").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; M\'inscrire');         
          	});           
        	}
         }

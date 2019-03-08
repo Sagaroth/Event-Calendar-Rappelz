@@ -1,35 +1,22 @@
-/*	Rappelz Event Calendar  - Make events with players.>
-    Copyright (C) <2019>  <History of Rappelz>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>. */
-
 $(document).ready(function(){
 	/* handling form validation */
 	$("#login-form").validate({
 		rules: {
 			password: {
 				required: true,
+				minlength: 8
 			},
-			identifier: {
+			username: {
 				required: true,
+				minlength: 4
 			},
 		},
 		messages: {
 			password:{
-			  required: "Please enter your password"
+			  required: "&nbsp; </div>",
+			  minlength: "&nbsp; Le mot de passe indiqué doit faire plus de 8 caractères</div>"
 			 },
-			identifier: "Please enter your email address",
+			username: "&nbsp; Veuillez indiquer votre identifiant</div>",
 		},
 		submitHandler: submitForm	
 	});	
@@ -42,17 +29,16 @@ $(document).ready(function(){
 			url  : 'response.php?action=login',
 			data : data,
 			beforeSend: function(){	
-				$("#error").fadeOut();
+				$("#errorlogin").fadeOut();
 				$("#login_button").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
 			},
 			success : function(response){			
 				if($.trim(response) === "1"){
 					console.log('dddd');									
-					$("#login-submit").html('Signing In ...');
-					setTimeout(' window.location.href = "dashboard.php"; ',2000);
+					$("#login-submit").html('Connexion en cours');
+					setTimeout(' window.location.href = "index.php"; ',2000);
 				} else {									
-					$("#error").fadeIn(1000, function(){						
-						$("#error").html(response).show();
+					$("#errorlogin").fadeIn(1000, function(){						
 					});
 				}
 			}

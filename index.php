@@ -545,7 +545,7 @@ $events = $req->fetchAll();
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-tag"></i></span>
                                         </div>
-                                        <input type="text" name="organisateur" class="form-control" id="organisateur" placeholder="<?php echo $userlogged; ?>" readonly>
+                                        <input type="text" name="organisateur" class="form-control" value='<?php echo "$userlogged";?>' id="organisateur" placeholder="<?php echo $userlogged; ?>" readonly>
                                     </div>
 
                                     <div class="input-group mb-3">
@@ -998,7 +998,6 @@ $events = $req->fetchAll();
 			minlength: 6
 			},
 			organisateur: {
-			required: true,
 			minlength: 4
 			},
 			},
@@ -1009,7 +1008,6 @@ $events = $req->fetchAll();
 			minlength: "<?php echo $lang['EVENTADD_TITLELENGHT_ERROR']; ?>"
 			},
 			organisateur: {
-			required: "<?php echo $lang['EVENTADD_NOORGA_ERROR']; ?>",
 			minlength: "<?php echo $lang['EVENTADD_ORGALENGHT_ERROR']; ?>"
 			},
 			   },

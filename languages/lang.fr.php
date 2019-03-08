@@ -12,6 +12,7 @@ $lang['HTML_LANGALT'] = 'fr';
 //GENERAL
 $lang['GENERAL_CLOSE'] = 'Fermer';
 $lang['GENERAL_REGISTER'] = 'M\'inscrire !';
+$lang['GENERAL_WELCOME'] = 'Bienvenue ';
 
 //HEADER
 $lang['PAGE_TITLE'] = 'Rappelz Events Calendar';
@@ -20,18 +21,36 @@ $lang['HEADER_TITLE'] = 'Pour les joueurs !';
 $lang['HEADING'] = 'Cette page recense des events que prévoient de faire les joueurs. Nhésitez pas à participer !';
 
 // MENU
-$lang['MENU_REGISTRATION'] = 'Inscription';
+$lang['MENU_REGISTRATION'] = 'Inscription/Connexion';
+$lang['MENU_SUBREGISTRATION'] = 'S\'inscrire';
+$lang['MENU_SUBLOGIN'] = 'Se connecter';
+$lang['MENU_AVAILABLE'] = 'Aider à organiser';
 $lang['MENU_ORGANIZERS'] = 'Organisateurs';
 $lang['MENU_CHATBOX'] = 'Chatbox';
 $lang['MENU_DONATORS'] = 'Donateurs';
 $lang['MENU_SETTINGS'] = 'Paramètres';
-$lang['MENU_NOTIFICATIONS'] = 'Notifications';
 $lang['MENU_LANGUAGES'] = 'Langues';
-$lang['MENU_THEME'] = 'Thèmes';
 $lang['MENU_ABOUT'] = 'A propos de l\'event calendar'; 
+$lang['MENU_LOGOUT'] = 'Se déconnecter';
+
+// SIGNUP MODAL
+$lang['SIGNUP_TITLE'] = 'Créer un compte sur l\'event calendar';
+$lang['SIGNUP_DESCRIPTION'] = 'En créant un compte sur l\'event calendar, vous avez la possibilité de créer, modifier, supprimer des événements et ainsi participer à la vie communautaire de Rappelz !';
+$lang['SIGNUP_ID'] = 'Identifiant';
+$lang['SIGNUP_PASSWORD'] = 'Mot de passe';
+$lang['SIGNUP_BISPASSWORD'] = 'Confirmez le mot de passe';
+$lang['SIGNUP_REGISTER'] = 'Créer mon compte';
+
+// SIGNIN MODAL
+$lang['SIGNIN_TITLE'] = 'Se connecter à mon compte event calendar';
+$lang['SIGNIN_DESCRIPTION'] = 'En vous connectant, vous accèdez à l\'ensemble des fonctionnalités de l\'event calendar (Création et gestion d\'événements etc...)';
+$lang['SIGNIN_ID'] = 'Identifiant';
+$lang['SIGNIN_PASSWORD'] = 'Mot de passe';
+$lang['SIGNIN_VALIDATION'] = 'Connexion';
+$lang['SIGNIN_BADLOGIN'] = 'Oups ! Votre ID ou mot de passe est invalide !';
 
 // REGISTER MODAL
-$lang['REGISTER_TITLE'] = 'Je veux organiser un event';
+$lang['REGISTER_TITLE'] = 'Je veux aider à organiser un event';
 $lang['REGISTER_DESCRIPTION'] = 'En remplissant le formulaire ci-dessous, vous pouvez vous inscrire sur la liste des personnes disponibles pour organiser un event.';
 $lang['REGISTER_SELECT'] = 'Sélectionnez...';
 
@@ -63,6 +82,10 @@ $lang['EVENTADD_NOTITLE_ERROR'] = '&nbsp; Veuillez entrer un titre';
 $lang['EVENTADD_TITLELENGHT_ERROR'] = '&nbsp; Ce champs requiert 6 caractères au minimum';
 $lang['EVENTADD_NOORGA_ERROR'] = '&nbsp; Un organisateur est requis';
 $lang['EVENTADD_ORGALENGHT_ERROR'] = '&nbsp; Ce champs requiert 4 caractères au minimum';
+
+// EVENT ADD NO CONNECTED
+$lang['NOCONNECTED_TITLE'] = 'Vous n\'êtes pas connecté';
+$lang['NOCONNECTED_DESCRIPTION'] = 'Pour des raisons de sécurité, la création d\'événement n\'est pas autorisée lorsque vous n\'êtes pas connecté</br><center><h4>Mais tout n\'est pas perdu !</h4></center></br>Si vous ne possèdez pas de compte, vous pouvez en créer un rapidement ou vous connecter via les formulaires ci-dessous !';
 
 // EVENT MODIFICATION
 $lang['EVENTMOD_TITLE'] = 'Modifier l\'événement';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  lun. 11 fév. 2019 à 16:42
+-- Généré le :  lun. 04 mars 2019 à 16:38
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -42,14 +42,14 @@ CREATE TABLE IF NOT EXISTS `events` (
   `creation_time` varchar(255) NOT NULL,
   `md5_checksum` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `events`
 --
 
 INSERT INTO `events` (`id`, `title`, `description`, `organisateur`, `orgaavailable`, `donator`, `color`, `start`, `end`, `creation_time`, `md5_checksum`) VALUES
-(58, 'Holytest', 'qsdfqfqsf', '', '', '', '', '2019-02-13 10:00:00', '2019-02-13 10:30:00', '2019-02-11 16:42:18', '921ed95109e81974b295776102051315');
+(12, 'Event de test 2', 'KHJjh', 'Holyblood', '', '', '', '2019-03-09 00:00:00', '2019-03-10 00:00:00', '2019-03-04 15:32:33', 'a0657918fa3f35d185daefa335d4cffa');
 
 -- --------------------------------------------------------
 
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `uploads` (
   `upload_time` varchar(255) NOT NULL,
   `md5_checksum` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -74,6 +74,29 @@ CREATE TABLE IF NOT EXISTS `uploads` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `creation_time` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`, `creation_time`) VALUES
+(6, 'holyblood', 'bbf9061ba254329ba5a28b7c79628c1d', '2019-03-04 16:03:31');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `usersavalaibles`
+--
+
+DROP TABLE IF EXISTS `usersavalaibles`;
+CREATE TABLE IF NOT EXISTS `usersavalaibles` (
   `uid` int(11) NOT NULL AUTO_INCREMENT,
   `user` varchar(255) DEFAULT NULL,
   `server` varchar(255) NOT NULL,
@@ -83,13 +106,13 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email` (`email`),
   KEY `username` (`user`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
 --
--- Déchargement des données de la table `users`
+-- Déchargement des données de la table `usersavalaibles`
 --
 
-INSERT INTO `users` (`uid`, `user`, `server`, `pass`, `email`, `profile_photo`) VALUES
+INSERT INTO `usersavalaibles` (`uid`, `user`, `server`, `pass`, `email`, `profile_photo`) VALUES
 (41, 'Leriana', 'Lamia', NULL, NULL, NULL),
 (42, 'Starman', 'Abhuva', NULL, NULL, NULL),
 (43, 'Holyblood', 'Lamia', NULL, NULL, NULL),
@@ -99,7 +122,7 @@ INSERT INTO `users` (`uid`, `user`, `server`, `pass`, `email`, `profile_photo`) 
 (47, 'Sagaroth', 'Les deux serveurs', NULL, NULL, NULL),
 (49, 'Holyblood', 'Abhuva', NULL, NULL, NULL),
 (53, 'L\'holyblood', 'Lamia', NULL, NULL, NULL),
-(54, 'sfdfd', 'Lamia', NULL, NULL, NULL);
+(77, 'sfdffgfdfdfdfd', 'Les deux serveurs', NULL, NULL, NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

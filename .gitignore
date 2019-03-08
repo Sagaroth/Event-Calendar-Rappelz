@@ -5,3 +5,5 @@ db_connect.php
 db_connect.php
 FormAutoComplete.php
 RappelzEventCalendar.sln
+.vscode/launch.json
+.vscode/settings.json

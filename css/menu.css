@@ -74,6 +74,9 @@ div#listdona {
     text-align: center;
 }
 
+ul.gn-submenu {
+    color: #c1c9d1;
+}
 /* icon-only trigger (menu item) */
 
 .gn-menu-main li.gn-trigger {

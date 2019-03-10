@@ -17,7 +17,18 @@
 @charset "utf-8";
 
 /* Global */
+html {
+    height: 100%;
+    overflow: auto;
+}
 body {
+    height: 100%;
+    overflow: auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat:no-repeat;
     background-color: #1d2951; /*TODO léger gradient ?*/
     background-color: #393e7d; /* #2a305f */
     background: rgb(57,62,125);
@@ -142,6 +153,16 @@ header.page-header {
 /* ./Menu */
 
 /* Calendar, custom */
+@media (max-width: 768px) {
+    .fc-button.fc-agendaWeek-button, .fc-button.fc-today-button {
+        display: none;
+        visibility: hidden;
+    }
+    .fc-view-container {
+        margin: 10px;
+    }
+}
+
 .fc-toolbar.fc-header-toolbar {
     background-color: #353C80;
     padding: 10px;
@@ -163,15 +184,15 @@ header.page-header {
     padding: 7px 8px;
 }
 
-    .fc button .fc-icon {
-        top: -0.2em;
-    }
+.fc button .fc-icon {
+    top: -0.2em;
+}
 
 .fc .fc-button-group > * {
     margin: 0;
 }
 
-.fc-button.fc-listMonth-button {
+.fc-button.fc-listMonth-button, .fc-button.fc-month-button {
     border: 0;
     font-size: 18px;
 }
@@ -218,13 +239,37 @@ th.fc-day-header.fc-widget-header {
     font-weight: lighter;
 }
 
+.fc-list-heading {
+    font-size: 20px;
+}
+
 .fc td.fc-list-item-marker, .fc td.fc-list-item-time {
-    vertical-align: top;
+    /* vertical-align: middle; */
     width: 1px;
     padding: 8px 0;
 }
-
-.fc-ltr .fc-list-item-marker {
-    padding-right: 0;
+.fc table.fc-list-table {
+    table-layout: auto;
+    white-space: nowrap;
 }
+
+.fc-ltr .fc-list-item-marker, .fc-ltr .fc-list-item-title {
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    margin: 5px;
+    padding: 8px 0;
+}
+.fc-event-dot {
+    margin: 0 10px;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+}
+
+.fc-list-heading-alt {
+    text-transform: capitalize;
+}
+
+
 /* ./Calendar */

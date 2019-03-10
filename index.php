@@ -108,10 +108,12 @@ $events = $req->fetchAll();
         <!-- JS REFERENCES -->
 
             <!-- jQuery -->
-    	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-            <script src='js/jquery.qtip.min.js'></script>
-	        <script type="text/javascript" src="js/validation.min.js"></script>
-
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+			<script src='js/jquery.qtip.min.js'></script>
+	        <script src="js/validation.min.js"></script>
+			<script scr="js/jquery.ui.touch.js"></script>
+			
             <!-- Poppers -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
@@ -620,7 +622,7 @@ $events = $req->fetchAll();
                                         <?php echo $lang['NOCONNECTED_DESCRIPTION']; ?>
                                     </p>
 									<form name="myform" method="post" action="">
-									<center><button type="button" class="btn btn-success" name="option" id="login"/> <span class="option"><i class="fa fa-sign-in-alt"></i>&nbsp;&nbsp;<?php echo $lang['MENU_SUBLOGIN']; ?></span></button>&nbsp;&nbsp;<button type="button" class="btn btn-success" name="option" id="signup" /><span class="option"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;<?php echo $lang['MENU_SUBREGISTRATION']; ?></span></button></center>
+									<center><button type="button" class="btn btn-success" name="option" id="login"> <span class="option"><i class="fa fa-sign-in-alt"></i>&nbsp;&nbsp;<?php echo $lang['MENU_SUBLOGIN']; ?></span></button>&nbsp;&nbsp;<button type="button" class="btn btn-success" name="option" id="signup"><span class="option"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;<?php echo $lang['MENU_SUBREGISTRATION']; ?></span></button></center>
 									</form>
 									<br />
 	
@@ -809,7 +811,7 @@ $events = $req->fetchAll();
 				        language: '<?php echo $lang['HTML_LANG']; ?>',
 				        left: 'prev,next,today',
 				        center: 'title',
-				        right: 'listMonth,month,agendaWeek,agendaDay' // other buttons are irrelevent for this calendar (no need for a full day or hours per day), stay simple
+				        right: 'listMonth,month' // other buttons are irrelevent for this calendar (no need for a full day or hours per day), stay simple
 			        },    
                     buttonText: {
                         listMonth: 'L'
@@ -831,7 +833,7 @@ $events = $req->fetchAll();
 			        },
                 // dayNamesShort: ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'],
 			
-			        eventRender: function(event, element) {
+			        eventRender: function(event, element, view) {
 				        element.bind('click', function() {
 					        $('#ModalEdit #id').val(event.id);
 					        $('#ModalEdit #title').val(event.title);
@@ -929,8 +931,12 @@ $events = $req->fetchAll();
 
 		
                 // Change list button appearance
-                $('.fc-button.fc-listMonth-button').text('');
-                $('.fc-button.fc-listMonth-button').append('<span class="fa fa-list-ul"></span>');
+                $('.fc-button.fc-listMonth-button, .fc-button.fc-month-button').text('');
+                $('.fc-button.fc-listMonth-button, .fc-button.fc-month-button').append('<span class="fa fa-list-ul"></span>');
+                $('.fc-button.fc-month-button').addClass('d-none');
+				$('.fc-button.fc-listMonth-button, .fc-button.fc-month-button').click(function(){
+					$('.fc-button.fc-listMonth-button, .fc-button.fc-month-button').toggleClass('d-none');
+				});
 
                 // Create menu
                 new gnMenu(document.getElementById('gn-menu'));

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 12 mars 2019 à 15:47
+-- Généré le :  lun. 01 avr. 2019 à 20:27
 -- Version du serveur :  5.7.24
 -- Version de PHP :  7.2.14
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `calendar`
 --
-CREATE DATABASE IF NOT EXISTS `calendar` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `calendar`;
 
 -- --------------------------------------------------------
 
@@ -70,7 +68,7 @@ CREATE TABLE IF NOT EXISTS `uploads` (
   `upload_time` varchar(255) NOT NULL,
   `md5_checksum` varchar(300) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -87,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `creation_time` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `users`
@@ -115,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `usersavalaibles` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `email` (`email`),
   KEY `username` (`user`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=utf8;
 
 --
 -- Déchargement des données de la table `usersavalaibles`

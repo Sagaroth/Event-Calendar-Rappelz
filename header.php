@@ -1,12 +1,16 @@
 <?php
     session_start();
     header('Cache-control: private'); // IE 6 FIX
+	
+	//Generate Token from 16 random bytes string and convert to HEX. 
+	//Token need to be generated at each load of the page so as to obtain a unique and non-duplicable value.
 	$token = bin2hex(random_bytes(16));
-	$_SESSION['csrf_token'] = $token;
+	$_SESSION['csrf_token'] = $token; //Store token into SESSION
+	
     if(isSet($_GET['lang']))
     {
         $lang = $_GET['lang'];
-        // register the session and set the cookie
+        // Register the session and set the cookie
         $_SESSION['lang'] = $lang;
         setcookie("lang", $lang, time() + (3600 * 24 * 30));
     }

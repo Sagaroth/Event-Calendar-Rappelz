@@ -20,7 +20,7 @@ $creationtime = date("Y-m-d H:i:s");
 if(isset($_POST['btn-save'])) {
 	$identifier = $_POST['identifier'];
 	$password = $_POST['password'];
-	$password = md5($password);
+	$password = password_hash($password, PASSWORD_DEFAULT);
 	$sql = "SELECT username FROM users WHERE username='$identifier'";
 	$resultset = mysqli_query($conn, $sql) or die("database error:". mysqli_error($conn));
 	$row = mysqli_fetch_assoc($resultset);		

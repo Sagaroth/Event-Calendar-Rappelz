@@ -16,9 +16,8 @@ switch($action) {
 }
 
 	function login($link) {
-		if(isset($_POST['login-submit']) && isset($_POST['csrf_token'])){
-			if($_SESSION['csrf_token'] === $_POST['csrf_token']){
-			//Comparing both submitted values token and session token.
+		if(isset($_POST['login-submit']) && isset($_POST['csrf_token'])){ //Check form and token submit.
+			if($_SESSION['csrf_token'] === $_POST['csrf_token']){ //Comparing both submitted values token and session token.
 			$user_name = $_POST['username'];
 			$user_password = $_POST['password'];
 			$handle = $link->prepare('select id, username, password, role from users where username = :username');
@@ -26,7 +25,8 @@ switch($action) {
 			$handle->execute();
 			$row = $handle->fetch(PDO::FETCH_ASSOC);
 			
-			if(md5($user_password) == $row['password']){
+			//if(md5($user_password) == $row['password']){
+			if(password_verify($user_password, $row['password'])) {
 				echo "1";
 				$_SESSION['user_session'] = $row['username'];
 			}
@@ -37,8 +37,8 @@ switch($action) {
 		}
 	}
 	function logout() {
-		unset($_SESSION['user_session'], $_SESSION['isadmin'], $_SESSION['csrf_token']);
-		if(!isset($_SESSION['user_session']) && !isset($_SESSION['csrf_token'])) {
+		unset($_SESSION['user_session'], $_SESSION['isadmin'], $_SESSION['csrf_token']); //Kill user, admin and token session.
+		if(!isset($_SESSION['user_session']) && !isset($_SESSION['csrf_token'])) { //Check user and token session deletion.
 			header("Location: ../index.php");
 		}
 	}

@@ -23,14 +23,12 @@ switch($action) {
 			$handle = $link->prepare('select id, username, password, role from users where username = :username');
 			$handle->bindValue(':username', $user_name, PDO::PARAM_STR);
 			$handle->execute();
-			$row = $handle->fetch(PDO::FETCH_ASSOC);
-			
-			//if(md5($user_password) == $row['password']){
-			if(password_verify($user_password, $row['password'])) {
+			$row = $handle->fetch(PDO::FETCH_ASSOC);			
+			if(password_verify($user_password, $row['password'])) { //Check password validity with hash.
 				echo "1";
 				$_SESSION['user_session'] = $row['username'];
 			}
-			if($row['role'] == 1){
+			if($row['role'] == 1){ //Check if user is admin
 				$_SESSION['isadmin'] = $row['role'];
 			}
 		}

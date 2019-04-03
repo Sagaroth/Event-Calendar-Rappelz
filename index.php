@@ -107,7 +107,7 @@
 			                        </div>
 								</div>
 								<div class="modal-footer">
-									<input type="hidden" name="csrf_token" value="<?php echo $token; ?>"> <!-- Passing token inside POST -->
+									<input type="hidden" name="csrf_token" value="<?php echo $token; /*Passing token inside POST*/ ?>">
 									<button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
 									<button type="submit" class="btn btn-success" name="login-submit" id="login-submit" tabindex="4">
 									<span class="spinner"><i class="icon-spin icon-refresh" id="spinner"></i></span><?php echo $lang['SIGNIN_VALIDATION']; ?>

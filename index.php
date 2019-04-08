@@ -58,7 +58,7 @@
 				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
 				                        </div>
 				                        <input type="password" class="form-control" placeholder="<?php echo $lang['SIGNUP_PASSWORD'];?>" aria-label="pwd" aria-describedby="basic-addon1" name="password" id="password"></br>
-										<div class="barcontainer">
+										<div class="barcontainer"> <!-- Password strengh bar -->
 											<div class="bar"></div>
 										</div>
 									</div>

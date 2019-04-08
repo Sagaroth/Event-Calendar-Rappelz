@@ -271,41 +271,5 @@ th.fc-day-header.fc-widget-header {
     text-transform: capitalize;
 }
 
-.barcontainer{
-	width: 100%;
-}
-
-.bar{
-    position: relative;
-    display: block;
-    width: 100%;
-/**/
-/*.bar:before{*/
-/*    content: '';*/
-/*    position: absolute;*/
-    height: 4px;
-    width:0;
-    border:1px;
-    background-color: #9b59b6;
-    transition: all .4s;
-    -webkit-transition: all .4s;
-    -moz-transition: all .4s;
-    
-}
-.weak{
-    width: 33.3% !important;
-    background-color: #e74c3c;
-}
-.medium{
-    width: 66.6% !important;
-    background-color: #e67e22;
-}
-.strong{
-    width: 100% !important;
-    background-color: #2ecc71;
-}
-input:focus ~ .bar,input:valid ~ .bar{
-    width:100%;
-}
 
 /* ./Calendar */

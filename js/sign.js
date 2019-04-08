@@ -72,32 +72,4 @@ $('document').ready(function() {
     });
     return false;
   }
-  $(function(){
-    $('#password').keyup(function(){
-        
-        var pass_val = $('#password').val();
-        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
-
-        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
-        
-        var okRegex = new RegExp("(?=.{6,}).*", "g");
-
-        if(okRegex.test(pass_val) === false){
-            $('.bar').addClass('weak');
-        }else if(strongRegex.test(pass_val)){
-            $('.bar').addClass('strong');
-        }else if(mediumRegex.test(pass_val)){
-            $('.bar').addClass('medium');
-        }else{
-            $('.bar').addClass('medium');
-        }
-
-        
-    });
-    $('#password').blur(function(){
-        $('.bar').removeClass('medium');
-        $('.bar').removeClass('weak');
-        $('.bar').removeClass('strong');
-    });
-	});
 });

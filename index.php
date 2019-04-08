@@ -58,16 +58,20 @@
 				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
 				                        </div>
 				                        <input type="password" class="form-control" placeholder="<?php echo $lang['SIGNUP_PASSWORD'];?>" aria-label="pwd" aria-describedby="basic-addon1" name="password" id="password"></br>
+<<<<<<< HEAD
 										<div class="barcontainer"> <!-- Password strengh bar -->
 											<div class="bar"></div>
 										</div>
 									</div>
+=======
+			                        </div>
+>>>>>>> parent of 7910139... Ajout d'un indicateur de puissance de mot de passe
 									<div class="input-group mb-3">
 										<div class="input-group-prepend">
 				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
 				                        </div>
-				                        <input type="password" class="form-control" placeholder="<?php echo $lang['SIGNUP_BISPASSWORD'];?>" aria-label="pwd" aria-describedby="basic-addon1" name="confirmpassword" id="confirmpassword"></br>	                        
-									</div>
+				                        <input type="password" class="form-control" placeholder="<?php echo $lang['SIGNUP_BISPASSWORD'];?>" aria-label="pwd" aria-describedby="basic-addon1" name="confirmpassword" id="confirmpassword"></br>
+			                        </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>

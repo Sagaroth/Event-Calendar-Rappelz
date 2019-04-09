@@ -70,6 +70,7 @@
 									</div>
                                 </div>
                                 <div class="modal-footer">
+									<input type="hidden" name="csrf_token" value="<?php echo $token; /*Passing token inside POST*/ ?>">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
                                     <button type="submit" class="btn btn-success" name="btn-save" id="btn-sign"><?php echo $lang['SIGNUP_REGISTER']; ?></button>
                                 </div>

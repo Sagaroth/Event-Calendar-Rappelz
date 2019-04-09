@@ -19,28 +19,30 @@ include_once("../connect/db_cls_connect.php"); //Include connection file.
 
 sign($link); //Call the sign function with $link (from db_cls_connect.php) in parameter.
 
-function sign($link) { //Create sign function.
-if(isset($_POST['btn-save'])) {
-	$identifier = $_POST['identifier'];
-	$password = $_POST['password'];
-	$password = password_hash($password, PASSWORD_DEFAULT); //Hash password with BCRYPT algorithm up to 255 characters.
-	$creationtime = date("Y-m-d H:i:s"); //Use current date for inscription time.
-	$handle = $link->prepare('select username from users where username = :username');
-	$handle->bindValue(':username', $identifier, PDO::PARAM_STR);
-	$handle->execute();
-	$row = $handle->fetch(PDO::FETCH_ASSOC);		
-	if(!$row['username']){
-		$handle = $link->prepare('INSERT INTO users (id, username, password, role, creation_time) VALUES (:id, :username, :password, :role, :creation_time)');
-		$handle->bindValue(':id', NULL, PDO::PARAM_NULL);
-		$handle->bindValue(':username', $identifier, PDO::PARAM_STR);
-		$handle->bindValue(':password', $password, PDO::PARAM_STR);
-		$handle->bindValue(':role', 0, PDO::PARAM_BOOL);
-		$handle->bindValue(':creation_time', $creationtime, PDO::PARAM_STR);		
-		$handle->execute();
-		echo "registered"; //Return registered for javascript OK confirmation.
-	} else {				
-		echo "1"; //Return 1 for javascript NOK confirmation.
+	function sign($link) { //Create sign function.
+		if(isset($_POST['btn-save']) && isset($_POST['csrf_token'])){ //Check form and token submit.
+			if($_SESSION['csrf_token'] === $_POST['csrf_token']){ //Comparing both submitted values token and session token.
+			$identifier = $_POST['identifier'];
+			$password = $_POST['password'];
+			$password = password_hash($password, PASSWORD_DEFAULT); //Hash password with BCRYPT algorithm up to 255 characters.
+			$creationtime = date("Y-m-d H:i:s"); //Use current date for inscription time.
+			$handle = $link->prepare('select username from users where username = :username');
+			$handle->bindValue(':username', $identifier, PDO::PARAM_STR);
+			$handle->execute();
+			$row = $handle->fetch(PDO::FETCH_ASSOC);		
+			if(!$row['username']){
+				$handle = $link->prepare('INSERT INTO users (id, username, password, role, creation_time) VALUES (:id, :username, :password, :role, :creation_time)');
+				$handle->bindValue(':id', NULL, PDO::PARAM_NULL);
+				$handle->bindValue(':username', $identifier, PDO::PARAM_STR);
+				$handle->bindValue(':password', $password, PDO::PARAM_STR);
+				$handle->bindValue(':role', 0, PDO::PARAM_BOOL);
+				$handle->bindValue(':creation_time', $creationtime, PDO::PARAM_STR);		
+				$handle->execute();
+				echo "registered"; //Return registered for javascript OK confirmation.
+			} else {				
+				echo "1"; //Return 1 for javascript NOK confirmation.
+			}
+			}
+		}
 	}
-}
-}
 ?>

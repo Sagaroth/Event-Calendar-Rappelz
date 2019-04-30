@@ -54,6 +54,7 @@ $lang['SIGNIN_ID'] = 'Username';
 $lang['SIGNIN_PASSWORD'] = 'Password';
 $lang['SIGNIN_VALIDATION'] = 'Sign in';
 $lang['SIGNIN_BADLOGIN'] = 'Whoops! Your ID or password is invalid!';
+$lang['SIGNIN_BADTOKEN'] = 'Invalid security token, please refresh the page and try again.';
 
 // REGISTER MODAL
 $lang['REGISTER_TITLE'] = 'I want to help to organize an event';

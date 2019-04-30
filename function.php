@@ -70,6 +70,7 @@ function noConnectedModal($lang, $token){?>
                         <div class="modal-body">
 						<p><?php echo $lang['SIGNIN_DESCRIPTION']; ?></p>
 						<div class="alert alert-danger" role="alert" id="errorbis" style="display: none;"><?php echo $lang['SIGNIN_BADLOGIN']; ?></div>
+						<div class="alert alert-danger" role="alert" id="errortokenbis" style="display: none;"><?php echo $lang['SIGNIN_BADTOKEN']; ?></div>
 			                <div class="input-group mb-3">
 								<div class="input-group-prepend">
 				                <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-ninja"></i></span>

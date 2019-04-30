@@ -32,8 +32,13 @@ $(document).ready(function(){
 				$("#errorbis").fadeOut();
 				$("#login-submit-bis").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
 			},
-			success : function(response){			
-				if($.trim(response) === "1"){
+			success : function(response){	
+				if($.trim(response) === "0"){
+					$("#login-submit-bis").html('Erreur');					
+					$("#errortokenbis").fadeIn(1000, function(){						
+					});
+				}					
+				else if($.trim(response) === "1"){
 					console.log('dddd');									
 					$("#login-submit-bis").html('Connexion en cours');
 					setTimeout(' window.location.href = "index.php"; ',1000);

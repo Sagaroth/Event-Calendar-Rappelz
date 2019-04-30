@@ -54,6 +54,7 @@ $lang['SIGNIN_ID'] = 'Identifiant';
 $lang['SIGNIN_PASSWORD'] = 'Mot de passe';
 $lang['SIGNIN_VALIDATION'] = 'Connexion';
 $lang['SIGNIN_BADLOGIN'] = 'Oups ! Votre ID ou mot de passe est invalide !';
+$lang['SIGNIN_BADTOKEN'] = 'Token de sécurité invalide, rafraichissez la page puis réessayez';
 
 // REGISTER MODAL
 $lang['REGISTER_TITLE'] = 'Je veux aider à organiser un event';

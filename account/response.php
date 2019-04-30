@@ -32,7 +32,10 @@ switch($action) {
 
 	function login($link) { //Create login function.
 		if(isset($_POST['login-submit']) && isset($_POST['csrf_token'])){ //Check form and token submit.
-			if($_SESSION['csrf_token'] === $_POST['csrf_token']){ //Comparing both submitted values token and session token.
+		if($_SESSION['csrf_token'] != $_POST['csrf_token']){
+			echo "0";
+		}
+		else if($_SESSION['csrf_token'] === $_POST['csrf_token']){ //Comparing both submitted values token and session token.
 			$user_name = $_POST['username'];
 			$user_password = $_POST['password'];
 			$handle = $link->prepare('select id, username, password, role from users where username = :username');

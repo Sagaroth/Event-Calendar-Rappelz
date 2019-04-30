@@ -45,7 +45,7 @@ function blueDotAdmin($isadmin, $lang){
 	echo '&nbsp;&nbsp;<i class="fas fa-certificate" style="color:#58C4F0" title='.$lang['GENERAL_ADMIN'].'></i>';}
 }
 
-function noConnectedModal($lang){?>
+function noConnectedModal($lang, $token){?>
 	<div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -120,9 +120,13 @@ function noConnectedModal($lang){?>
 				                <span class="input-group-text" id="basic-addon1"><i class="fas fa-key"></i></span>
 				                </div>
 				                <input type="password" class="form-control" placeholder="<?php echo $lang['SIGNUP_BISPASSWORD'];?>" aria-label="pwd" aria-describedby="basic-addon1" name="confirmpassword" id="confirmpasswordbis"></br>
-			                </div>
+			                	<div class="barcontainer"> <!-- Password strengh bar -->
+									<div class="bar"></div>
+								</div>
+							</div>
                         </div>
                         <div class="modal-footer">
+							<input type="hidden" name="csrf_token" value="<?php echo $token; /*Passing token inside POST*/ ?>">
                             <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo $lang['GENERAL_CLOSE']; ?></button>
                             <button type="submit" class="btn btn-success" name="btn-save" id="btn-sign-bis"><?php echo $lang['SIGNUP_REGISTER']; ?></button>
                         </div>

@@ -319,7 +319,7 @@
 				}
 				else
 				{
-				noConnectedModal($lang);
+				noConnectedModal($lang, $token);
 				}
 				?>
                 <!-- ./ADD EVENT MODAL -->

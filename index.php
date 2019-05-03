@@ -766,6 +766,24 @@
 			}
 			};
 			
+			/* handle form submit add event form */
+			function submitAddForm() { 
+			var data = $("#add-form").serialize();    
+			$.ajax({    
+			type : 'POST',
+			url  : 'event/addEvent.php',
+			data : data,
+			beforeSend: function() { 
+			 $("#error").fadeOut();
+			 $("#btn_calendar").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
+			setTimeout(function(){
+			window.location.reload(true);
+			},100);     
+			},
+			});
+			return false;
+			}
+			
 			/* handle form validation */  
 			$("#add-form").validate({
 			  rules:
@@ -824,15 +842,15 @@
             required: "<?php echo $lang['FIELD_REQUIRED']; ?>" 
             },
 			   },
-			submitHandler: submitForm 
+			submitHandler: submitAddForm 
 			   });  
-		 
-			/* handle form submit */
+			
+			/* handle form submit edit event form */
 			function submitForm() {  
-			var data = $("#add-form").serialize();    
+			var data = $("#edit-form").serialize();    
 			$.ajax({    
 			type : 'POST',
-			url  : 'event/addEvent.php',
+			url  : 'event/editEvent.php',
 			data : data,
 			beforeSend: function() { 
 			 $("#error").fadeOut();
@@ -905,24 +923,6 @@
 			   },
 			submitHandler: submitForm 
 			   });  
-			
-			/* handle form submit */
-			function submitForm() {  
-			var data = $("#edit-form").serialize();    
-			$.ajax({    
-			type : 'POST',
-			url  : 'event/editEvent.php',
-			data : data,
-			beforeSend: function() { 
-			 $("#error").fadeOut();
-			 $("#btn_calendar").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
-			setTimeout(function(){
-			window.location.reload(true);
-			},100);     
-			},
-			});
-			return false;
-			}
 			
 	$(document).ready(function()
 	{

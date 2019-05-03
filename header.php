@@ -164,7 +164,6 @@ $events = $req->fetchAll();
 			<script type="text/javascript" src="js/login.js"></script>
 			<script type="text/javascript" src="js/loginbis.js"></script>
 			<script type="text/javascript" src="js/signbis.js"></script>
-    	    <script type="text/javascript" src="js/addevent.js"></script>
 
         <!-- END JS REFERENCES -->
 

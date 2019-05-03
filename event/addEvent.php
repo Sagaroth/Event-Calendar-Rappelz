@@ -19,8 +19,9 @@ session_start();
 // Connexion a la base
 
 
+/*require_once('../connect/bdd.php');
+include_once("../connect/db_connect.php");*/
 require_once('../connect/bdd.php');
-include_once("../connect/db_connect.php");
 
 $creationtime = date("Y-m-d H:i:s");
 $md5checksum = md5($creationtime);
@@ -54,7 +55,7 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['orga
 	$color = addslashes($color);
 	
 	if (strlen($title) >= 6 && strlen($title) <= 60 && strlen($description) <= 5000 && strlen($organisateur) >= 4 && strlen($organisateur) <= 20 && strlen($orgaavailable) <= 20 && strlen($donator) <= 20){
-	$sql = "INSERT INTO events(title, description, organisateur, orgaavailable, donator, start, end, color, creation_time, md5_checksum) values ('$title', '$description', '$organisateur', '$orgaavailable', '$donator', '$start', '$end', '$color', '$creationtime', '$md5checksum')";
+	$sql = "INSERT INTO events(id, title, description, organisateur, orgaavailable, donator, start, end, color, creation_time, md5_checksum) values (NULL, '$title', '$description', '$organisateur', '$orgaavailable', '$donator', '$start', '$end', '$color', '$creationtime', '$md5checksum')";
 		
 	$query = $bdd->prepare( $sql );
 	if ($query == false) {

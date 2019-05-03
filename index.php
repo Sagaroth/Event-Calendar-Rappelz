@@ -8,7 +8,9 @@
             <!-- ./MENU -->
 
 		    <!-- HEAD -->
-		    <header class="page-header text-center">
+			<div class="alert alert-success" role="alert" id="validdatechanged" style="display: none;"><center><?php echo $lang['EVENT_DATE_CHANGED']; ?></center></div>
+		    <div class="alert alert-danger" role="alert" id="errordatechanged" style="display: none;"><center><?php echo $lang['EVENT_DATE_ERROR']; ?></center></div>
+			<header class="page-header text-center">
 			    <h1>RAPPELZ Events</h1>
                 <span><?php echo $lang['HEADER_TITLE']; ?></span>
 		    </header>
@@ -691,9 +693,9 @@
 			         data: {Event:Event},
 			         success: function(rep) {
 					        if(rep == 'OK'){
-						        alert('L\'événement a été sauvegardé correctement');
+							$('#validdatechanged').fadeIn('slow').delay(2000).fadeOut('slow');
 					        }else{
-						        alert('Il n\'a pas pu être sauvegardé. Essayez encore une fois.'); 
+							$('#errordatechanged').fadeIn('slow').delay(2000).fadeOut('slow');
 					        }
 				        }
 			        });

@@ -75,6 +75,20 @@ header.page-header {
 }
 /* ./Global */
 
+div#validdatechanged {
+    width: 700px;
+    position: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div#errordatechanged {
+	width: 700px;
+    position: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /* Forms */
 .form-login {
     max-width: 500px;

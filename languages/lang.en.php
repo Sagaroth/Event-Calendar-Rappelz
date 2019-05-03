@@ -14,6 +14,8 @@ $lang['GENERAL_CLOSE'] = 'Close';
 $lang['GENERAL_REGISTER'] = 'Sign up';
 $lang['GENERAL_WELCOME'] = 'Welcome ';
 $lang['GENERAL_ADMIN'] = 'Administrator';
+$lang['EVENT_DATE_CHANGED'] = 'The event date has been changed';
+$lang['EVENT_DATE_ERROR'] = 'Error when editing the event date';
 
 // GENERIC VALIDATION
 $lang['FIELD_REQUIRED'] = '&nbsp; This field is required';

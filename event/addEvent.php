@@ -1,6 +1,5 @@
 <?php
-session_start();
-/*<!--	<Rappelz Event Calendar  - Make events with players.>
+/*  Rappelz Event Calendar  - Make events with players.
     Copyright (C) <2019>  <History of Rappelz>
 
     This program is free software: you can redistribute it and/or modify
@@ -14,20 +13,18 @@ session_start();
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>. -->*/
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
 	
 // Connexion a la base
+include_once("../connect/db_cls_connect.php"); //Include connection file.
+addEvent($link);
 
-
-/*require_once('../connect/bdd.php');
-include_once("../connect/db_connect.php");*/
-require_once('../connect/bdd.php');
-
-$creationtime = date("Y-m-d H:i:s");
-$md5checksum = md5($creationtime);
-
-if(isSet($_SESSION['user_session'])){
-if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['orgaavailable']) && isset($_POST['donator']) && isset($_POST['start']) && isset($_POST['end']) && isset($_POST['color'])){
+function addEvent($link) { //Create add event function.
+	if(isSet($_SESSION['user_session'])){
+	if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['orgaavailable']) && isset($_POST['donator']) && isset($_POST['start']) && isset($_POST['end']) && isset($_POST['color'])){
+	
+	$creationtime = date("Y-m-d H:i:s");
+	$md5checksum = md5($creationtime);
 	
 	$_POST['organisateur'] = $_SESSION['user_session'];
 	$title = $_POST['title'];
@@ -54,20 +51,20 @@ if (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['orga
 	$end = addslashes($end);
 	$color = addslashes($color);
 	
-	if (strlen($title) >= 6 && strlen($title) <= 60 && strlen($description) <= 5000 && strlen($organisateur) >= 4 && strlen($organisateur) <= 20 && strlen($orgaavailable) <= 20 && strlen($donator) <= 20){
-	$sql = "INSERT INTO events(id, title, description, organisateur, orgaavailable, donator, start, end, color, creation_time, md5_checksum) values (NULL, '$title', '$description', '$organisateur', '$orgaavailable', '$donator', '$start', '$end', '$color', '$creationtime', '$md5checksum')";
-		
-	$query = $bdd->prepare( $sql );
-	if ($query == false) {
-	 print_r($bdd->errorInfo());
-	 die ('Erreur prepare');
-	}
-	$sth = $query->execute();
-	if ($sth == false) {
-	 print_r($query->errorInfo());
-	 die ('Erreur execute');
-	}
-	
+	if (strlen($title) >= 6 && strlen($title) <= 60 && strlen($description) <= 5000 && strlen($organisateur) >= 4 && strlen($organisateur) <= 20 && strlen($orgaavailable) <= 20 && strlen($donator) <= 20){	
+		$handle = $link->prepare('INSERT INTO events (id, title, description, organisateur, orgaavailable, donator, start, end, color, creation_time, md5_checksum) VALUES (:id, :title, :description, :organisateur, :orgaavailable, :donator, :start, :end, :color, :creation_time, :md5checksum)');
+		$handle->bindValue(':id', NULL, PDO::PARAM_NULL);
+		$handle->bindValue(':title', $title, PDO::PARAM_STR);
+		$handle->bindValue(':description', $description, PDO::PARAM_STR);
+		$handle->bindValue(':organisateur', $organisateur, PDO::PARAM_STR);
+		$handle->bindValue(':orgaavailable', $orgaavailable, PDO::PARAM_STR);
+		$handle->bindValue(':donator', $donator, PDO::PARAM_STR);
+		$handle->bindValue(':start', $start, PDO::PARAM_STR);
+		$handle->bindValue(':end', $end, PDO::PARAM_STR);
+		$handle->bindValue(':color', $color, PDO::PARAM_STR);		
+		$handle->bindValue(':creation_time', $creationtime, PDO::PARAM_STR);		
+		$handle->bindValue(':md5checksum', $md5checksum, PDO::PARAM_STR);		
+		$handle->execute();
 	}
 	else {
 	return false;
@@ -83,6 +80,7 @@ if(!empty($_FILES)){
         $mysqlInsert = "INSERT INTO uploads (file_name, upload_time, md5_checksum)VALUES('".$fileName."','$creationtime', '$md5checksum')";
 		mysqli_query($conn, $mysqlInsert);
     }   
+}
 }
 }
 //header('Location: '.$_SERVER['HTTP_REFERER']);

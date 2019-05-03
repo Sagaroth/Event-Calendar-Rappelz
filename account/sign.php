@@ -13,8 +13,9 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-*/
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+	
+// Connexion a la base
 include_once("../connect/db_cls_connect.php"); //Include connection file.
 
 sign($link); //Call the sign function with $link (from db_cls_connect.php) in parameter.

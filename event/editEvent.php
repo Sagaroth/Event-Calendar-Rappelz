@@ -1,6 +1,5 @@
 <?php
-session_start();
-	/*<Rappelz Event Calendar  - Make events with players.>
+/*	Rappelz Event Calendar  - Make events with players.>
     Copyright (C) <2019>  <History of Rappelz>
 
     This program is free software: you can redistribute it and/or modify
@@ -14,29 +13,22 @@ session_start();
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.*/
+    along with this program.  If not, see <https://www.gnu.org/licenses/>*/
 	
 // Connexion a la base
-require_once('../connect/bdd.php');
-if (isSet($_SESSION['user_session'])){
-if (strcasecmp($_SESSION['user_session'], $_POST['organisateur']) == 0 || isSet($_SESSION['isadmin'])){
-if (isset($_POST['delete']) && isset($_POST['id'])){
+include_once("../connect/db_cls_connect.php"); //Include connection file.
+editEvent($link);
+
+function editEvent($link) { //Create edit event function.
+	if (isSet($_SESSION['user_session'])){
+	if (strcasecmp($_SESSION['user_session'], $_POST['organisateur']) == 0 || isSet($_SESSION['isadmin'])){
+	if (isset($_POST['delete']) && isset($_POST['id'])){
 		
 	$id = $_POST['id'];
-	
-	$sql = "DELETE FROM events WHERE id = $id";
-	$query = $bdd->prepare( $sql );
-	if ($query == false) {
-	 print_r($bdd->errorInfo());
-	 die ('Erreur prepare');
-	}
-	$res = $query->execute();
-	if ($res == false) {
-	 print_r($query->errorInfo());
-	 die ('Erreur execute');
-	}
-	
-}elseif (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['orgaavailable'])&& isset($_POST['donator']) && isset($_POST['color']) && isset($_POST['id'])){
+		$handle = $link->prepare('DELETE FROM events WHERE id = :id');
+		$handle->bindValue(':id', $id, PDO::PARAM_INT);	
+		$handle->execute();
+	}elseif (isset($_POST['title']) && isset($_POST['description']) && isset($_POST['organisateur']) && isset($_POST['orgaavailable'])&& isset($_POST['donator']) && isset($_POST['color']) && isset($_POST['id'])){
 	
 	$id = $_POST['id'];
 	$title = $_POST['title'];
@@ -59,24 +51,21 @@ if (isset($_POST['delete']) && isset($_POST['id'])){
 	$color = $_POST['color'];
 	
 	if (strlen($title) >= 6 && strlen($title) <= 60 && strlen($description) <= 5000 && strlen($organisateur) >= 4 && strlen($organisateur) <= 20 && strlen($orgaavailable) <= 20 && strlen($donator) <= 20){	
-	$sql = "UPDATE events SET  title = '$title', description = '$description', organisateur = '$organisateur', orgaavailable = '$orgaavailable', donator = '$donator', color = '$color' WHERE id = $id ";
-	
-	$query = $bdd->prepare( $sql );
-	if ($query == false) {
-	 print_r($bdd->errorInfo());
-	 die ('Erreur prepare');
-	}
-	$sth = $query->execute();
-	if ($sth == false) {
-	 print_r($query->errorInfo());
-	 die ('Erreur execute');
-	}
-
+		$handle = $link->prepare('UPDATE events SET title = :title, description = :description, organisateur = :organisateur, orgaavailable = :orgaavailable, donator = :donator, color = :color WHERE id = :id');
+		$handle->bindValue(':id', $id, PDO::PARAM_INT);
+		$handle->bindValue(':title', $title, PDO::PARAM_STR);
+		$handle->bindValue(':description', $description, PDO::PARAM_STR);
+		$handle->bindValue(':organisateur', $organisateur, PDO::PARAM_STR);
+		$handle->bindValue(':orgaavailable', $orgaavailable, PDO::PARAM_STR);
+		$handle->bindValue(':donator', $donator, PDO::PARAM_STR);
+		$handle->bindValue(':color', $color, PDO::PARAM_STR);		
+		$handle->execute();
 	}
 	else {
 	return false;
 	}
 	
+}
 }
 }
 }

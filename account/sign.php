@@ -21,7 +21,10 @@ sign($link); //Call the sign function with $link (from db_cls_connect.php) in pa
 
 	function sign($link) { //Create sign function.
 		if(isset($_POST['btn-save']) && isset($_POST['csrf_token'])){ //Check form and token submit.
-			if($_SESSION['csrf_token'] === $_POST['csrf_token']){ //Comparing both submitted values token and session token.
+			if($_SESSION['csrf_token'] != $_POST['csrf_token']){
+				echo "0";
+			}
+			else if($_SESSION['csrf_token'] === $_POST['csrf_token']){ //Comparing both submitted values token and session token.
 			$identifier = $_POST['identifier'];
 			$password = $_POST['password'];
 			$password = password_hash($password, PASSWORD_DEFAULT); //Hash password with BCRYPT algorithm up to 255 characters.

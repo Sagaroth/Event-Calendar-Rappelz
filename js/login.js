@@ -32,8 +32,13 @@ $(document).ready(function(){
 				$("#errorlogin").fadeOut();
 				$("#login_button").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
 			},
-			success : function(response){			
-				if($.trim(response) === "1"){
+			success : function(response){	
+				if($.trim(response) === "0"){
+					$("#login-submit").html('Erreur');					
+					$("#errortoken").fadeIn(1000, function(){						
+					});
+				}					
+				else if($.trim(response) === "1"){
 					console.log('dddd');									
 					$("#login-submit").html('Connexion en cours');
 					setTimeout(' window.location.href = "index.php"; ',1000);

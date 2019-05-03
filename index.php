@@ -47,6 +47,7 @@
                                     </p>
 
                                     <div id="error"></div>
+									<div class="alert alert-danger" role="alert" id="errorsigntoken" style="display: none;"><?php echo $lang['SIGNIN_BADTOKEN']; ?></div>
 			                        <div class="input-group mb-3">
 				                        <div class="input-group-prepend">
 				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-ninja"></i></span>
@@ -96,7 +97,7 @@
                                         <?php echo $lang['SIGNIN_DESCRIPTION']; ?>
                                     </p>
 									<div class="alert alert-danger" role="alert" id="errorlogin" style="display: none;"><?php echo $lang['SIGNIN_BADLOGIN']; ?></div>
-
+									<div class="alert alert-danger" role="alert" id="errortoken" style="display: none;"><?php echo $lang['SIGNIN_BADTOKEN']; ?></div>
 			                        <div class="input-group mb-3">
 										<div class="input-group-prepend">
 				                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-ninja"></i></span>

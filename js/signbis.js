@@ -52,8 +52,13 @@ $('document').ready(function() {
      $("#errorsignbis").fadeOut();
      $("#btn-sign-bis").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
     },
-    success :  function(response) {      
-        if(response==1){         
+    success :  function(response) {  
+		if($.trim(response) === "0"){
+				$("#btn-sign-bis").html('Erreur');					
+				$("#errorsigntokenbis").fadeIn(1000, function(){						
+			});
+		}    
+        else if(response==1){         
 			 $("#errorsignbis").fadeIn(1000, function(){
 			   $("#errorsignbis").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Ce compte existe déjà !</div>');           
 			   $("#btn-sign-bis").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Créer mon compte');          

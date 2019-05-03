@@ -52,16 +52,20 @@ $('document').ready(function() {
      $("#error").fadeOut();
      $("#btn-sign").html('<span class="glyphicon glyphicon-transfer"></span> &nbsp; Vérification ...');
     },
-    success :  function(response) {      
-        if(response==1){         
-			 $("#error").fadeIn(1000, function(){
-			   $("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Ce compte existe déjà !</div>');           
-			   $("#btn-sign").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Créer mon compte');          
-			 });                    
+    success :  function(response) {
+		if($.trim(response) === "0"){
+				$("#btn-sign").html('Erreur');					
+				$("#errorsigntoken").fadeIn(1000, function(){						
+			});
+		}			
+        else if(response==1){         
+			$("#error").fadeIn(1000, function(){
+				$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; Ce compte existe déjà !</div>');           
+				$("#btn-sign").html('<span class="glyphicon glyphicon-log-in"></span> &nbsp; Créer mon compte');          
+			});                    
         } else if(response=="registered"){         
-			 $("#btn-sign").html('<img src="ajax-loader.gif" /> &nbsp; Entrée dans le monde de Gaïa ...');
-			 setTimeout('$(".modal-sign").load("welcomesign.php");',2000);         
-
+			$("#btn-sign").html('<img src="ajax-loader.gif" /> &nbsp; Entrée dans le monde de Gaïa ...');
+			setTimeout('$(".modal-sign").load("welcomesign.php");',2000);         
         } else {          
          	$("#error").fadeIn(1000, function(){           
       			$("#error").html('<div class="alert alert-danger"><span class="glyphicon glyphicon-info-sign"></span> &nbsp; Il y a eu un problème lors de votre inscription, nous vous invitons à réessayer !</div>');           

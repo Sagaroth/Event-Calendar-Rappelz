@@ -269,9 +269,13 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-user-plus"></i></span>
                                         </div>
-                                        <input type="text" name="orgaavailable" class="form-dispo" style="margin:0px auto;width:300px;" placeholder="<?php echo $lang['EVENTADD_TEXTSEARCH']; ?>">
-                                    </div>
-
+										<span id="form-dispo-container">
+											<input type="text" style="margin:0px auto;width:100%;" placeholder="<?php echo $lang['EVENTADD_TEXTSEARCH']; ?>" name="city" id="city" class="form-dispo">
+										</span>
+										<span id="loading" style="display:none;"><i class="fa fa-circle-o-notch fa-spin"></i></span>
+										<input type="hidden" name="city-hidden">
+									</div>
+									
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-gifts"></i></span>
@@ -723,16 +727,68 @@
                     pickerPosition: "bottom-left",
                 });
 
-                // Init autocomplete
-	            $('input.form-dispo').typeahead({
-	                source:  function (query, process) {
-                    return $.get('/formAutoComplete.php', { query: query }, function (data) {
-        		            console.log(data);
-        		            data = $.parseJSON(data);
-	                        return process(data);
-	                    });
-	                }
-                });
+/* initialisation paramètres globaux : */
+var cache = {}; /* tableau cache de tous les termes */
+var term = null; /* terme renseigné dans le champ input */
+
+$(document).ready(function() {
+	/* city autocomplete */
+	$('#city').autocomplete({
+		minLength:2, /* nombre de caractères minimaux pour lancer une recherche */
+		delay:200, /* delais après la dernière touche appuyée avant de lancer une recherche */
+		scrollHeight:320,
+		appendTo:'#form-dispo-container', /* div ou afficher la liste des résultats, si null, ce sera une div en position fixe avant la fin de </body> */
+		
+		/* dès qu'une recherche se lance, source est executé, il peut contenir soit un tableau JSON de termes, soit une fonctions qui retournera un résultat */
+		source:function(e,t){
+			term = e.term; /* récupération du terme renseigné dans l'input */
+			if(term in cache){ /* on vérifie que la clé "term" existe dans le tableau "cache", si oui alors on affiche le résultat */
+				t(cache[term]);
+			}else{ /* sinon on fait une requête ajax vers city.php pour rechercher "term" */
+				$('#loading').attr('style','');
+				$.ajax({
+					type:'GET',
+					url:'search.php',
+					data:'q='+e.term,
+					dataType:"json",
+					async:true,
+					cache:true,
+					success:function(e){
+						cache[term] = e; /* vide ou non, on stocke la liste des résultats avec en clé "term" */
+						if(!e.length){ /* si aucun résultats, on renvoi un tableau vide pour informer qu'on a rien trouvé */
+							var result = [{
+								label: '<?php echo $lang['EVENTADD_NOORGAAVAI']; ?>',
+								value: null,
+								id: null,
+							}];
+							t(result); /* envoit du résultat à source */
+						}else{ /* sinon on renvoi toute la liste */
+							t($.map(e, function (item){
+								return{
+									label: item.label,
+									value: item.value,
+									id: item.id,
+								}
+							}));  /* envoit du résultat à source avec map() de jQuery (permet d'appliquer une fonction pour tous les éléments d'un tableau */
+						}
+						$('#loading').attr('style','display:none;');
+					}
+				});
+			}
+		},
+		
+		/* sélection depuis la liste des résultats (flèches ou clic) > ajout du résultat automatique et callback */
+		select: function(event, ui) {
+			$('form input[name="city-id"]').val(ui.item ? ui.item.id : ''); /* on récupère juste l'id qu'on stocke dans l'autre input */
+		},
+		open: function() {
+			$(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+		},
+		close: function() {
+			$(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+		},
+	});
+});
             
                 $('#donator').tagsinput({
                     confirmKeys: [13, 44],

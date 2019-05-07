@@ -92,6 +92,7 @@ $lang['EVENTADD_TITLELENGHT_ERROR'] = '&nbsp; This field requires 6 characters a
 $lang['EVENTADD_NOORGA_ERROR'] = '&nbsp; An organizer is required';
 $lang['EVENTADD_ORGALENGHT_ERROR'] = '&nbsp; This field requires 4 characters at least';
 $lang['EVENTADD_SELECT_ERROR'] = '&nbsp; Please choose a location';
+$lang['EVENTADD_NOORGAAVAI'] = 'Your search did not return any registered users';
 
 // EVENT ADD NO CONNECTED
 $lang['NOCONNECTED_TITLE'] = 'You are not logged in';

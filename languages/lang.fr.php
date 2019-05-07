@@ -92,6 +92,7 @@ $lang['EVENTADD_TITLELENGHT_ERROR'] = '&nbsp; Ce champs requiert 6 caractères a
 $lang['EVENTADD_NOORGA_ERROR'] = '&nbsp; Un organisateur est requis';
 $lang['EVENTADD_ORGALENGHT_ERROR'] = '&nbsp; Ce champs requiert 4 caractères au minimum';
 $lang['EVENTADD_SELECT_ERROR'] = '&nbsp; Veuillez choisir un lieu';
+$lang['EVENTADD_NOORGAAVAI'] = 'Aucun utilisateur enregistré trouvé';
 
 // EVENT ADD NO CONNECTED
 $lang['NOCONNECTED_TITLE'] = 'Vous n\'êtes pas connecté';

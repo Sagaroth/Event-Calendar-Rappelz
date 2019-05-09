@@ -153,7 +153,7 @@
 				                        <div class="input-group-prepend">
 				                            <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
 				                        </div>
-				                        <select class="custom-select" id="inputGroupSelect01" name="user_server">
+				                        <select class="browser-default custom-select" id="inputGroupSelect01" name="user_server">
 				                            <option><?php echo $lang['REGISTER_SELECT']; ?></option>
 				                            <option value="Lamia">Lamia</option>
 				                            <option value="Abhuva">Abhuva</option>
@@ -289,7 +289,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
                                         </div>
-                                        <select name="color" class="form-control" id="color" required>
+                                        <select name="color" class="browser-default custom-select" id="color" required>
                                             <option value=""><?php echo $lang['EVENTADD_SELECTEVENTLOCA']; ?></option>
                                             <option style="color:#f83f90;" value="#f83f90">Lamia</option>
                                             <option style="color:#43aaf8;" value="#43aaf8">Abhuva</option>
@@ -377,7 +377,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
                                         </div>
-                                        <select name="color" class="form-control" id="color">
+                                        <select name="color" class="browser-default custom-select" id="color">
                                             <option value=""><?php echo $lang['EVENTMOD_SELECTEVENTLOCA']; ?></option>
                                             <option style="color:#f83f90;" value="#f83f90">Lamia</option>
                                             <option style="color:#43aaf8;" value="#43aaf8">Abhuva</option>
@@ -395,10 +395,14 @@
 
                                     <div class="form-group">
                                         <div class="col-sm-offset-2 col-sm-10">
-                                            <div class="checkbox">
-                                                <label class="text-danger">
-                                                    <input type="checkbox" name="delete"> <?php echo $lang['EVENTMOD_DELETE']; ?></label>
-                                            </div>
+												<div class="alert alert-danger" role="alert"><?php echo $lang['EVENTMOD_DELETE']; ?></div>
+												<div class="switch">
+												  <label>
+													<?php echo $lang['EVENTMOD_DELETE_N']; ?>
+													<input type="checkbox" name="delete">
+													<span class="lever"></span> <?php echo $lang['EVENTMOD_DELETE_Y']; ?>
+												  </label>
+												</div>
                                         </div>
                                     </div>
 
@@ -459,7 +463,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
                                         </div>
-                                        <select name="color" class="form-control" id="color" readonly disabled="true">
+                                        <select name="color" class="browser-default custom-select" id="color" readonly disabled="true">
                                             <option value=""><?php echo $lang['EVENTMOD_SELECTEVENTLOCA']; ?></option>
                                             <option style="color:#f83f90;" value="#f83f90">Lamia</option>
                                             <option style="color:#43aaf8;" value="#43aaf8">Abhuva</option>
@@ -523,7 +527,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text" for="inputGroupSelect01"><i class="fas fa-map-marked-alt"></i></label>
                                         </div>
-                                        <select name="color" class="form-control" id="color" readonly disabled="true">
+                                        <select name="color" class="browser-default custom-select" id="color" readonly disabled="true">
                                             <option value=""><?php echo $lang['EVENTMOD_SELECTEVENTLOCA']; ?></option>
                                             <option style="color:#f83f90;" value="#f83f90">Lamia</option>
                                             <option style="color:#43aaf8;" value="#43aaf8">Abhuva</option>

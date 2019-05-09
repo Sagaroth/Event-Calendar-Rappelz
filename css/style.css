@@ -148,6 +148,12 @@ li.ui-menu-item {
 	background-color:#e3f2fd;
 }
 
+.col-sm-offset-2.col-sm-10 {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #btn-submit {
     /*height: 45px;*/
 }

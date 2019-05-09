@@ -113,6 +113,9 @@ $events = $req->fetchAll();
             <!-- Site -->
             <link href="css/style.css" rel="stylesheet" />
 
+			<!-- Material Design Bootstrap -->
+			<link href="css/mdb.min.css" rel="stylesheet">
+
 	    <!-- END CSS REFERENCES-->
     
 	    <!-- FONT REFERENCES -->
@@ -134,6 +137,9 @@ $events = $req->fetchAll();
             <!-- Poppers -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
+			<!-- MDB core JavaScript -->
+			<script type="text/javascript" src="js/mdb.min.js"></script>
+  
             <!-- Bootstrap -->    
     	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>

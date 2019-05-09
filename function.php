@@ -42,7 +42,7 @@ function listDona($bdd, $lang){
 
 function blueDotAdmin($isadmin, $lang){
 	if(isSet($isadmin)){
-	echo '&nbsp;&nbsp;<i class="fas fa-certificate" style="color:#58C4F0" title='.$lang['GENERAL_ADMIN'].'></i>';}
+	echo '&nbsp;&nbsp;<span class="badge badge-primary">'.$lang['GENERAL_ADMIN'].'</span>';}
 }
 
 function noConnectedModal($lang, $token){?>

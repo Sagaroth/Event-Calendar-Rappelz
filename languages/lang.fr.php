@@ -13,7 +13,7 @@ $lang['HTML_LANGALT'] = 'fr';
 $lang['GENERAL_CLOSE'] = 'Fermer';
 $lang['GENERAL_REGISTER'] = 'M\'inscrire !';
 $lang['GENERAL_WELCOME'] = 'Bienvenue ';
-$lang['GENERAL_ADMIN'] = 'Administrateur';
+$lang['GENERAL_ADMIN'] = 'Admin';
 $lang['EVENT_DATE_CHANGED'] = 'La date de l\'événement a été changée';
 $lang['EVENT_DATE_ERROR'] = 'Erreur lors de la modification de la date';
 
@@ -107,7 +107,9 @@ $lang['EVENTMOD_TEXTORGA'] = 'Organisateur';
 $lang['EVENTMOD_TEXTSEARCH'] = 'Rechercher une personne disponible pour vous aider à organiser l\'événement';
 $lang['EVENTMOD_TEXTDONA'] = 'Donateur(s) - Séparer chaque entrée par une virgule (5 max)';
 $lang['EVENTMOD_SELECTEVENTLOCA'] = 'Lieu de l\'événement';
-$lang['EVENTMOD_DELETE'] = 'Supprimer cet événement';
+$lang['EVENTMOD_DELETE'] = 'Supprimer cet événement ? (Toute suppression d\'événement est définitive !)';
+$lang['EVENTMOD_DELETE_N'] = 'Non !';
+$lang['EVENTMOD_DELETE_Y'] = 'Oui';
 
 // EVENT SHOW
 $lang['EVENTSHOW_TITLE'] = 'Voir l\'événement';

@@ -58,6 +58,7 @@
     font-size: large;
     cursor: pointer;
     margin: 0 auto;
+	color: black;
 }
 
 .dtp-actual-year:hover{

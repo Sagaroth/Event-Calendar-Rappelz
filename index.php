@@ -720,15 +720,6 @@
 
                 // Create menu
                 new gnMenu(document.getElementById('gn-menu'));
-            
-                // Init datepicker
-                $(".form_datetime").datetimepicker({
-		            language: '<?php echo $lang['HTML_LANGALT']; ?>',
-                    format: "yyyy-mm-dd hh:ii:00",
-                    autoclose: true,
-                    todayBtn: true,
-                    pickerPosition: "bottom-left",
-                });
 
 				var cache = {}; /* Cache of terms */
 				var term = null; /* Term in input field */
@@ -1021,7 +1012,6 @@
 				switchOnClick : false
 			});
 		});
-	
         </script>
     </body>
 <?php require_once 'footer.php' ?>

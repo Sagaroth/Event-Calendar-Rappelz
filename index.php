@@ -302,14 +302,14 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><?php echo $lang['EVENTADD_DATESTART']; ?></span>
                                         </div>
-                                        <input type="text" name="start" class="form_datetime" id="start" value="" readonly>
+										<input type="text" name="start" class="form-control floating-label" id="start" value="">
                                     </div>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><?php echo $lang['EVENTADD_DATEEND']; ?></span>
                                         </div>
-                                        <input type="text" name="end" class="form_datetime" id="end" value="" readonly>
+										<input type="text" name="end" class="form-control floating-label" id="end" value="">
                                     </div>
 
                                 </div>
@@ -549,7 +549,6 @@
             <!-- ./EDIT EVENT MODAL -->
             <!-- ./MODALS -->
         </div>
-
 	    <script type="text/javascript">
 	        $(document).ready(function() {
 
@@ -997,6 +996,32 @@
 			$('.login').slideDown('slow');
 		});	
 	});
+	
+			$(document).ready(function()
+		{
+			$('#start').bootstrapMaterialDatePicker
+			({
+				format: 'YYYY-MM-DD HH:mm:00',
+				lang: '<?php echo $lang['HTML_LANG'];?>',
+				weekStart: 1, 
+				nowText: '<?php echo $lang['GENERAL_NOW'];?>',
+				cancelText : '<?php echo $lang['GENERAL_CANCEL'];?>',
+				nowButton : true,
+				switchOnClick : false
+			});
+
+			$('#end').bootstrapMaterialDatePicker
+			({
+				format: 'YYYY-MM-DD HH:mm:00',
+				lang: '<?php echo $lang['HTML_LANG'];?>',
+				weekStart: 1, 
+				nowText: '<?php echo $lang['GENERAL_NOW'];?>',
+				cancelText : '<?php echo $lang['GENERAL_CANCEL'];?>',
+				nowButton : true,
+				switchOnClick : false
+			});
+		});
+	
         </script>
     </body>
 <?php require_once 'footer.php' ?>

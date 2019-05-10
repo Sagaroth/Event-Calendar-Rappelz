@@ -159,6 +159,48 @@ li.ui-menu-item {
 }
 /* ./Forms */
 
+/*DatePicker */
+.dtp-buttons {
+    display: inline-block;
+    text-align: center!important;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: black;
+	width:100%;
+}
+button.btn.btn-flat:hover {
+    background-color: rgba(153,153,153,.2);
+}
+.btn.btn-flat {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+    color: inherit;
+    font-size: 11px;
+}
+.dtp div.dtp-picker-month, .dtp div.dtp-actual-time {
+    font-weight: 500;
+    text-align: center;
+    color: black;
+}
+button.dtp-btn-now.btn.btn-flat.btn-sm {
+    padding: 10px;
+}
+button.dtp-btn-ok.btn.btn-flat.btn-sm {
+    padding: 10px;
+}
+button.dtp-btn-cancel.btn.btn-flat.btn-sm {
+    padding: 10px;
+}
 /* Menu */
 .gn-menu-main {
     z-index: 2;

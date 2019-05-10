@@ -115,6 +115,9 @@ $events = $req->fetchAll();
 
 			<!-- Material Design Bootstrap -->
 			<link href="css/mdb.min.css" rel="stylesheet">
+			<link rel="stylesheet" href="css/bootstrap-material-datetimepicker.css" />
+			<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/bootstrap-material-design.min.css"/>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/css/ripples.min.css"/>-->
 
 	    <!-- END CSS REFERENCES-->
     
@@ -122,13 +125,14 @@ $events = $req->fetchAll();
     
     	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
             <link href="https://fonts.googleapis.com/css?family=Rubik:300,400&amp;subset=latin-ext" rel="stylesheet">
+			<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	    <!-- END FONT REFERENCES -->
 
         <!-- JS REFERENCES -->
 
             <!-- jQuery -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 			<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 			<script src='js/jquery.qtip.min.js'></script>
 	        <script src="js/validation.min.js"></script>
@@ -137,16 +141,12 @@ $events = $req->fetchAll();
             <!-- Poppers -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-			<!-- MDB core JavaScript -->
-			<script type="text/javascript" src="js/mdb.min.js"></script>
-  
-            <!-- Bootstrap -->    
+			<!-- Bootstrap -->    
     	    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     	    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
     	    <script src="js/custom_tags_input.js"></script>
 	        <script src="js/bootstrap-datetimepicker.js"></script>
-	        <script src="js/locales/bootstrap-datetimepicker.fr.js"></script>
 
             <!-- Dropzone -->
             <script type="text/javascript" src="dropzone/dropzone.js"></script>
@@ -170,7 +170,9 @@ $events = $req->fetchAll();
 			<script type="text/javascript" src="js/login.js"></script>
 			<script type="text/javascript" src="js/loginbis.js"></script>
 			<script type="text/javascript" src="js/signbis.js"></script>
+			<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>-->
+			<script type="text/javascript" src="js/bootstrap-material-datetimepicker.js"></script>
 
         <!-- END JS REFERENCES -->
-
     </head>

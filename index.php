@@ -650,7 +650,7 @@
                               $donator = addslashes($event['donator']);
 							  
                     ?>
-		{<?php if ($userlogged == $organisateur || (isSet($isadmin))){ ?> 
+		{<?php if (strcasecmp($userlogged, $organisateur) == 0 || isSet($isadmin)){ ?> 
 							id: '<?php echo $event['id']; ?>',
 					        title: '<?php echo $title; ?>',
 					        description: "<?php echo $description; ?>",

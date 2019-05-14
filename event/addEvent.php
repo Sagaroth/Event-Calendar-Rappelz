@@ -45,6 +45,7 @@ function addEvent($link) { //Create add event function.
 	$description = htmlspecialchars($description);
 	$description = str_replace(["\r\n", "\r", "\n"], "<br/>", $description);
 	$organisateur = htmlspecialchars($organisateur);
+	$organisateur = ucfirst($organisateur);
 	$orgaavailable = htmlspecialchars($orgaavailable);
 	$donator = htmlspecialchars($donator);
 	$start = addslashes($start);

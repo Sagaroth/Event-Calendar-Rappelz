@@ -258,6 +258,11 @@ button.dtp-btn-cancel.btn.btn-flat.btn-sm {
     }
 }
 
+.popover-header {
+    color: #212529;
+	font-weight: 600;
+}
+
 .fc-toolbar.fc-header-toolbar {
     background-color: #353C80;
     padding: 10px;

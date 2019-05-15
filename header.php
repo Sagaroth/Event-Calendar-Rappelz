@@ -170,9 +170,6 @@ $events = $req->fetchAll();
 			<script type="text/javascript" src="js/login.js"></script>
 			<script type="text/javascript" src="js/loginbis.js"></script>
 			<script type="text/javascript" src="js/signbis.js"></script>
-			<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>-->
 			<script type="text/javascript" src="js/bootstrap-material-datetimepicker.js"></script>
-
         <!-- END JS REFERENCES -->
     </head>

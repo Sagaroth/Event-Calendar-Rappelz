@@ -611,9 +611,15 @@
 					        $('#ModalEdit').modal('show');
 						}
 				        });
-			        element.qtip({
-                          content: "<b>" + event.title + "</b>" + "<br> <br>" + event.description,
-                      });
+          element.popover({
+              animation: true,
+			  placement: 'auto',
+              delay: 300,
+			  html : true,
+			  title : event.title,
+              content: event.description,
+              trigger: 'hover'
+          });
 			        },
 										
 			        eventDrop: function(event, delta, revertFunc) { // si changement de position

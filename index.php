@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /.CALENDAR -->
+            <!-- /.CALENDAR -->	
 		
             <!-- MODALS -->
             
@@ -478,7 +478,7 @@
                                         </div>
                                         <input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="<?php $lang['EVENTMOD_TEXTDONA']; ?>" readonly>
                                     </div>
-                                </div>
+                                </div>				
 						</div>
                     </div>
                 </div>
@@ -495,7 +495,7 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <div class="input-group mb-3">
+                                    <!--<div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-font"></i></span>
                                         </div>
@@ -535,16 +535,62 @@
                                             <option style="color:#66bb6a;" value="#66bb6a">Autre</option>
                                         </select>
                                     </div>
-
+									
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><?php echo $lang['EVENTADD_DATESTART']; ?></span>
+                                        </div>
+										<input type="text" name="start" class="form-control floating-label" id="start" value="">
+                                    </div>
+									
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="basic-addon1"><i class="fas fa-gifts"></i></span>
                                         </div>
                                         <input type="text" name="donator" class="form-control" id="donator" data-role="tagsinput" placeholder="<?php $lang['EVENTMOD_TEXTDONA']; ?>" readonly>
-                                    </div>
+                                    </div>-->
+
+								    <!-- Card -->
+									<div class="card booking-card">
+
+									  <!-- Card image -->
+									  <div class="view overlay">
+										<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg" alt="Card image cap">
+										<a href="#!">
+										  <div class="mask rgba-white-slight"></div>
+										</a>
+									  </div>
+
+									  <!-- Card content -->
+									  <div class="card-body">
+
+										<!-- Title -->
+										<h4 class="card-title font-weight-bold"><span id="title"></span></h4>
+
+										<!-- Data -->
+										<p class="mb-2"><span id="organisateur"></span> • <span id="color"></span></p>
+										<p class="mb-2"><span id="orgaavailable"></span>
+										<p class="mb-2"><span id="donator"></span>
+										<!-- Text -->
+										<p class="card-text"><span id="description"></span></p>
+										<hr class="my-4">
+										<p class="lead"><strong><?php echo $lang['EVENTSHOW_DATETIME']; ?></strong></p>
+										<ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
+										  <li class="list-inline-item mr-0">
+											<div class="chip mr-0"><?php echo $lang['EVENTSHOW_START'];?> : <b><span id="start"></span></b></div>
+										  </li>
+										  <li class="list-inline-item mr-0">
+											<div class="chip mr-0"><?php echo $lang['EVENTSHOW_END'];?> : <b><span id="end"></span></b></div>
+										  </li>
+										</ul>
+									  </div>
+
+									</div>
+									<!-- Card -->
+
                                 </div>
-						</div>
-                    </div>
+						</div>				
+                    </div>				
                 </div>
             <!-- ./EDIT EVENT MODAL -->
             <!-- ./MODALS -->
@@ -592,11 +638,19 @@
 						if (event.url) {
 					        $('#ModalNotOwner #id').val(event.id);
 					        $('#ModalNotOwner #title').val(event.title);
+							$('#ModalNotOwner #title').html(event.title);
 					        $('#ModalNotOwner #description').val(event.description);
+							$('#ModalNotOwner #description').html(event.description);
 					        $('#ModalNotOwner #organisateur').val(event.organisateur);
+							$('#ModalNotOwner #organisateur').html(event.organisateur);
 					        $('#ModalNotOwner #orgaavailable').val(event.orgaavailable);
+							$('#ModalNotOwner #orgaavailable').html(event.orgaavailable);
 					        $('#ModalNotOwner #donator').val(event.donator);
+							$('#ModalNotOwner #donator').html(event.donator);
 					        $('#ModalNotOwner #color').val(event.color);
+							$('#ModalNotOwner #color').html(event.color);
+							$('#ModalNotOwner #start').html(moment(event.start).format('dddd Do MMMM  YYYY, HH:mm:ss'));
+							$('#ModalNotOwner #end').html(moment(event.end).format('dddd Do MMMM  YYYY, HH:mm:ss'));
 							$('#ModalNotOwner').modal('show');
 							return false;
 						}

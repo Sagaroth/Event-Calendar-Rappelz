@@ -120,6 +120,9 @@ $lang['EVENTSHOW_TEXTDES'] = 'Aucune description n\'a été indiquée par le cr�
 $lang['EVENTSHOW_TEXTSEARCH'] = 'Look for a person available to help you organize the event';
 $lang['EVENTSHOW_SELECTEVENTLOCA'] = 'Lieu de l\'événement';
 $lang['EVENTSHOW_TEXTDONA'] = 'Donator(s) - Separate each entry with a comma (5 max)';
+$lang['EVENTSHOW_DATETIME'] = 'Dates et horaires de l\'événement';
+$lang['EVENTSHOW_START'] = 'Début';
+$lang['EVENTSHOW_END'] = 'Fin';
 $lang['EVENTSHOW_DELETE'] = 'Delete this event';
 
 ?>

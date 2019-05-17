@@ -407,5 +407,9 @@ th.fc-day-header.fc-widget-header {
 input:focus ~ .bar,input:valid ~ .bar{
     width:100%;
 }
+.mr-0, .mx-0 {
+    margin-right: auto!important;
+	margin-left: auto!important;
+}
 
 /* ./Calendar */

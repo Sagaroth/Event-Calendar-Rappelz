@@ -119,6 +119,9 @@ $lang['EVENTSHOW_TEXTDES'] = 'No description was given by the creator of the eve
 $lang['EVENTSHOW_TEXTSEARCH'] = 'Look for a person available to help you organize the event';
 $lang['EVENTSHOW_SELECTEVENTLOCA'] = 'Lieu de l\'événement';
 $lang['EVENTSHOW_TEXTDONA'] = 'Donator(s) - Separate each entry with a comma (5 max)';
+$lang['EVENTSHOW_DATETIME'] = 'Dates and times of the event';
+$lang['EVENTSHOW_START'] = 'Start';
+$lang['EVENTSHOW_END'] = 'End';
 $lang['EVENTSHOW_DELETE'] = 'Delete this event';
 
 ?>

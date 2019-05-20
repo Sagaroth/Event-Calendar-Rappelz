@@ -555,7 +555,7 @@
 
 									  <!-- Card image -->
 									  <div class="view overlay">
-										<img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Food/8-col/img (5).jpg" alt="Card image cap">
+										<img class="card-img-top" src="https://stmed.net/sites/default/files/rappelz-hd-wallpapers-33540-3988925.jpg" alt="Card image cap">
 										<a href="#!">
 										  <div class="mask rgba-white-slight"></div>
 										</a>
@@ -566,11 +566,19 @@
 
 										<!-- Title -->
 										<h4 class="card-title font-weight-bold"><span id="title"></span></h4>
-
+										<ul class="list-unstyled list-inline d-flex justify-content-between mb-0">
 										<!-- Data -->
-										<p class="mb-2"><span id="organisateur"></span> • <span id="color"></span></p>
-										<p class="mb-2"><span id="orgaavailable"></span>
-										<p class="mb-2"><span id="donator"></span>
+										  <li class="list-inline-item mb-2">
+											<p class="mb-2"><?php echo $lang['EVENTSHOW_ORGABY']; ?><b><span id="organisateur"></b></span> • <span id="color"></span></p>
+										  </li>
+										  <li class="list-inline-item mb-2">
+											<p class="mb-2"><span id="orgaavailable"></span>
+										  </li>
+										  <li class="list-inline-item mb-2">
+											<p class="mb-2"><span id="donator"></span>
+										  </li>
+										</ul>
+										<hr class="my-4">
 										<!-- Text -->
 										<p class="card-text"><span id="description"></span></p>
 										<hr class="my-4">
@@ -630,9 +638,7 @@
 				        $('#ModalAdd #start').val(moment(start).format('YYYY-MM-DD HH:mm:ss'));
 				        $('#ModalAdd #end').val(moment(end).format('YYYY-MM-DD HH:mm:ss'));
 				        $('#ModalAdd').modal('show');
-			        },
-                // dayNamesShort: ['DIM', 'LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM'],
-			
+			        },			
 			        eventRender: function(event, element, view) {
 				        element.bind('click', function() {
 						if (event.url) {
@@ -644,8 +650,16 @@
 					        $('#ModalNotOwner #organisateur').val(event.organisateur);
 							$('#ModalNotOwner #organisateur').html(event.organisateur);
 					        $('#ModalNotOwner #orgaavailable').val(event.orgaavailable);
+							if (event.orgaavailable) {
+							$('#ModalNotOwner #orgaavailable').html("<?php echo $lang['EVENTSHOW_HELPEDBY']; ?><b>"+event.orgaavailable+"</b>");
+							}
+							else
 							$('#ModalNotOwner #orgaavailable').html(event.orgaavailable);
 					        $('#ModalNotOwner #donator').val(event.donator);
+							if (event.donator) {
+							$('#ModalNotOwner #donator').html("<?php echo $lang['EVENTSHOW_DONFROM']; ?><b>"+event.donator+"</b>");
+							}
+							else
 							$('#ModalNotOwner #donator').html(event.donator);
 					        $('#ModalNotOwner #color').val(event.color);
 							$('#ModalNotOwner #color').html(event.color);
@@ -665,15 +679,15 @@
 					        $('#ModalEdit').modal('show');
 						}
 				        });
-          element.popover({
-              animation: true,
-			  placement: 'auto',
-              delay: 300,
-			  html : true,
-			  title : event.title,
-              content: event.description,
-              trigger: 'hover'
-          });
+					  element.popover({
+						  animation: true,
+						  placement: 'auto',
+						  delay: 300,
+						  html : true,
+						  title : event.title,
+						  content: event.description,
+						  trigger: 'hover'
+					  });
 			        },
 										
 			        eventDrop: function(event, delta, revertFunc) { // si changement de position
